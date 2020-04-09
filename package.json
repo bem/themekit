@@ -1,0 +1,9 @@
+{
+  "name": "@yandex/themekit",
+  "version": "0.0.0-alpha.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eugene Tropin <yarastqt@gmail.com>",
+  "license": "MIT"
+}
