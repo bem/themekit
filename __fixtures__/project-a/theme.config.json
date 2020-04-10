@@ -1,0 +1,8 @@
+{
+  "platforms": {
+    "web": {
+      "tokenPrefix": "token",
+      "transforms": ["size.pixel", "color.hex"]
+    }
+  }
+}
