@@ -2,7 +2,7 @@ export type Shape<T> = { [key: string]: T }
 
 export type Token = {
   value: string | number
-  type: 'color' | 'size'
+  type: 'color' | 'size' | 'unknown'
   comment?: string
 }
 
@@ -11,5 +11,5 @@ export type FlattenToken = Token & {
 }
 
 export type TokensMap = {
-  [key: string]: Token | TokensMap
+  [key: string]: TokensMap | Token | string
 }

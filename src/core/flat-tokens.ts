@@ -11,7 +11,14 @@ export function flatTokens(tokens: TokensMap, __prefix__?: string): Shape<Flatte
   for (const key in tokens) {
     const transformedKey = withPrefix(key, __prefix__)
     const maybeToken = tokens[key]
-    if (maybeToken.value === undefined) {
+    if (typeof maybeToken === 'string') {
+      result[transformedKey] = {
+        value: maybeToken,
+        type: 'unknown',
+        name: transformedKey,
+      }
+    }
+    else if (maybeToken.value === undefined) {
       Object.assign(result, flatTokens(maybeToken as TokensMap, transformedKey))
     } else {
       result[transformedKey] = {
