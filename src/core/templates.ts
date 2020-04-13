@@ -29,7 +29,7 @@ export function esmTemplate(tokens: FlattenToken[]): string {
     if (token.comment !== undefined) {
       result += `// ${token.comment}\n`
     }
-    result += `export const ${token.name} = '${token.value};'\n`
+    result += `export const ${token.name} = '${token.value}';\n`
   }
   return result
 }
