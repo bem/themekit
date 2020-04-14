@@ -16,9 +16,10 @@ type ThemeLayers = Shape<
 
 export async function getThemeLayers(
   source: string,
-  options?: { platforms: Platforms; exclude: string[] },
+  options?: { platforms: Platforms; exclude?: string[] },
 ): Promise<ThemeLayers> {
   const result: ThemeLayers = {}
+  // @ts-ignore
   const files = await fg('**/*.{js,ts}', { cwd: source, ignore: options.exclude })
   for (const fileName of files) {
     const data = await importModule<ThemeTokens>(resolve(source, fileName))
@@ -39,6 +40,7 @@ export async function getThemeLayers(
       result[platform][layer] = {
         meta: data.meta,
         name: layer,
+        // @ts-ignore
         tokens: deepmerge.all<TokensMap>(composedLevels),
       }
     }

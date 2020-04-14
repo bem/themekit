@@ -48,7 +48,8 @@ export const transforms: Shape<Transform> = {
 }
 
 // TODO: Use shape instead array for same struct as original.
-export function transformTokens(tokens: {}, options: any) {
+// TODO: Fix any types.
+export function transformTokens(tokens: Shape<any>, options: any) {
   const result = []
   for (const key in tokens) {
     const token = tokens[key]
@@ -57,7 +58,11 @@ export function transformTokens(tokens: {}, options: any) {
       if (transform.type === 'name') {
         token.name = transform.transformer(token, options)
       }
-      if (transform.type === 'value' && transform.matcher(token)) {
+      if (
+        transform.type === 'value' &&
+        transform.matcher !== undefined &&
+        transform.matcher(token)
+      ) {
         token.value = transform.transformer(token, options)
       }
     }

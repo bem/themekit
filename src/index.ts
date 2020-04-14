@@ -9,6 +9,7 @@ export function theme(shape1: ThemeTokens, shape2: ThemeTokens = {}): ThemeToken
 
 export function color(inputColor: string, options: { h?: number; s?: number; l?: number }): string {
   return Color(inputColor)
+    // @ts-ignore
     .hsl(options.h, options.s, options.l)
     .hex()
 }
