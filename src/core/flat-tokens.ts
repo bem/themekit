@@ -1,6 +1,17 @@
 import { withPrefix } from './with-prefix'
 import { Shape, FlattenToken, Token, TokensMap } from './token.h'
 
+function getTokenType(value: string): Token['type'] {
+  // TODO: Order is necessary, cuz color maybe has percent.
+  if (value.match(/#|rgb|hsl/) !== null) {
+    return 'color'
+  }
+  if (value.match(/px|%|em|rem/) !== null) {
+    return 'size'
+  }
+  return 'unknown'
+}
+
 /**
  * Returns flatten shape with tokens.
  *
@@ -14,7 +25,7 @@ export function flatTokens(tokens: TokensMap, __prefix__?: string): Shape<Flatte
     if (typeof maybeToken === 'string') {
       result[transformedKey] = {
         value: maybeToken,
-        type: 'unknown',
+        type: getTokenType(maybeToken),
         name: transformedKey,
       }
     }
