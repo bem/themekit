@@ -1,3 +1,5 @@
+import { Platforms } from './platforms'
+
 export type Shape<T> = { [key: string]: T }
 
 export type Token = {
@@ -13,3 +15,5 @@ export type FlattenToken = Token & {
 export type TokensMap = {
   [key: string]: TokensMap | Token | string
 }
+
+export type ThemeTokens = { [key in Platforms]?: TokensMap } & { meta?: { css?: string } }
