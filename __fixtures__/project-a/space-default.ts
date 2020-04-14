@@ -4,7 +4,7 @@ export default {
   },
   common: {
     border_radius_m: {
-      value: 4,
+      value: '4px',
       type: 'size',
     },
   },

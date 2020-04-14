@@ -1,8 +1,21 @@
 {
-  "platforms": {
-    "web": {
-      "tokenPrefix": "token",
-      "transforms": ["size.pixel", "color.hex"]
+  "platforms": ["desktop"],
+  "formats": {
+    "js.esm": {
+      "transforms": ["name.const", "size.px"],
+      "options": {
+        "prefix": "token",
+        "outputDir???": "",
+        "fileName": "styles"
+      }
+    },
+    "css.flat": {
+      "transforms": ["name.param", "size.px", "color.hex"],
+      "options": {
+        "prefix": "token",
+        "outputDir???": "",
+        "fileName": "styles"
+      }
     }
   }
 }
