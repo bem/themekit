@@ -1,15 +1,17 @@
-import Color from 'color'
 import deepmerge from 'deepmerge'
 
-import { ThemeTokens } from './core/token.h'
+import { Shape, ThemeTokens } from './core/token.h'
 
-export function theme(shape1: ThemeTokens, shape2: ThemeTokens = {}): ThemeTokens {
-  return deepmerge(shape1, shape2)
-}
+type Primitives = Shape<string | number>
+type ThemeFn = (primitives: Primitives) => ThemeTokens
 
-export function color(inputColor: string, options: { h?: number; s?: number; l?: number }): string {
-  return Color(inputColor)
-    // @ts-ignore
-    .hsl(options.h, options.s, options.l)
-    .hex()
+// TODO: theme args must be fn or plain shape.
+export function withTokens(theme1: ThemeFn, theme2?: ThemeFn) {
+  return (primitives1: Primitives = {}) => (primitives2: Primitives = {}) => {
+    const composedPrimitives = deepmerge(primitives1, primitives2)
+    if (theme2 === undefined) {
+      return theme1(composedPrimitives)
+    }
+    return deepmerge(theme1(composedPrimitives), theme2(composedPrimitives))
+  }
 }

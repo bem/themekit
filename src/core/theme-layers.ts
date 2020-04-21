@@ -22,7 +22,9 @@ export async function getThemeLayers(
   // @ts-ignore
   const files = await fg('**/*.{js,ts}', { cwd: source, ignore: options.exclude })
   for (const fileName of files) {
-    const data = await importModule<ThemeTokens>(resolve(source, fileName))
+    const fn = await importModule<ThemeTokens>(resolve(source, fileName))
+    const maybeFn = fn()
+    const data = typeof maybeFn === 'function' ? maybeFn() : maybeFn
     const { name: layer } = parse(fileName)
     for (const [platform, levels] of platforms) {
       if (options !== undefined && !options.platforms.includes(platform)) {
