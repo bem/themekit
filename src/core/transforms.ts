@@ -1,8 +1,13 @@
-import toColor from 'color'
-import { paramCase, constantCase } from 'change-case'
+// @ts-ignore
+import colorFn from 'css-color-function'
+import { constantCase } from 'change-case'
 
 import { withPrefix } from './with-prefix'
 import { Shape, FlattenToken } from './token.h'
+
+function paramCase(value: string): string {
+  return value.replace(/_/g, '-')
+}
 
 type Transform = {
   type: 'name' | 'value'
@@ -27,11 +32,10 @@ export const transforms: Shape<Transform> = {
     type: 'value',
     matcher: (token) => token.type === 'color',
     transformer: (token) => {
-      const color = toColor(token.value)
-      // prettier-ignore
-      return (color as any).valpha < 1
-        ? color.rgb().toString().toLowerCase()
-        : color.hex().toString().toLowerCase()
+      if (token.value.toString().startsWith('color')) {
+        return colorFn.convert(token.value)
+      }
+      return token.value
     },
   },
   // TODO: Fix transform for multiply value, ex. `0 10px`.
