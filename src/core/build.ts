@@ -9,6 +9,7 @@ import { transformTokens } from './transforms'
 import { formats } from './formats'
 
 export async function build(_options: Config): Promise<any> {
+  // TODO: Add mask for find files.
   // TODO: Add tokens validate.
   // TODO: Add avalible transforms validate.
   // TODO: Add header for generated files with date/ts.
@@ -29,8 +30,9 @@ export async function build(_options: Config): Promise<any> {
     }
     const result_to_write = formats[format](result, options)
     for (const file of result_to_write) {
-      await ensureDir(resolve(process.cwd(), _options.rootDir, 'build'))
-      await writeFile(resolve(process.cwd(), _options.rootDir, 'build', file.fileName), file.content)
+      // TODO: build dir should be configurated
+      await ensureDir(resolve(process.cwd(), _options.rootDir, 'tokens'))
+      await writeFile(resolve(process.cwd(), _options.rootDir, 'tokens', file.fileName), file.content)
     }
   }
 }
