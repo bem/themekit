@@ -8,14 +8,14 @@ import { flatTokens } from './flat-tokens'
 import { transformTokens } from './transforms'
 import { formats } from './formats'
 
-export async function build(_options: Config): Promise<any> {
+export async function build(config: Config): Promise<any> {
   // TODO: Add tokens validate.
   // TODO: Add avalible transforms validate.
   // TODO: Add header for generated files with date/ts.
-  const themeLayers = await getThemeLayers(_options.src, { platforms: _options.platforms, exclude: _options.exclude })
-  for (const format in _options.formats) {
+  const themeLayers = await getThemeLayers(config.src, { platforms: config.platforms, exclude: config.exclude })
+  for (const format in config.formats) {
     // @ts-ignore
-    const { options, transforms } = _options.formats[format]
+    const { options, transforms } = config.formats[format]
     const result = deepmerge(themeLayers, {})
     for (const platform in themeLayers) {
       const xxx = themeLayers[platform]
@@ -30,8 +30,8 @@ export async function build(_options: Config): Promise<any> {
     const result_to_write = formats[format](result, options)
     for (const file of result_to_write) {
       // TODO: build dir should be configurated
-      await ensureDir(resolve(process.cwd(), _options.outDir, 'tokens'))
-      await writeFile(resolve(process.cwd(), _options.outDir, 'tokens', file.fileName), file.content)
+      await ensureDir(resolve(process.cwd(), config.outDir, 'tokens'))
+      await writeFile(resolve(process.cwd(), config.outDir, 'tokens', file.fileName), file.content)
     }
   }
 }
