@@ -1,11 +1,9 @@
-import { resolve } from 'path'
 import { Command, flags } from '@oclif/command'
 
 import { getProjectConfig } from '../core/project-config'
 import { build } from '../core/build'
 
 type Flags = { config: string }
-type Args = { source: string }
 
 export default class Build extends Command {
   static flags = {
@@ -17,7 +15,7 @@ export default class Build extends Command {
   }
 
   async run() {
-    const { flags, args } = this.parse<Flags, Args>(Build)
+    const { flags } = this.parse<Flags, any>(Build)
     const config = await getProjectConfig(process.cwd(), flags.config)
     await build(config)
   }
