@@ -18,7 +18,7 @@ export function flatTokens(tokens: TokensMap, prefix?: string): Shape<FlattenTok
         name: computedKey,
       }
     }
-    else if (isTokenMap(token)) {
+    else if (isTokensMap(token)) {
       Object.assign(result, flatTokens(token, computedKey))
     } else {
       result[computedKey] = {
@@ -41,6 +41,6 @@ function getTokenType(value: string): Token['type'] {
   return 'unknown'
 }
 
-function isTokenMap(token: Token | TokensMap): token is TokensMap {
+function isTokensMap(token: Token | TokensMap): token is TokensMap {
   return token.value === undefined
 }
