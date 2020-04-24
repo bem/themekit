@@ -16,7 +16,7 @@ type ThemeLayers = Shape<
 
 export async function getThemeLayers(
   source: string,
-  options?: { platforms: Platforms; exclude?: string[] },
+  options?: { platforms: Platforms },
 ): Promise<ThemeLayers> {
   const result: ThemeLayers = {}
   // @ts-ignore

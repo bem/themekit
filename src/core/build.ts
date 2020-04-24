@@ -12,9 +12,8 @@ export async function build(config: Config): Promise<any> {
   // TODO: Add tokens validate.
   // TODO: Add avalible transforms validate.
   // TODO: Add header for generated files with date/ts.
-  const themeLayers = await getThemeLayers(config.src, { platforms: config.platforms, exclude: config.exclude })
+  const themeLayers = await getThemeLayers(config.src, { platforms: config.platforms })
   for (const format in config.formats) {
-    // @ts-ignore
     const { options, transforms } = config.formats[format]
     const result = deepmerge(themeLayers, {})
     for (const platform in themeLayers) {
