@@ -42,7 +42,6 @@ export async function getThemeLayers(
       result[platform][layer] = {
         meta: data.meta,
         name: layer,
-        // @ts-ignore
         tokens: deepmerge.all<TokensMap>(composedLevels),
       }
     }
