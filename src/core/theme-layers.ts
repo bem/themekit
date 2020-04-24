@@ -20,9 +20,9 @@ export async function getThemeLayers(
 ): Promise<ThemeLayers> {
   const result: ThemeLayers = {}
   // @ts-ignore
-  const files = await fg('**/*.{js,ts}', { cwd: source, ignore: options.exclude })
+  const files = await fg(source)
   for (const fileName of files) {
-    const fn = await importModule<ThemeTokens>(resolve(source, fileName))
+    const fn = await importModule<ThemeTokens>(resolve(fileName))
     const maybeFn = fn()
     const data = typeof maybeFn === 'function' ? maybeFn() : maybeFn
     const { name: layer } = parse(fileName)

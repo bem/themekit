@@ -9,11 +9,10 @@ import { transformTokens } from './transforms'
 import { formats } from './formats'
 
 export async function build(_options: Config): Promise<any> {
-  // TODO: Add mask for find files.
   // TODO: Add tokens validate.
   // TODO: Add avalible transforms validate.
   // TODO: Add header for generated files with date/ts.
-  const themeLayers = await getThemeLayers(_options.rootDir, { platforms: _options.platforms, exclude: _options.exclude })
+  const themeLayers = await getThemeLayers(_options.src, { platforms: _options.platforms, exclude: _options.exclude })
   for (const format in _options.formats) {
     // @ts-ignore
     const { options, transforms } = _options.formats[format]

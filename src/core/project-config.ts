@@ -4,8 +4,7 @@ import { readJsonSync } from 'fs-extra'
 import { Platforms } from './platforms'
 
 export type Config = {
-  rootDir: string
-  exclude: string[]
+  src: string
   platforms: Platforms
   formats: {
     [key: string]: {
