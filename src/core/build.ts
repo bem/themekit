@@ -30,8 +30,8 @@ export async function build(_options: Config): Promise<any> {
     const result_to_write = formats[format](result, options)
     for (const file of result_to_write) {
       // TODO: build dir should be configurated
-      await ensureDir(resolve(process.cwd(), _options.rootDir, 'tokens'))
-      await writeFile(resolve(process.cwd(), _options.rootDir, 'tokens', file.fileName), file.content)
+      await ensureDir(resolve(process.cwd(), _options.outDir, 'tokens'))
+      await writeFile(resolve(process.cwd(), _options.outDir, 'tokens', file.fileName), file.content)
     }
   }
 }

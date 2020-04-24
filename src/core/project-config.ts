@@ -5,6 +5,7 @@ import { Platforms } from './platforms'
 
 export type Config = {
   src: string
+  outDir: string
   platforms: Platforms
   formats: {
     [key: string]: {
