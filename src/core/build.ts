@@ -1,5 +1,5 @@
 import { writeFile, ensureDir } from 'fs-extra'
-import { resolve } from 'path'
+import { resolve, parse } from 'path'
 import deepmerge from 'deepmerge'
 
 import { Config } from './project-config'
@@ -14,7 +14,7 @@ export async function build(config: Config): Promise<any> {
   // TODO: Add header for generated files with date/ts.
   const themeLayers = await getThemeLayers(config.src, { platforms: config.platforms })
   for (const format in config.formats) {
-    const { options, transforms } = config.formats[format]
+    const { outDir, options, transforms } = config.formats[format]
     const result = deepmerge(themeLayers, {})
     for (const platform in themeLayers) {
       const xxx = themeLayers[platform]
@@ -28,9 +28,10 @@ export async function build(config: Config): Promise<any> {
     }
     const result_to_write = formats[format](result, options)
     for (const file of result_to_write) {
-      // TODO: build dir should be configurated
-      await ensureDir(resolve(process.cwd(), config.outDir, 'tokens'))
-      await writeFile(resolve(process.cwd(), config.outDir, 'tokens', file.fileName), file.content)
+      const destFilePath = resolve(process.cwd(), outDir, file.fileName)
+      const destFolder = parse(destFilePath).dir
+      await ensureDir(destFolder)
+      await writeFile(destFilePath, file.content)
     }
   }
 }
