@@ -1,4 +1,4 @@
-import { FlattenToken } from './token.h'
+import { FlattenToken } from './types'
 
 /**
  * Returns css with tokens.

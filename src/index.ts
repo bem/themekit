@@ -1,6 +1,6 @@
 import deepmerge from 'deepmerge'
 
-import { Shape, ThemeTokens } from './core/token.h'
+import { Shape, ThemeTokens } from './core/types'
 import { esModuleInterop } from './core/import-module'
 
 type Primitives = Shape<string | number>

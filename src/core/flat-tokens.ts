@@ -1,5 +1,5 @@
 import { withPrefix } from './with-prefix'
-import { Shape, FlattenToken, Token, TokensMap } from './token.h'
+import { Shape, FlattenToken, Token, TokensMap } from './types'
 
 /**
  * Returns flatten shape with tokens.

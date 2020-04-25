@@ -4,7 +4,7 @@ import deepmerge from 'deepmerge'
 
 import { Platforms, platforms } from './platforms'
 import { importModule } from './import-module'
-import { Shape, TokensMap, ThemeTokens } from './token.h'
+import { Shape, TokensMap, ThemeTokens } from './types'
 
 type ThemeLayers = Shape<
   Shape<{

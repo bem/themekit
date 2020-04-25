@@ -3,7 +3,7 @@ import colorFn from 'css-color-function'
 import { constantCase } from 'change-case'
 
 import { withPrefix } from './with-prefix'
-import { Shape, FlattenToken } from './token.h'
+import { Shape, FlattenToken } from './types'
 
 function paramCase(value: string): string {
   return value.replace(/_/g, '-')
