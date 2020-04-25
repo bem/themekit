@@ -2,9 +2,9 @@ import { cssTemplate, esmTemplate } from './templates'
 
 function getFileNameWithPlatform(fileName: string, platform: string, extension: string): string {
   if (platform === 'common') {
-    return `${fileName}.${extension}`
+    return `${fileName}/index.${extension}`
   }
-  return `${fileName}@${platform}.${extension}`
+  return `${fileName}/${platform}/index.${extension}`
 }
 
 type Formats = {
