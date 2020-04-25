@@ -39,7 +39,7 @@ export async function getThemeLayers(
       if (result[platform] === undefined) {
         result[platform] = {}
       }
-      result[platform][layer] = {
+      result[platform][fileName] = {
         meta: data.meta,
         name: layer,
         tokens: deepmerge.all<TokensMap>(composedLevels),
