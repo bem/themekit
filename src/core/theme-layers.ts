@@ -16,7 +16,7 @@ type ThemeLayers = Shape<
 
 export async function getThemeLayers(
   source: string,
-  options?: { platforms: Platforms },
+  options: { platforms?: Platforms } = {},
 ): Promise<ThemeLayers> {
   const result: ThemeLayers = {}
   // @ts-ignore
@@ -27,7 +27,7 @@ export async function getThemeLayers(
     const data = typeof maybeFn === 'function' ? maybeFn() : maybeFn
     const { name: layer } = parse(fileName)
     for (const [platform, levels] of platforms) {
-      if (options !== undefined && !options.platforms.includes(platform)) {
+      if (options.platforms !== undefined && !options.platforms.includes(platform)) {
         continue
       }
       const composedLevels = []
