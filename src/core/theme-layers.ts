@@ -4,14 +4,15 @@ import deepmerge from 'deepmerge'
 
 import { Platforms, platforms } from './platforms'
 import { importModule } from './import-module'
-import { Shape, TokensMap, ThemeTokens } from './types'
+import { Shape, TokensMap, ThemeTokens, Meta } from './types'
 
 type ThemeLayers = Shape<
-  Shape<{
-    name: string
-    meta?: { css?: string }
-    tokens: TokensMap
-  }>
+  Shape<
+    {
+      name: string
+      tokens: TokensMap
+    } & Meta
+  >
 >
 
 export async function getThemeLayers(
@@ -38,7 +39,7 @@ export async function getThemeLayers(
       if (result[platform] === undefined) {
         result[platform] = {}
       }
-      const { meta, ...tokens } = deepmerge.all<TokensMap & { meta: any }>(composedLevels)
+      const { meta, ...tokens } = deepmerge.all<TokensMap & Meta>(composedLevels)
       result[platform][fileName] = {
         meta,
         name,
