@@ -17,6 +17,7 @@ export function esModuleInterop<T>(box?: T): T {
  * @return Promise with data.
  */
 export async function importModule<T>(path: string): Promise<T> {
+  // TODO: Source possibly empty or have invalid format.
   const source = await readFile(path, 'utf-8')
   // TODO: Add diagnostic.
   const transpileResult = transpileModule(source, {})

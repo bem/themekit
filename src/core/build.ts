@@ -15,6 +15,7 @@ export async function build(config: Config): Promise<any> {
   const themeLayers = await getThemeLayers(config.src, { platforms: config.platforms })
   for (const format in config.formats) {
     const { outDir, options, transforms } = config.formats[format]
+    // Copy layers for mutate in future.
     const result = deepmerge(themeLayers, {})
     for (const platform in themeLayers) {
       const xxx = themeLayers[platform]

@@ -15,6 +15,7 @@ export type Config = {
   }
 }
 
+// TODO: Support config with js format.
 export async function getProjectConfig(source: string, configName: string): Promise<Config> {
   return readJsonSync(join(source, configName))
 }
