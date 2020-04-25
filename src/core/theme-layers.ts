@@ -19,13 +19,12 @@ export async function getThemeLayers(
   options: { platforms?: Platforms } = {},
 ): Promise<ThemeLayers> {
   const result: ThemeLayers = {}
-  // @ts-ignore
   const files = await fg(source)
   for (const fileName of files) {
     const fn = await importModule<ThemeTokens>(resolve(fileName))
     const maybeFn = fn()
     const data = typeof maybeFn === 'function' ? maybeFn() : maybeFn
-    const { name: layer } = parse(fileName)
+    const { name } = parse(fileName)
     for (const [platform, levels] of platforms) {
       if (options.platforms !== undefined && !options.platforms.includes(platform)) {
         continue
@@ -39,10 +38,11 @@ export async function getThemeLayers(
       if (result[platform] === undefined) {
         result[platform] = {}
       }
+      const { meta, ...tokens } = deepmerge.all<TokensMap & { meta: any }>(composedLevels)
       result[platform][fileName] = {
-        meta: data.meta,
-        name: layer,
-        tokens: deepmerge.all<TokensMap>(composedLevels),
+        meta,
+        name,
+        tokens,
       }
     }
   }
