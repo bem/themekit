@@ -1,5 +1,4 @@
-// @ts-ignore
-import colorFn from 'css-color-function'
+import cssColorFn from 'css-color-function'
 import { constantCase } from 'change-case'
 
 import { withPrefix } from './with-prefix'
@@ -33,7 +32,7 @@ export const transforms: Shape<Transform> = {
     matcher: (token) => token.type === 'color',
     transformer: (token) => {
       if (token.value.toString().startsWith('color')) {
-        return colorFn.convert(token.value)
+        return cssColorFn.convert(token.value.toString())
       }
       return token.value
     },

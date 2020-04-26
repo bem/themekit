@@ -1,6 +1,5 @@
 import { transpileModule } from 'typescript'
 import { readFile } from 'fs-extra'
-// @ts-ignore
 import neval from 'node-eval'
 
 export function esModuleInterop<T>(box?: T): T {
