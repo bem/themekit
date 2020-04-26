@@ -2,7 +2,7 @@ import { writeFile, ensureDir } from 'fs-extra'
 import { join, resolve, parse } from 'path'
 import deepmerge from 'deepmerge'
 
-import { Config } from './project-config'
+import { Config } from './config'
 import { getThemeLayers } from './theme-layers'
 import { flatTokens } from './flat-tokens'
 import { transformTokens } from './transforms'

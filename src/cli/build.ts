@@ -1,8 +1,9 @@
+import { resolve } from 'path'
 import { Command, flags } from '@oclif/command'
 import createSpinner, { Ora as Spinner } from 'ora'
 import chalk from 'chalk'
 
-import { getProjectConfig } from '../core/project-config'
+import { loadConfig } from '../core/config'
 import { build } from '../core/build'
 
 type Flags = { config: string }
@@ -12,14 +13,14 @@ export default class Build extends Command {
     config: flags.string({
       char: 'c',
       description: 'Config path',
-      default: 'theme.config.json',
+      default: 'themekit.config.js',
     }),
   }
 
   async run() {
     let spinner: Spinner
     const { flags } = this.parse<Flags, any>(Build)
-    const config = await getProjectConfig(process.cwd(), flags.config)
+    const config = await loadConfig(resolve(flags.config))
     await build(
       config,
       (format) => {
