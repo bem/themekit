@@ -51,8 +51,10 @@ export const transforms: Shape<Transform> = {
 }
 
 // TODO: Use shape instead array for same struct as original.
-// TODO: Fix any types.
-export function transformTokens(tokens: Shape<any>, options: any) {
+export function transformTokens(
+  tokens: Shape<FlattenToken>,
+  options: { transforms: string[] },
+): FlattenToken[] {
   const result = []
   for (const key in tokens) {
     const token = tokens[key]

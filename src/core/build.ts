@@ -12,7 +12,7 @@ export async function build(
   config: Config,
   onStart?: (format: string) => void,
   onFinish?: (format: string, files: string[]) => void,
-): Promise<any> {
+): Promise<void> {
   // TODO: Add tokens validate.
   // TODO: Add avalible transforms validate.
   const themeLayers = await getThemeLayers(config.src, { platforms: config.platforms })
@@ -22,15 +22,15 @@ export async function build(
     // Copy layers for mutate in future.
     const result = deepmerge(themeLayers, {})
     for (const platform in themeLayers) {
-      const xxx = themeLayers[platform]
-      for (const q in xxx) {
-        const uuu = xxx[q]
-        const yyy = flatTokens(uuu.tokens)
-        const hhh = transformTokens(yyy, { transforms, ...options })
-        // @ts-ignore
-        result[platform][q].tokens = hhh
+      const themeLayer = themeLayers[platform]
+      for (const layerKey in themeLayer) {
+        const flattenTokens = flatTokens(themeLayer[layerKey].tokens)
+        const transformedTokens = transformTokens(flattenTokens, { transforms, ...options })
+        // @ts-ignore (FIXME: Fix transformTokens return type)
+        result[platform][layerKey].tokens = transformedTokens
       }
     }
+    // FIXME: Move formats to fn.
     const result_to_write = formats[format](result, options)
     const createdFiles = []
     for (const file of result_to_write) {
