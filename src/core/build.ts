@@ -1,5 +1,5 @@
 import { writeFile, ensureDir } from 'fs-extra'
-import { resolve, parse } from 'path'
+import { join, resolve, parse } from 'path'
 import deepmerge from 'deepmerge'
 
 import { Config } from './project-config'
@@ -8,12 +8,16 @@ import { flatTokens } from './flat-tokens'
 import { transformTokens } from './transforms'
 import { formats } from './formats'
 
-export async function build(config: Config): Promise<any> {
+export async function build(
+  config: Config,
+  onStart?: (format: string) => void,
+  onFinish?: (format: string, files: string[]) => void,
+): Promise<any> {
   // TODO: Add tokens validate.
   // TODO: Add avalible transforms validate.
-  // TODO: Add header for generated files with date/ts.
   const themeLayers = await getThemeLayers(config.src, { platforms: config.platforms })
   for (const format in config.formats) {
+    onStart && onStart(format)
     const { outDir, options, transforms } = config.formats[format]
     // Copy layers for mutate in future.
     const result = deepmerge(themeLayers, {})
@@ -28,11 +32,14 @@ export async function build(config: Config): Promise<any> {
       }
     }
     const result_to_write = formats[format](result, options)
+    const createdFiles = []
     for (const file of result_to_write) {
-      const destFilePath = resolve(process.cwd(), outDir, file.fileName)
+      const destFilePath = resolve(outDir, file.fileName)
       const destFolder = parse(destFilePath).dir
       await ensureDir(destFolder)
       await writeFile(destFilePath, file.content)
+      createdFiles.push(join(outDir, file.fileName))
     }
+    onFinish && onFinish(format, createdFiles)
   }
 }
