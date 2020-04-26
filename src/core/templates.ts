@@ -1,5 +1,14 @@
 import { FlattenToken } from './types'
 
+function generateFileHeader() {
+  return [
+    '/**',
+    ' * Current file was generated automatically, do not edit manually,',
+    ' * for update tokens run "themekit build".',
+    ' */\n',
+  ].join('\n')
+}
+
 /**
  * Returns css with tokens.
  *
@@ -7,7 +16,9 @@ import { FlattenToken } from './types'
  * @param selector Selector name.
  */
 export function cssTemplate(tokens: FlattenToken[], selector: string): string {
-  let result = `${selector} {\n`
+  let result = ''
+  result += generateFileHeader()
+  result += `${selector} {\n`
   for (const token of tokens) {
     if (token.comment !== undefined) {
       result += `    /* ${token.comment} */\n`
@@ -25,6 +36,7 @@ export function cssTemplate(tokens: FlattenToken[], selector: string): string {
  */
 export function esmTemplate(tokens: FlattenToken[]): string {
   let result = ''
+  result += generateFileHeader()
   for (const token of tokens) {
     if (token.comment !== undefined) {
       result += `// ${token.comment}\n`
