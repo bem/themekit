@@ -30,6 +30,7 @@ export const transforms: Shape<Transform> = {
   'color.hex': {
     type: 'value',
     matcher: (token) => token.type === 'color',
+    // FIXME: value always should be string after flatting.
     transformer: (token) => {
       if (token.value.toString().startsWith('color')) {
         return cssColorFn.convert(token.value.toString())
