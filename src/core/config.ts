@@ -6,8 +6,8 @@ export type Config = {
   formats: {
     [key: string]: {
       outDir: string
+      fileName?: string
       transforms: string[]
-      options?: {}
     }
   }
 }

@@ -13,25 +13,23 @@ export async function build(
   onStart?: (format: string) => void,
   onFinish?: (format: string, files: string[]) => void,
 ): Promise<void> {
-  // TODO: Add tokens validate.
-  // TODO: Add avalible transforms validate.
   const themeLayers = await getThemeLayers(config.src, { platforms: config.platforms })
   for (const format in config.formats) {
     onStart && onStart(format)
-    const { outDir, options, transforms } = config.formats[format]
+    const { outDir, fileName, transforms } = config.formats[format]
     // Copy layers for mutate in future.
     const result = deepmerge(themeLayers, {})
     for (const platform in themeLayers) {
       const themeLayer = themeLayers[platform]
       for (const layerKey in themeLayer) {
         const flattenTokens = flatTokens(themeLayer[layerKey].tokens)
-        const transformedTokens = transformTokens(flattenTokens, { transforms, ...options })
+        const transformedTokens = transformTokens(flattenTokens, { transforms })
         // @ts-ignore (FIXME: Fix transformTokens return type)
         result[platform][layerKey].tokens = transformedTokens
       }
     }
     // FIXME: Move formats to fn.
-    const result_to_write = formats[format](result, options)
+    const result_to_write = formats[format](result, { fileName })
     const createdFiles = []
     for (const file of result_to_write) {
       const destFilePath = resolve(outDir, file.fileName)

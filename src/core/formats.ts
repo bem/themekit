@@ -1,10 +1,10 @@
 import { cssTemplate, esmTemplate, jsonTemplate } from './templates'
 
-function getFileNameWithPlatform(fileName: string, platform: string, extension: string): string {
+function getFileNameWithPlatform(folder: string, platform: string, fileName: string): string {
   if (platform === 'common') {
-    return `${fileName}/index.${extension}`
+    return `${folder}/${fileName}`
   }
-  return `${fileName}/${platform}/index.${extension}`
+  return `${folder}/${platform}/${fileName}`
 }
 
 type Formats = {
@@ -14,7 +14,7 @@ type Formats = {
 }
 
 export const formats: Formats = {
-  'css.flat': (platforms, options) => {
+  'css.flat': (platforms, options = { fileName: 'index.css' }) => {
     const result = []
     for (const platform in platforms) {
       const layers = platforms[platform]
@@ -23,34 +23,35 @@ export const formats: Formats = {
         composedTokens.push(...layers[layer].tokens)
       }
       result.push({
-        fileName: getFileNameWithPlatform(options.fileName, platform, 'css'),
+        // FIXME: Fix filePath.
+        fileName: getFileNameWithPlatform(options.fileName, platform, options.fileName),
         content: cssTemplate(composedTokens, ':root'),
       })
     }
     return result
   },
-  'css.whitepaper': (platforms) => {
+  'css.whitepaper': (platforms, options) => {
     const result = []
     for (const platform in platforms) {
       const layers = platforms[platform]
       for (const layer in layers) {
         const { name, meta, tokens } = layers[layer]
         result.push({
-          fileName: getFileNameWithPlatform(name, platform, 'css'),
+          fileName: getFileNameWithPlatform(name, platform, options.fileName || 'index.css'),
           content: cssTemplate(tokens, meta.css),
         })
       }
     }
     return result
   },
-  'json.whitepaper': (platforms) => {
+  'json.whitepaper': (platforms, options) => {
     const result = []
     for (const platform in platforms) {
       const layers = platforms[platform]
       for (const layer in layers) {
         const { name, tokens } = layers[layer]
         result.push({
-          fileName: getFileNameWithPlatform(name, platform, 'json'),
+          fileName: getFileNameWithPlatform(name, platform, options.fileName || 'index.json'),
           content: jsonTemplate(tokens),
         })
       }
@@ -66,6 +67,7 @@ export const formats: Formats = {
         composedTokens.push(...layers[layer].tokens)
       }
       result.push({
+        // FIXME: Fix filePath.
         fileName: getFileNameWithPlatform(options.fileName, platform, 'js'),
         content: esmTemplate(composedTokens),
       })
