@@ -39,9 +39,13 @@ export function esmTemplate(tokens: FlattenToken[]): string {
   result += generateFileHeader()
   for (const token of tokens) {
     if (token.comment !== undefined) {
-      result += `// ${token.comment}\n`
+      result += `/** ${token.comment} */\n`
     }
     result += `export const ${token.name} = '${token.value}';\n`
   }
   return result
+}
+
+export function jsonTemplate(tokens: FlattenToken[]): string {
+  return JSON.stringify(tokens, null, 2)
 }

@@ -1,4 +1,4 @@
-import { cssTemplate, esmTemplate } from './templates'
+import { cssTemplate, esmTemplate, jsonTemplate } from './templates'
 
 function getFileNameWithPlatform(fileName: string, platform: string, extension: string): string {
   if (platform === 'common') {
@@ -38,6 +38,20 @@ export const formats: Formats = {
         result.push({
           fileName: getFileNameWithPlatform(name, platform, 'css'),
           content: cssTemplate(tokens, meta.css),
+        })
+      }
+    }
+    return result
+  },
+  'json.whitepaper': (platforms) => {
+    const result = []
+    for (const platform in platforms) {
+      const layers = platforms[platform]
+      for (const layer in layers) {
+        const { name, tokens } = layers[layer]
+        result.push({
+          fileName: getFileNameWithPlatform(name, platform, 'json'),
+          content: jsonTemplate(tokens),
         })
       }
     }
