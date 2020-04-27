@@ -3,6 +3,10 @@
   "version": "0.0.0-alpha.0",
   "author": "Eugene Tropin <yarastqt@gmail.com>",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
   "bin": {
     "themekit": "bin/themekit"
   },
