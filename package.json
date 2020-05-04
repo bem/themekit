@@ -15,8 +15,9 @@
   "scripts": {
     "build-command-manifest": "oclif-dev manifest",
     "build": "tsc",
+    "cleanup": "rm -rf lib",
     "dev": "tsc -w",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run cleanup && npm run build"
   },
   "dependencies": {
     "@oclif/command": "1.5.19",
