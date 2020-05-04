@@ -1,6 +1,6 @@
-import { transpileModule } from 'typescript'
-import { readFile } from 'fs-extra'
-import neval from 'node-eval'
+import { register } from 'ts-node'
+
+register({ transpileOnly: true })
 
 export function esModuleInterop<T>(box?: T): T {
   if (box === undefined) {
@@ -17,9 +17,7 @@ export function esModuleInterop<T>(box?: T): T {
  */
 export async function importModule<T>(path: string): Promise<T> {
   // TODO: Source possibly empty or have invalid format.
-  const source = await readFile(path, 'utf-8')
   // TODO: Add diagnostic.
-  const transpileResult = transpileModule(source, {})
-  const result = neval(transpileResult.outputText, path)
+  const result = await import(path)
   return esModuleInterop(result)
 }
