@@ -1,6 +1,11 @@
 import { register } from 'ts-node'
 
-register({ transpileOnly: true })
+register({
+  transpileOnly: true,
+  compilerOptions: {
+    module: 'commonjs',
+  },
+})
 
 export function esModuleInterop<T>(box?: T): T {
   if (box === undefined) {
