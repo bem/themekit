@@ -14,7 +14,9 @@
   "typings": "lib/index.d.ts",
   "scripts": {
     "build-command-manifest": "oclif-dev manifest",
-    "dev": "tsc -w"
+    "build": "tsc",
+    "dev": "tsc -w",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@oclif/command": "1.5.19",
