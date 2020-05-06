@@ -29,8 +29,10 @@ export async function build(
       }
     }
     // FIXME: Move formats to fn.
+    // eslint-disable-next-line camelcase
     const result_to_write = formats[format](result, { fileName })
     const createdFiles = []
+    // eslint-disable-next-line camelcase
     for (const file of result_to_write) {
       const destFilePath = resolve(outDir, file.fileName)
       const destFolder = parse(destFilePath).dir
