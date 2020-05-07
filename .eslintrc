@@ -90,7 +90,6 @@
     "yoda": 2,
 
     // Variables
-    "no-restricted-globals": [2, "fdescribe", "fit"],
     "no-var": 1,
 
     // Codestyle
@@ -126,7 +125,6 @@
     "object-curly-spacing": [2, "always"],
     "one-var-declaration-per-line": [2, "initializations"],
     "one-var": [2, { "let": "never", "const": "never" }],
-    "operator-linebreak": [2, "before"],
     "padded-blocks": [2, "never"],
     "quote-props": [2, "as-needed", { "numbers": true }],
     "quotes": [2, "single", { "avoidEscape": true }],
