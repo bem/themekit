@@ -17,14 +17,14 @@ type Transform = {
 export const transforms: Shape<Transform> = {
   'name.param': {
     type: 'name',
-    // prettier-ignore
     transformer: (token, options) =>
+      // prettier-ignore
       paramCase(withPrefix(token.name, options.prefix)),
   },
   'name.const': {
     type: 'name',
-    // prettier-ignore
     transformer: (token, options) =>
+      // prettier-ignore
       constantCase(withPrefix(token.name, options.prefix)),
   },
   'color.hex': {
@@ -65,9 +65,9 @@ export function transformTokens(
         token.name = transform.transformer(token, options)
       }
       if (
-        transform.type === 'value'
-        && transform.matcher !== undefined
-        && transform.matcher(token)
+        transform.type === 'value' &&
+        transform.matcher !== undefined &&
+        transform.matcher(token)
       ) {
         token.value = transform.transformer(token, options)
       }
