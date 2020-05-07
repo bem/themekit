@@ -13,7 +13,7 @@ type Formats = {
 }
 
 export const formats: Formats = {
-  'css.flat': (platforms, options = { fileName: 'index.css' }) => {
+  'css.flat': (platforms, options) => {
     const result = []
     for (const platform in platforms) {
       const layers = platforms[platform]
@@ -22,8 +22,8 @@ export const formats: Formats = {
         composedTokens.push(...layers[layer].tokens)
       }
       result.push({
-        // FIXME: Fix filePath.
-        fileName: getFileNameWithPlatform(options.fileName, platform, options.fileName),
+        // FIXME: Fix build path.
+        fileName: getFileNameWithPlatform('build', platform, options.fileName || 'index.css'),
         content: cssTemplate(composedTokens, ':root'),
       })
     }
@@ -66,8 +66,8 @@ export const formats: Formats = {
         composedTokens.push(...layers[layer].tokens)
       }
       result.push({
-        // FIXME: Fix filePath.
-        fileName: getFileNameWithPlatform(options.fileName, platform, 'js'),
+        // FIXME: Fix build path.
+        fileName: getFileNameWithPlatform('build', platform, options.fileName || 'index.js'),
         content: esmTemplate(composedTokens),
       })
     }
