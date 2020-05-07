@@ -17,6 +17,7 @@
     "build": "tsc",
     "cleanup": "rm -rf lib",
     "dev": "tsc -w",
+    "format:js": "prettier --write src/**/*.ts",
     "lint:js": "eslint --ext .ts,.js .",
     "prepublishOnly": "npm run cleanup && npm run build"
   },
@@ -37,7 +38,8 @@
     "@types/fs-extra": "8.1.0",
     "@typescript-eslint/eslint-plugin": "2.31.0",
     "@typescript-eslint/parser": "2.31.0",
-    "eslint": "6.8.0"
+    "eslint": "6.8.0",
+    "prettier": "1.19.1"
   },
   "oclif": {
     "commands": "lib/cli",
