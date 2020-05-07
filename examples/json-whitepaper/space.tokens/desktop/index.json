@@ -1,0 +1,13 @@
+[
+  {
+    "value": "20px",
+    "type": "size",
+    "name": "input-space-all"
+  },
+  {
+    "value": "20px",
+    "type": "size",
+    "comment": "Space inside button",
+    "name": "button-space-all"
+  }
+]

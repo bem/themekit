@@ -1,0 +1,10 @@
+/**
+ * Current file was generated automatically, do not edit manually,
+ * for update tokens run "themekit build".
+ */
+:root {
+    --button-bg-color: rgba(0, 0, 0, 0.15);
+    --input-space-all: 20px;
+    /* Space inside button */
+    --button-space-all: 20px;
+}
