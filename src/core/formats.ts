@@ -9,8 +9,7 @@ function getFileNameWithPlatform(folder: string, platform: string, fileName: str
 
 type Formats = {
   // TODO: Fix any types.
-  [key: string]: (platforms: any, options?: any) =>
-    Array<{ fileName: string; content: string }>
+  [key: string]: (platforms: any, options?: any) => Array<{ fileName: string; content: string }>
 }
 
 export const formats: Formats = {

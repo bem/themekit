@@ -17,15 +17,15 @@ type Transform = {
 export const transforms: Shape<Transform> = {
   'name.param': {
     type: 'name',
-    // prettier-ignore
     transformer: (token, options) =>
-      paramCase(withPrefix(token.name, options.prefix))
+      // prettier-ignore
+      paramCase(withPrefix(token.name, options.prefix)),
   },
   'name.const': {
     type: 'name',
-    // prettier-ignore
     transformer: (token, options) =>
-      constantCase(withPrefix(token.name, options.prefix))
+      // prettier-ignore
+      constantCase(withPrefix(token.name, options.prefix)),
   },
   'color.hex': {
     type: 'value',

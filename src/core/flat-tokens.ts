@@ -1,6 +1,21 @@
 import { withPrefix } from './with-prefix'
 import { Shape, FlattenToken, Token, TokensMap } from './types'
 
+function getTokenType(value: string): Token['type'] {
+  // TODO: Order is necessary, cuz color maybe has percent.
+  if (value.match(/#|rgb|hsl/) !== null) {
+    return 'color'
+  }
+  if (value.match(/px|%|em|rem/) !== null) {
+    return 'size'
+  }
+  return 'unknown'
+}
+
+function isTokensMap(token: Token | TokensMap): token is TokensMap {
+  return token.value === undefined
+}
+
 /**
  * Returns flatten shape with tokens.
  *
@@ -17,8 +32,7 @@ export function flatTokens(tokens: TokensMap, prefix?: string): Shape<FlattenTok
         type: getTokenType(token),
         name: computedKey,
       }
-    }
-    else if (isTokensMap(token)) {
+    } else if (isTokensMap(token)) {
       Object.assign(result, flatTokens(token, computedKey))
     } else {
       result[computedKey] = {
@@ -28,19 +42,4 @@ export function flatTokens(tokens: TokensMap, prefix?: string): Shape<FlattenTok
     }
   }
   return result
-}
-
-function getTokenType(value: string): Token['type'] {
-  // TODO: Order is necessary, cuz color maybe has percent.
-  if (value.match(/#|rgb|hsl/) !== null) {
-    return 'color'
-  }
-  if (value.match(/px|%|em|rem/) !== null) {
-    return 'size'
-  }
-  return 'unknown'
-}
-
-function isTokensMap(token: Token | TokensMap): token is TokensMap {
-  return token.value === undefined
 }

@@ -28,8 +28,8 @@ export default class Build extends Command {
       },
       (format, files) => {
         spinner.stop()
-        console.log(chalk.cyan(`❯ ${format}`))
-        console.log(chalk.gray(`${files.map((file) => `  - ${file}`).join('\n')}`))
+        this.log(chalk.cyan(`❯ ${format}`))
+        this.log(chalk.gray(`${files.map((file) => `  - ${file}`).join('\n')}`))
       },
     )
   }

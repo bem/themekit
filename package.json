@@ -17,6 +17,8 @@
     "build": "tsc",
     "cleanup": "rm -rf lib",
     "dev": "tsc -w",
+    "format:js": "prettier --write src/**/*.ts",
+    "lint:js": "eslint --ext .ts,.js .",
     "prepublishOnly": "npm run cleanup && npm run build"
   },
   "dependencies": {
@@ -32,16 +34,20 @@
     "typescript": "3.8.3"
   },
   "devDependencies": {
+    "@commitlint/cli": "8.3.5",
+    "@commitlint/config-conventional": "8.3.4",
     "@oclif/dev-cli": "1.22.2",
-    "@types/fs-extra": "8.1.0"
+    "@types/fs-extra": "8.1.0",
+    "@typescript-eslint/eslint-plugin": "2.31.0",
+    "@typescript-eslint/parser": "2.31.0",
+    "eslint": "6.8.0",
+    "husky": "4.2.5",
+    "lint-staged": "10.2.2",
+    "prettier": "1.19.1"
   },
   "oclif": {
     "commands": "lib/cli",
     "bin": "themekit"
   },
-  "files": [
-    "bin",
-    "lib",
-    "oclif.manifest.json"
-  ]
+  "files": ["bin", "lib", "oclif.manifest.json"]
 }
