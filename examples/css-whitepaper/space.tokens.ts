@@ -1,4 +1,4 @@
-import { withTokens } from '../../src/index';
+import { withTokens } from '../../src/index'
 
 export const tokens = {
   space_m: '20px',
@@ -12,7 +12,7 @@ export default withTokens<Tokens>(($tokens) => ({
   },
   desktop: {
     meta: { css: '.Theme_space_desktop' },
-    button:{
+    button: {
       space_all: {
         value: $tokens.space_m,
         type: 'size',
