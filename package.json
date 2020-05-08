@@ -2,6 +2,8 @@
   "name": "@yandex/themekit",
   "version": "0.0.0-alpha.2",
   "author": "Eugene Tropin <yarastqt@gmail.com>",
+  "description": "Build system of design-tokens for any platforms.",
+  "keywords": ["themekit", "design", "css", "tokens", "style"],
   "license": "MPL-2.0",
   "publishConfig": {
     "access": "public",
