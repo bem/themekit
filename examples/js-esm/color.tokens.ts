@@ -8,7 +8,6 @@ export type Tokens = typeof tokens
 
 export default withTokens<Tokens>(($tokens) => ({
   common: {
-    meta: { css: '.Theme_color_common' },
     button_bg_color: `color(${$tokens.color_primary} a(15%) })`,
   },
 }))(tokens)
