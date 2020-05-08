@@ -4,28 +4,28 @@ Themkit is a build system for design-tokens on any platform. This system is base
 
 ## Contents
 
-* [Features](#features)
-* [Installation](#installation)
-* [Getting start](#getting-start)
-* [Configuration](#configuration)
-* [Example](#example)
-* [Tokens](#tokens)
-* [Extending](#extending)
-* [License](#license)
+- [Features](#features)
+- [Installation](#installation)
+- [Getting start](#getting-start)
+- [Configuration](#configuration)
+- [Examples](#examples)
+- [Tokens](#tokens)
+- [Extending](#extending)
+- [License](#license)
 
 ## Features
 
-* 📚 Define tokens once and get result for any format, for example js, css or json.
-* 🛠 Every part of the theme or some of the tokens is extendable and overridable.
-* 💻 Tokens may be defined for each platforms, for example desktop and touch.
-* 🔍 Supports typescript extension with type checking.
-* 🏗️ Available extends for new formats or transformations.
+- 📚 Define tokens once and get result for any format, for example js, css or json.
+- 🛠 Every part of the theme or some of the tokens is extendable and overridable.
+- 💻 Tokens may be defined for each platforms, for example desktop and touch.
+- 🔍 Supports typescript extension with type checking.
+- 🏗️ Available extends for new formats or transformations.
 
 ## Installation
 
 ```sh
 # via npm
-npmi i -DE @yandex/themekit
+npm i -DE @yandex/themekit
 # or yarn
 yarn add --dev @yandex/themekit
 ```
@@ -45,7 +45,7 @@ themekit build
 Call this in the root directory of your project. The only thing needed is a `themekit.config.js` file. There are also arguments:
 
 | Flag               | Description |
-|--------------------|-------------|
+| ------------------ | ----------- |
 | --config -c [path] | —           |
 | --help             | —           |
 | --version          | —           |
@@ -57,9 +57,11 @@ Coming soon.
 ## Configuration
 
 ```ts
+type Platforms = 'common' | 'deskpad' | 'desktop' | 'touch' | 'touch-pad' | 'touch-phone'
+
 type Config = {
   src: string
-  platforms?: 'common' | 'deskpad' | 'desktop' | 'touch' | 'touch-pad' | 'touch-phone'
+  platforms?: Platforms
   formats: {
     [key: string]: {
       outDir: string
@@ -78,14 +80,14 @@ Each platform contains one or more levels, and tokens declared on these levels w
 
 Default set of available platforms:
 
-| platform    | levels                            |
-|-------------|-----------------------------------|
-| common      | common                            |
-| deskpad     | common, deskpad                   |
-| desktop     | common, deskpad, desktop          |
-| touch       | common, touch                     |
-| touch-pad   | common, deskpad, touch, touch-pad |
-| touch-phone | common, touch, touch-phone        |
+| platform    | levels                               |
+| ----------- | ------------------------------------ |
+| common      | common                               |
+| deskpad     | common + deskpad                     |
+| desktop     | common + deskpad + desktop           |
+| touch       | common + touch                       |
+| touch-pad   | common + deskpad + touch + touch-pad |
+| touch-phone | common + touch + touch-phone         |
 
 ### formats
 
@@ -109,7 +111,7 @@ Coming soon.
 
 ### transforms
 
-Transforms are responsible for changing tokens' names and values. It depends on the type.
+Transforms are responsible for changing tokens names and values. It depends on the type.
 
 #### name.param
 
@@ -144,101 +146,101 @@ button_bg_color: 'color(#04b h(+22) s(-80%) l(+13%))'
 button_bg_color: 'rgb(102, 102, 153)'
 ```
 
-## Example
+## Examples
 
 More examples you can see in [examples][examples].
 
-Consider case with `css.whitepaper` format:
+### platforms merging
 
-### prepare fs
+Each platform contains one or more levels, and tokens declared on these levels will be combined in this specified order for current [platform](#platforms).
 
-It doesn't matter where you put your files on the fs. Here is our example of how we do it:
+theme with tokens for desktop and touch platforms:
 
-```
-├── themekit.config.js
-└── src
-    └── themes
-        └── tokens
-            ├── capacity.tokens.ts
-            ├── color.tokens.ts
-            ├── cosmetic.tokens.ts
-            ├── size.tokens.ts
-            └── space.tokens.ts
-```
+```ts
+import { withTokens } from '@yandex/themekit'
 
-### themekit.config.js
-
-Add base config with `css.whitepaper` format and `css.name` and `color.nex` transforms:
-
-```js
-/**
- * @type {import('@yandex/themekit/lib/core/config').Config}
- */
-module.exports = {
-  src: ['./src/themes/tokens/*.tokens.ts'],
-  platforms: ['desktop'],
-  formats: {
-    'css.whitepaper': {
-      outDir: './src/themes',
-      transforms: ['name.param', 'color.hex'],
-    },
+export default withTokens(() => ({
+  common: {
+    button_space_all: '10px',
+    input_space_all: '10px',
   },
+  desktop: {
+    button_space_all: '20px',
+  },
+  touch: {
+    button_space_all: '30px',
+  },
+}))
+```
+
+after build you getting next files:
+
+```css
+/* src/themes/build/desktop/index.css */
+:root {
+  --input-space-all: 10px;
+  --button-space-all: 20px;
 }
 ```
 
-### theme tokens
+```css
+/* src/themes/build/touch/index.css */
+:root {
+  --input-space-all: 10px;
+  --button-space-all: 30px;
+}
+```
 
-Add tokens for two platforms `common` and `desktop`, we also need to add meta section for define result CSS selector:
+### themes extending
+
+If necessary, you can extends or overrides an existing theme, you can also override base tokens.
+
+base theme:
 
 ```ts
-// src/themes/tokens/space.tokens.ts
-import { withTokens } from '@yandex/themekit';
+import { withTokens } from '@yandex/themekit'
 
 export const tokens = {
-  space_m: '20px',
+  space100: '20px',
 }
 
 export type Tokens = typeof tokens
 
 export default withTokens<Tokens>(($tokens) => ({
   common: {
-    input_space_all: $tokens.space_m,
-  },
-  desktop: {
-    meta: { css: '.Theme_space_desktop' },
-    button_space_all: $tokens.space_m,
+    input_space_all: $tokens.space100,
   },
 }))(tokens)
 ```
 
-### result
+extended theme:
 
-Here is the result:
+```ts
+import { withTokens } from '@yandex/themekit'
+import spaceTokens, { Tokens } from 'themes/tokens/space.tokens'
 
+export const tokens = {
+  space100: '10px',
+}
+
+export default withTokens<Tokens>(spaceTokens, ($tokens) => ({
+  common: {
+    button_space_all: $tokens.space100,
+  },
+}))(tokens)
 ```
-├── themekit.config.js
-└── src
-    └── themes
-        ├── space.tokens
-        │   └── desktop
-        │       └── index.css
-        └── tokens
-            └── space.tokens.ts
-```
 
-and file with styles:
+result file with merged and overrides tokens:
 
 ```css
-/* src/themes/space.tokens/desktop/index.css */
-.Theme_space_desktop {
-  --input-space-all: 20px;
-  --button-space-all: 20px;
+/* src/themes/build/desktop/index.css */
+:root {
+  --input-space-all: 10px;
+  --button-space-all: 10px;
 }
 ```
 
 ## Tokens
-
-### interface
 
 A token may full or short record, and may be nested:
 
@@ -256,7 +258,7 @@ type TokensMap = {
 }
 ```
 
-full:
+full record:
 
 ```js
 button_space_all: {
@@ -266,30 +268,21 @@ button_space_all: {
 },
 ```
 
-short:
+short record:
 
 ```js
 button_space_all: '20px',
 ```
 
-nested:
+nested record:
 
 ```js
 button: {
   space: {
-      all: '20px',
-    },
+    all: '20px',
   },
 },
 ```
-
-### platforms
-
-Coming soon.
-
-### extends & overrides
-
-Coming soon.
 
 ## Extending
 
