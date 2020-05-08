@@ -2,6 +2,8 @@
   "name": "@yandex/themekit",
   "version": "0.0.0-alpha.2",
   "author": "Eugene Tropin <yarastqt@gmail.com>",
+  "description": "Build system of design-tokens for any platforms.",
+  "keywords": ["themekit", "design", "css", "tokens", "style"],
   "license": "MPL-2.0",
   "publishConfig": {
     "access": "public",
@@ -13,12 +15,13 @@
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
-    "build-command-manifest": "oclif-dev manifest",
+    "build:manifest": "oclif-dev manifest",
     "build": "tsc",
     "cleanup": "rm -rf lib",
     "dev": "tsc -w",
     "format:js": "prettier --write src/**/*.ts",
     "lint:js": "eslint --ext .ts,.js .",
+    "prepare": "build:manifest",
     "prepublishOnly": "npm run cleanup && npm run build"
   },
   "dependencies": {
