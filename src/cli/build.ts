@@ -9,10 +9,12 @@ import { build } from '../core/build'
 type Flags = { config: string }
 
 export default class Build extends Command {
+  static description = 'Builds tokens for configured formats.'
+
   static flags = {
     config: flags.string({
       char: 'c',
-      description: 'Config path',
+      description: 'The path to a themekit config file.',
       default: 'themekit.config.js',
     }),
   }

@@ -4,22 +4,22 @@ Themkit is a build system for design-tokens on any platform. This system is base
 
 ## Contents
 
-* [Features](#features)
-* [Installation](#installation)
-* [Getting start](#getting-start)
-* [Configuration](#configuration)
-* [Example](#example)
-* [Tokens](#tokens)
-* [Extending](#extending)
-* [License](#license)
+- [Features](#features)
+- [Installation](#installation)
+- [Getting start](#getting-start)
+- [Configuration](#configuration)
+- [Example](#example)
+- [Tokens](#tokens)
+- [Extending](#extending)
+- [License](#license)
 
 ## Features
 
-* 📚 Define tokens once and get result for any format, for example js, css or json.
-* 🛠 Every part of the theme or some of the tokens is extendable and overridable.
-* 💻 Tokens may be defined for each platforms, for example desktop and touch.
-* 🔍 Supports typescript extension with type checking.
-* 🏗️ Available extends for new formats or transformations.
+- 📚 Define tokens once and get result for any format, for example js, css or json.
+- 🛠 Every part of the theme or some of the tokens is extendable and overridable.
+- 💻 Tokens may be defined for each platforms, for example desktop and touch.
+- 🔍 Supports typescript extension with type checking.
+- 🏗️ Available extends for new formats or transformations.
 
 ## Installation
 
@@ -36,7 +36,7 @@ You can use Themekit as cli or node api.
 
 ### cli
 
-Build tokens for all formats:
+Builds tokens for configured formats:
 
 ```sh
 themekit build
@@ -44,11 +44,11 @@ themekit build
 
 Call this in the root directory of your project. The only thing needed is a `themekit.config.js` file. There are also arguments:
 
-| Flag               | Description |
-|--------------------|-------------|
-| --config -c [path] | —           |
-| --help             | —           |
-| --version          | —           |
+| Flag               | Description                         |
+| ------------------ | ----------------------------------- |
+| --config -c [path] | The path to a themekit config file. |
+| --help             | Show help with usage.               |
+| --version          | Show current package version.       |
 
 ### node
 
@@ -79,7 +79,7 @@ Each platform contains one or more levels, and tokens declared on these levels w
 Default set of available platforms:
 
 | platform    | levels                            |
-|-------------|-----------------------------------|
+| ----------- | --------------------------------- |
 | common      | common                            |
 | deskpad     | common, deskpad                   |
 | desktop     | common, deskpad, desktop          |
@@ -192,7 +192,7 @@ Add tokens for two platforms `common` and `desktop`, we also need to add meta se
 
 ```ts
 // src/themes/tokens/space.tokens.ts
-import { withTokens } from '@yandex/themekit';
+import { withTokens } from '@yandex/themekit'
 
 export const tokens = {
   space_m: '20px',
