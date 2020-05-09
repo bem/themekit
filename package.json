@@ -21,7 +21,7 @@
     "dev": "tsc -w",
     "format:js": "prettier --write src/**/*.ts",
     "lint:js": "eslint --ext .ts,.js .",
-    "prepare": "build:manifest",
+    "prepare": "npm run build:manifest",
     "prepublishOnly": "npm run cleanup && npm run build",
     "unit": "jest"
   },
