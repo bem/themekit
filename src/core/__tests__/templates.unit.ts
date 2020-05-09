@@ -42,7 +42,8 @@ describe('jsonTemplate', () => {
           \\"type\\": \\"color\\",
           \\"name\\": \\"color-1\\"
         }
-      ]"
+      ]
+      "
     `)
   })
 })

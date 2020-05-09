@@ -136,7 +136,8 @@ describe('json.whitepaper', () => {
           \\"type\\": \\"size\\",
           \\"name\\": \\"size-1\\"
         }
-      ]",
+      ]
+      ",
           "fileName": "layer1/desktop/index.json",
         },
         Object {
@@ -147,7 +148,8 @@ describe('json.whitepaper', () => {
           \\"type\\": \\"color\\",
           \\"name\\": \\"color-1\\"
         }
-      ]",
+      ]
+      ",
           "fileName": "layer2/desktop/index.json",
         },
         Object {
@@ -158,7 +160,8 @@ describe('json.whitepaper', () => {
           \\"type\\": \\"size\\",
           \\"name\\": \\"size-1\\"
         }
-      ]",
+      ]
+      ",
           "fileName": "layer1/touch/index.json",
         },
         Object {
@@ -169,7 +172,8 @@ describe('json.whitepaper', () => {
           \\"type\\": \\"color\\",
           \\"name\\": \\"color-1\\"
         }
-      ]",
+      ]
+      ",
           "fileName": "layer2/touch/index.json",
         },
       ]
