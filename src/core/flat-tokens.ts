@@ -1,18 +1,18 @@
 import { withPrefix } from './with-prefix'
-import { Shape, FlattenToken, Token, TokensMap } from './types'
+import { Shape, FlattenToken, Token, TokensMap, TokenType } from './types'
 
-function getTokenType(value: string): Token['type'] {
+function getTokenType(value: string | number): TokenType {
   // TODO: Order is necessary, cuz color maybe has percent.
-  if (value.match(/#|rgb|hsl/) !== null) {
+  if (value.toString().match(/#|rgb|hsl/) !== null) {
     return 'color'
   }
-  if (value.match(/px|%|em|rem/) !== null) {
+  if (value.toString().match(/px|%|em|rem/) !== null) {
     return 'size'
   }
   return 'unknown'
 }
 
-function isTokensMap(token: Token | TokensMap): token is TokensMap {
+function isTokensMap(token: TokensMap | Token): token is TokensMap {
   return token.value === undefined
 }
 
@@ -26,7 +26,7 @@ export function flatTokens(tokens: TokensMap, prefix?: string): Shape<FlattenTok
   for (const key in tokens) {
     const computedKey = withPrefix(key, prefix)
     const token = tokens[key]
-    if (typeof token === 'string') {
+    if (typeof token === 'string' || typeof token === 'number') {
       result[computedKey] = {
         value: token,
         type: getTokenType(token),

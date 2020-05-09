@@ -6,9 +6,11 @@ export type Shape<T> = {
 
 export type Primitive = string | number
 
+export type TokenType = 'color' | 'size' | 'unknown'
+
 export type Token = {
   value: Primitive
-  type: 'color' | 'size' | 'unknown'
+  type: TokenType
   comment?: string
 }
 

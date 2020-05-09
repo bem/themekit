@@ -35,7 +35,7 @@ export const transforms: Shape<Transform> = {
       if (token.value.toString().startsWith('color')) {
         return cssColorFn.convert(token.value.toString())
       }
-      return token.value
+      return token.value.toString()
     },
   },
   // TODO: Fix transform for multiply value, ex. `0 10px`.

@@ -20,7 +20,7 @@ export function esModuleInterop<T>(box?: T): T {
  * @param path Module path.
  * @return Promise with data.
  */
-export async function importModule<T>(path: string): Promise<T> {
+export async function importModule<T = any>(path: string): Promise<T> {
   // TODO: Source possibly empty or have invalid format.
   // TODO: Add diagnostic.
   const result = await import(path)
