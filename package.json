@@ -41,12 +41,15 @@
     "@commitlint/config-conventional": "8.3.4",
     "@oclif/dev-cli": "1.22.2",
     "@types/fs-extra": "8.1.0",
+    "@types/jest": "25.2.1",
     "@typescript-eslint/eslint-plugin": "2.31.0",
     "@typescript-eslint/parser": "2.31.0",
     "eslint": "6.8.0",
     "husky": "4.2.5",
+    "jest": "26.0.1",
     "lint-staged": "10.2.2",
-    "prettier": "1.19.1"
+    "prettier": "1.19.1",
+    "ts-jest": "25.5.1"
   },
   "oclif": {
     "commands": "lib/cli",
