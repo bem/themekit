@@ -47,5 +47,5 @@ export function esmTemplate(tokens: FlattenToken[]): string {
 }
 
 export function jsonTemplate(tokens: FlattenToken[]): string {
-  return JSON.stringify(tokens, null, 2)
+  return JSON.stringify(tokens, null, 2) + '\n'
 }
