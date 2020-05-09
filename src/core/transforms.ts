@@ -1,7 +1,7 @@
 import cssColorFn from 'css-color-function'
 import { constantCase } from 'change-case'
 
-import { withPrefix } from './with-prefix'
+import { withPrefix } from './utils'
 import { Shape, FlattenToken } from './types'
 
 function paramCase(value: string): string {

@@ -1,4 +1,4 @@
-import { withPrefix } from './with-prefix'
+import { withPrefix } from './utils'
 import { Shape, FlattenToken, Token, TokensMap, TokenType } from './types'
 
 function getTokenType(value: string | number): TokenType {
