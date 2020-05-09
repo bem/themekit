@@ -5,7 +5,7 @@ import deepmerge from 'deepmerge'
 import { Platforms, platforms } from './platforms'
 import { importModule } from './import-module'
 import { Shape, TokensMap, ThemeTokens, Meta } from './types'
-import { deepInvoke } from './utils'
+import { deepInvoke, throwError } from './utils'
 
 type ThemeLayers = Shape<
   Shape<
@@ -24,6 +24,9 @@ export async function getThemeLayers(
   const files = await fg(source)
   for (const fileName of files) {
     const source = await importModule(resolve(fileName))
+    if (typeof source !== 'function') {
+      throwError('Theme should return "withTokens" call.')
+    }
     const themeLayer = deepInvoke<ThemeTokens>(source)
     const { name } = parse(fileName)
     for (const [platform, levels] of platforms) {

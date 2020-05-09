@@ -21,3 +21,7 @@ export function withPrefix(value: string, prefix?: string): string {
   }
   return `${prefix}_${value}`
 }
+
+export function throwError(messag: string): void {
+  throw new Error(messag)
+}
