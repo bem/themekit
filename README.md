@@ -244,10 +244,11 @@ A token may full or short record, and may be nested:
 
 ```ts
 type Primitive = string | number
+type TokenType = 'color' | 'size' | 'unknown'
 
 type Token = {
   value: Primitive
-  type: 'color' | 'size' | 'unknown'
+  type: TokenType
   comment?: string
 }
 
