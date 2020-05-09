@@ -26,3 +26,18 @@ jobs:
 
     - name: eslint
       run: npm run lint:js
+
+  units:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12
+
+    - name: install root-deps
+      run: npm ci
+
+    - name: unit
+      run: npm run unit
