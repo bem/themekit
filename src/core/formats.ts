@@ -13,7 +13,7 @@ type Formats = {
 }
 
 export const formats: Formats = {
-  'css.flat': (platforms, options) => {
+  'css.flat': (platforms, options = {}) => {
     const result = []
     for (const platform in platforms) {
       const layers = platforms[platform]
@@ -29,7 +29,7 @@ export const formats: Formats = {
     }
     return result
   },
-  'css.whitepaper': (platforms, options) => {
+  'css.whitepaper': (platforms, options = {}) => {
     const result = []
     for (const platform in platforms) {
       const layers = platforms[platform]
@@ -43,7 +43,7 @@ export const formats: Formats = {
     }
     return result
   },
-  'json.whitepaper': (platforms, options) => {
+  'json.whitepaper': (platforms, options = {}) => {
     const result = []
     for (const platform in platforms) {
       const layers = platforms[platform]
@@ -57,7 +57,7 @@ export const formats: Formats = {
     }
     return result
   },
-  'js.esm': (platforms, options) => {
+  'js.esm': (platforms, options = {}) => {
     const result = []
     for (const platform in platforms) {
       const layers = platforms[platform]

@@ -158,7 +158,7 @@
   },
   "overrides": [
     {
-      "files": ["*.test.{ts,tsx}"],
+      "files": ["*.unit.{ts,tsx}"],
       "env": {
         "jest": true
       }

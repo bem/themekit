@@ -26,6 +26,7 @@ export function flatTokens(tokens: TokensMap, prefix?: string): Shape<FlattenTok
   for (const key in tokens) {
     const computedKey = withPrefix(key, prefix)
     const token = tokens[key]
+    // FIXME: Move getTokenType to another fn.
     if (typeof token === 'string' || typeof token === 'number') {
       result[computedKey] = {
         value: token,
