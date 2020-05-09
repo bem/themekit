@@ -21,7 +21,6 @@ export function esModuleInterop<T>(box?: T): T {
  * @return Promise with data.
  */
 export async function importModule<T = any>(path: string): Promise<T> {
-  // TODO: Source possibly empty or have invalid format.
   // TODO: Add diagnostic.
   const result = await import(path)
   return esModuleInterop(result)
