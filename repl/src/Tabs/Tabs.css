@@ -1,0 +1,16 @@
+.Tabs {
+  display: flex;
+}
+
+.Tabs-Tab {
+  height: 36px;
+  font-size: 13px;
+  line-height: 1.4;
+  cursor: pointer;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.Tabs-Tab[data-active="true"] {
+  color: red;
+}

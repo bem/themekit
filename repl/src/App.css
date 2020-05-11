@@ -1,0 +1,19 @@
+.Container {
+  display: flex;
+}
+
+.Container-Side {
+  flex: 0 0 50%;
+  height: 600px;
+  /* border-right: 1px solid red; */
+}
+
+.Container-Side:first-child {
+  box-shadow: 0 2px 6px rgba(0,0,0,.1), 0 2px 0 rgba(0,0,0,.1)
+}
+
+.Container-Header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #d9d9d9;
+}
