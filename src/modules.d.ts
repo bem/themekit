@@ -15,6 +15,12 @@ declare module 'style-dictionary' {
       name: string
       formatter: (dictionary: any, config: any) => string
     }) => void
+    registerTransform: (config: {
+      name: string
+      type: string
+      matcher?: (prop: any) => boolean
+      transformer: (prop: any) => string
+    }) => void
     extend: (
       config: any,
     ) => {
