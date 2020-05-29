@@ -13,5 +13,5 @@ export type Config = {
 }
 
 export async function loadConfig(path: string): Promise<Config> {
-  return await import(path)
+  return require(path)
 }
