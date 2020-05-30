@@ -13,7 +13,7 @@ StyleDictionaryApi.registerFormat({
     const group = dictionary.allProperties.length ? dictionary.allProperties[0].group : 'unknown'
     const value = store.get('theme')
     const selector = `.Theme_${group}_${value}`
-    return `${selector} {\n${variablesWithPrefix('     --', dictionary.allProperties)} \n}\n`
+    return `${selector} {\n${variablesWithPrefix('    --', dictionary.allProperties)}\n}\n`
   },
 })
 
@@ -28,7 +28,6 @@ StyleDictionaryApi.registerTransform({
 
 export async function build(config: any): Promise<any> {
   const normalizedConfig = Array.isArray(config) ? config : [config]
-
   for (const themeConfig of normalizedConfig) {
     store.set('mapper', await loadMappers(themeConfig.mappers))
     for (const themeFileConfig of themeConfig.files) {
