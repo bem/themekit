@@ -1,12 +1,6 @@
 import { getFolderWithPlatform } from './utils'
 
-const whitepaper = {
-  space: '',
-  size: '',
-  capacity: '',
-  cosmetic: '',
-  color: '',
-}
+const whitepaper = ['space', 'size', 'capacity', 'cosmetic', 'color']
 
 export function createWhitepaperConfig({ source, theme, outDir }: any): any {
   return {
@@ -22,7 +16,7 @@ export function createWhitepaperConfig({ source, theme, outDir }: any): any {
           'color/css',
           'name/mapper',
         ],
-        files: Object.keys(whitepaper).map((file: any) => ({
+        files: whitepaper.map((file: any) => ({
           destination: `${getFolderWithPlatform(theme)}/${file}.css`,
           format: 'css/whitepaper',
           filter: (token: any) => token.group === file,
