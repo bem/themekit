@@ -1,3 +1,4 @@
+import './yaml-interop'
 import StyleDictionaryApi from 'style-dictionary'
 
 import { createWhitepaperConfig } from './whitepaper-config'
