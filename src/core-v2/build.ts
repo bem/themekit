@@ -1,5 +1,8 @@
 import './yaml-interop'
 import StyleDictionaryApi from 'style-dictionary'
+import cssColorFn from 'css-color-function'
+import { resolve } from 'path'
+import { readFileSync, writeFileSync } from 'fs-extra'
 
 import { createWhitepaperConfig } from './whitepaper-config'
 import { variablesWithPrefix } from './variable-with-prefix'
@@ -26,6 +29,26 @@ StyleDictionaryApi.registerTransform({
     const mapper = store.get('mapper') || {}
     return mapper[prop.name] || prop.name
   },
+})
+
+StyleDictionaryApi.registerAction({
+  name: 'process-color',
+  do: (_, config) => {
+    for (const file of config.files) {
+      if (file.destination.match(/\.css$/) === null) {
+        continue
+      }
+      const filePath = resolve(process.cwd(), config.buildPath, file.destination)
+      const colorRe = /color\(.+\)/g
+      let content = readFileSync(filePath, 'utf8')
+      let executed = null
+      while ((executed = colorRe.exec(content)) !== null) {
+        content = content.replace(executed[0], cssColorFn.convert(executed[0]))
+      }
+      writeFileSync(filePath, content)
+    }
+  },
+  undo: () => {},
 })
 
 export async function build(config: any): Promise<any> {

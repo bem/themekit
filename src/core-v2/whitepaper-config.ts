@@ -8,14 +8,8 @@ export function createWhitepaperConfig({ source, theme, outDir }: any): any {
     platforms: {
       css: {
         buildPath: outDir.endsWith('/') ? outDir : `${outDir}/`,
-        transforms: [
-          'attribute/cti',
-          'name/cti/kebab',
-          'time/seconds',
-          'size/rem',
-          'color/css',
-          'name/mapper',
-        ],
+        transforms: ['attribute/cti', 'time/seconds', 'color/css', 'name/cti/kebab', 'name/mapper'],
+        actions: ['process-color'],
         files: whitepaper.map((file: any) => ({
           destination: `${getFolderWithPlatform(theme)}/${file}.css`,
           format: 'css/whitepaper',

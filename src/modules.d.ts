@@ -17,9 +17,14 @@ declare module 'style-dictionary' {
     }) => void
     registerTransform: (config: {
       name: string
-      type: string
+      type: 'name' | 'attribute' | 'value'
       matcher?: (prop: any) => boolean
       transformer: (prop: any) => string
+    }) => void
+    registerAction: (config: {
+      name: string
+      do: (dictionary: any, config: any) => void
+      undo?: (dictionary: any, config: any) => void
     }) => void
     extend: (
       config: any,
