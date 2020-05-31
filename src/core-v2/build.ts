@@ -5,6 +5,7 @@ import { createWhitepaperConfig } from './whitepaper-config'
 import { variablesWithPrefix } from './variable-with-prefix'
 import { getCssModifierWithPlatform } from './utils'
 import { loadMappers } from './mappers'
+import { loadThemes } from './themes'
 
 const store = new Map()
 
@@ -30,14 +31,16 @@ StyleDictionaryApi.registerTransform({
 export async function build(config: any): Promise<any> {
   const normalizedConfig = Array.isArray(config) ? config : [config]
   for (const themeConfig of normalizedConfig) {
-    store.set('mapper', await loadMappers(themeConfig.mappers))
+    const { mappers, sources } = await loadThemes(themeConfig.themes)
+    // TODO: Load mappers in themes?
+    store.set('mapper', await loadMappers(mappers))
     for (const themeFileConfig of themeConfig.files) {
       let styleDictionaryConfig: any = {}
       if (themeFileConfig.format === 'css/whitepaper') {
         store.set('theme', getCssModifierWithPlatform(themeConfig.name))
         styleDictionaryConfig = createWhitepaperConfig({
           // TODO: Add sort by platform for all sources.
-          source: themeConfig.source,
+          source: sources,
           theme: themeConfig.name,
           outDir: themeConfig.outDir,
         })
