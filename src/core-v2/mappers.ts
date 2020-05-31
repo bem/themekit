@@ -2,7 +2,7 @@ import glob from 'fast-glob'
 import { readJSON, readFileSync } from 'fs-extra'
 import YAML from 'yaml'
 
-export async function loadMappers(path: string): Promise<any> {
+export async function loadMappers(path: string[]): Promise<any> {
   const result = {}
   for (const file of await glob(path)) {
     if (/\.ya?ml$/.test(file)) {
