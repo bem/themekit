@@ -6,7 +6,6 @@ import { readFileSync, writeFileSync } from 'fs-extra'
 
 import { createWhitepaperConfig } from './whitepaper-config'
 import { variablesWithPrefix } from './variable-with-prefix'
-import { getCssModifierWithPlatform } from './utils'
 import { loadMappers } from './mappers'
 import { loadThemes } from './themes'
 
@@ -16,8 +15,8 @@ StyleDictionaryApi.registerFormat({
   name: 'css/whitepaper',
   formatter: (dictionary) => {
     const group = dictionary.allProperties.length ? dictionary.allProperties[0].group : 'unknown'
-    const value = store.get('theme')
-    const selector = `.Theme_${group}_${value}`
+    const whitepaper = store.get('whitepaper')
+    const selector = `.Theme_${group}_${whitepaper[group]}`
     return `${selector} {\n${variablesWithPrefix('    --', dictionary.allProperties)}\n}\n`
   },
 })
@@ -54,13 +53,13 @@ StyleDictionaryApi.registerAction({
 export async function build(config: any): Promise<any> {
   const normalizedConfig = Array.isArray(config) ? config : [config]
   for (const themeConfig of normalizedConfig) {
-    const { mappers, sources } = await loadThemes(themeConfig.themes)
+    const { mappers, sources, whitepaper } = await loadThemes(themeConfig.themes)
     // TODO: Load mappers in themes?
     store.set('mapper', await loadMappers(mappers))
     for (const themeFileConfig of themeConfig.files) {
       let styleDictionaryConfig: any = {}
       if (themeFileConfig.format === 'css/whitepaper') {
-        store.set('theme', getCssModifierWithPlatform(themeConfig.name))
+        store.set('whitepaper', whitepaper)
         styleDictionaryConfig = createWhitepaperConfig({
           // TODO: Add sort by platform for all sources.
           source: sources,
