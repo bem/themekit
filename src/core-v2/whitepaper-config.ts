@@ -4,7 +4,7 @@ const whitepaper = ['space', 'size', 'capacity', 'cosmetic', 'color']
 
 export function createWhitepaperConfig({ source, theme, outDir }: any): any {
   return {
-    source,
+    include: source,
     platforms: {
       css: {
         buildPath: outDir.endsWith('/') ? outDir : `${outDir}/`,
