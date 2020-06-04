@@ -10,6 +10,12 @@ declare module 'css-color-function' {
 }
 
 declare module 'style-dictionary' {
+  export type Property = {
+    value: string | number
+    group: string
+    name: string
+  }
+
   const StyleDictionaryApi: {
     registerFormat: (config: {
       name: string
@@ -18,8 +24,8 @@ declare module 'style-dictionary' {
     registerTransform: (config: {
       name: string
       type: 'name' | 'attribute' | 'value'
-      matcher?: (prop: any) => boolean
-      transformer: (prop: any) => string
+      matcher?: (prop: Property) => boolean
+      transformer: (prop: Property) => string
     }) => void
     registerAction: (config: {
       name: string
@@ -30,6 +36,7 @@ declare module 'style-dictionary' {
       config: any,
     ) => {
       buildPlatform: (platform: string) => void
+      properties: Record<string, Property>
     }
   }
   export default StyleDictionaryApi
