@@ -2,7 +2,7 @@ import { getFolderWithPlatform } from './utils'
 
 const whitepaper = ['space', 'size', 'capacity', 'cosmetic', 'color']
 
-export function createWhitepaperConfig({ source, theme, outDir }: any): any {
+export function createStyleDictionaryConfig({ source, theme, outDir }: any): any {
   return {
     include: source,
     platforms: {
