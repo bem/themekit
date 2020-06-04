@@ -4,7 +4,7 @@ import cssColorFn from 'css-color-function'
 import { resolve } from 'path'
 import { readFileSync, writeFileSync } from 'fs-extra'
 
-import { createWhitepaperConfig } from './whitepaper-config'
+import { createStyleDictionaryConfig } from './style-dictionary-config'
 import { variablesWithPrefix } from './variable-with-prefix'
 import { loadMappers } from './mappers'
 import { loadThemes } from './themes'
@@ -55,23 +55,23 @@ StyleDictionaryApi.registerAction({
 export async function build(config: any): Promise<any> {
   const normalizedConfig = Array.isArray(config) ? config : [config]
   for (const themeConfig of normalizedConfig) {
-    const { mappers, sources, whitepaper } = await loadThemes(themeConfig.themes)
-    // TODO: Load mappers in themes?
-    store.set('mapper', await loadMappers(mappers))
-    for (const themeFileConfig of themeConfig.files) {
-      let styleDictionaryConfig: any = {}
-      if (themeFileConfig.format === 'css/whitepaper') {
+    for (const entryKey in themeConfig.entry) {
+      const { mappers, sources, whitepaper } = await loadThemes(themeConfig.entry[entryKey])
+      // TODO: Load mappers in themes?
+      store.set('mapper', await loadMappers(mappers))
+      for (const _themeFileConfig of themeConfig.output.files) {
+        let styleDictionaryConfig: any = {}
         store.set('whitepaper', whitepaper)
-        styleDictionaryConfig = createWhitepaperConfig({
+        styleDictionaryConfig = createStyleDictionaryConfig({
           // TODO: Add sort by platform for all sources.
           source: sources,
-          theme: themeConfig.name,
-          outDir: themeConfig.outDir,
+          theme: entryKey,
+          outDir: themeConfig.output.path,
         })
+        const StyleDictionary = StyleDictionaryApi.extend(styleDictionaryConfig)
+        StyleDictionary.properties = dedupeProps(StyleDictionary.properties)
+        StyleDictionary.buildPlatform('css')
       }
-      const StyleDictionary = StyleDictionaryApi.extend(styleDictionaryConfig)
-      StyleDictionary.properties = dedupeProps(StyleDictionary.properties)
-      StyleDictionary.buildPlatform('css')
     }
   }
 }
