@@ -8,6 +8,7 @@ import { createWhitepaperConfig } from './whitepaper-config'
 import { variablesWithPrefix } from './variable-with-prefix'
 import { loadMappers } from './mappers'
 import { loadThemes } from './themes'
+import { dedupeProps } from './dedupe-props'
 
 const store = new Map()
 
@@ -69,6 +70,7 @@ export async function build(config: any): Promise<any> {
         })
       }
       const StyleDictionary = StyleDictionaryApi.extend(styleDictionaryConfig)
+      StyleDictionary.properties = dedupeProps(StyleDictionary.properties)
       StyleDictionary.buildPlatform('css')
     }
   }
