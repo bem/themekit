@@ -9,6 +9,7 @@ import { variablesWithPrefix } from './variable-with-prefix'
 import { loadMappers } from './mappers'
 import { loadThemes } from './themes'
 import { dedupeProps } from './dedupe-props'
+import { loadSources } from './load-sources'
 
 const store = new Map()
 
@@ -56,14 +57,15 @@ export async function build(config: any): Promise<any> {
   const normalizedConfig = Array.isArray(config) ? config : [config]
   for (const themeConfig of normalizedConfig) {
     for (const entryKey in themeConfig.entry) {
-      const { mappers, sources, whitepaper } = await loadThemes(themeConfig.entry[entryKey])
+      // prettier-ignore
+      const { mappers, sources: src, whitepaper, platform } =
+        await loadThemes(themeConfig.entry[entryKey])
+      const sources = await loadSources(src, platform)
       // TODO: Load mappers in themes?
       store.set('mapper', await loadMappers(mappers))
       for (const _themeFileConfig of themeConfig.output.files) {
-        let styleDictionaryConfig: any = {}
         store.set('whitepaper', whitepaper)
-        styleDictionaryConfig = createStyleDictionaryConfig({
-          // TODO: Add sort by platform for all sources.
+        const styleDictionaryConfig = createStyleDictionaryConfig({
           source: sources,
           theme: entryKey,
           outDir: themeConfig.output.path,
