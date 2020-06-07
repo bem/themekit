@@ -1,0 +1,6 @@
+{
+  "name": "extends",
+  "scripts": {
+    "build": "../../bin/themekit build"
+  }
+}

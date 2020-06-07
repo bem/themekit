@@ -1,0 +1,4 @@
+{
+  "extends": "./themes/default.theme.json",
+  "sources": ["./tokens/legacy-color.tokens.yml"]
+}

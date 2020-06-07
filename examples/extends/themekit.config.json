@@ -1,0 +1,13 @@
+{
+  "entry": {
+    "legacy": "./themes/legacy.theme.json"
+  },
+  "output": {
+    "path": "./themes",
+    "files": [
+      {
+        "format": "css/whitepaper"
+      }
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "platforms",
+  "scripts": {
+    "build": "../../bin/themekit build"
+  }
+}

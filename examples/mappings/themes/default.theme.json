@@ -1,0 +1,8 @@
+{
+  "whitepaper": {
+    "color": "default",
+    "size": "default"
+  },
+  "mappers": ["./tokens/*.mapper.yml"],
+  "sources": ["./tokens/color.tokens.yml", "./tokens/typo.tokens.yml"]
+}

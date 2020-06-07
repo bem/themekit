@@ -1,0 +1,6 @@
+{
+  "name": "simple",
+  "scripts": {
+    "build": "../../bin/themekit build"
+  }
+}
