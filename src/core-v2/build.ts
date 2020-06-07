@@ -70,6 +70,7 @@ export async function build(config: any): Promise<any> {
             source: sources,
             theme: entryKey,
             outDir: themeConfig.output.path,
+            whitepaper: theme.whitepaper,
           })
           const StyleDictionary = StyleDictionaryApi.extend(styleDictionaryConfig)
           StyleDictionary.properties = dedupeProps(StyleDictionary.properties)

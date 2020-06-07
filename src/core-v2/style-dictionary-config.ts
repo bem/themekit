@@ -1,6 +1,10 @@
-const whitepaper = ['space', 'size', 'capacity', 'cosmetic', 'color']
-
-export function createStyleDictionaryConfig({ source, theme, outDir, platform }: any): any {
+export function createStyleDictionaryConfig({
+  source,
+  theme,
+  outDir,
+  platform,
+  whitepaper,
+}: any): any {
   const themeFolder = platform === 'common' ? theme : `${theme}/${platform}`
   return {
     include: source,
@@ -9,7 +13,7 @@ export function createStyleDictionaryConfig({ source, theme, outDir, platform }:
         buildPath: outDir.endsWith('/') ? outDir : `${outDir}/`,
         transforms: ['attribute/cti', 'time/seconds', 'color/css', 'name/cti/kebab', 'name/mapper'],
         actions: ['process-color'],
-        files: whitepaper.map((file: any) => ({
+        files: Object.keys(whitepaper).map((file: any) => ({
           destination: `${themeFolder}/${file}.css`,
           format: 'css/whitepaper',
           filter: (token: any) => token.group === file,
