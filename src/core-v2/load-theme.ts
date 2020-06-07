@@ -9,12 +9,12 @@ type Theme = {
   mappers: string[]
   sources: string[]
   whitepaper: {}
-  platform: Platforms
+  platforms: Platforms[]
   extends?: string
 }
 
 export async function loadTheme(sources: string, cwd: string = process.cwd()): Promise<Theme> {
-  let result: Theme = { mappers: [], sources: [], whitepaper: {}, platform: 'common' }
+  let result: Theme = { mappers: [], sources: [], whitepaper: {}, platforms: ['common'] }
   const theme: Theme = await readJSON(sources)
 
   if (theme.extends !== undefined) {
@@ -33,8 +33,8 @@ export async function loadTheme(sources: string, cwd: string = process.cwd()): P
     }
   }
 
-  if (theme.platform !== undefined) {
-    result.platform = theme.platform
+  if (theme.platforms !== undefined) {
+    result.platforms = theme.platforms
   }
 
   if (theme.mappers !== undefined) {

@@ -1,8 +1,7 @@
-import { getFolderWithPlatform } from './utils'
-
 const whitepaper = ['space', 'size', 'capacity', 'cosmetic', 'color']
 
-export function createStyleDictionaryConfig({ source, theme, outDir }: any): any {
+export function createStyleDictionaryConfig({ source, theme, outDir, platform }: any): any {
+  const themeFolder = platform === 'common' ? theme : `${theme}/${platform}`
   return {
     include: source,
     platforms: {
@@ -11,7 +10,7 @@ export function createStyleDictionaryConfig({ source, theme, outDir }: any): any
         transforms: ['attribute/cti', 'time/seconds', 'color/css', 'name/cti/kebab', 'name/mapper'],
         actions: ['process-color'],
         files: whitepaper.map((file: any) => ({
-          destination: `${getFolderWithPlatform(theme)}/${file}.css`,
+          destination: `${themeFolder}/${file}.css`,
           format: 'css/whitepaper',
           filter: (token: any) => token.group === file,
         })),

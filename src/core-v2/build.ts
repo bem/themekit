@@ -58,20 +58,23 @@ export async function build(config: any): Promise<any> {
   for (const themeConfig of normalizedConfig) {
     for (const entryKey in themeConfig.entry) {
       const theme = await loadTheme(themeConfig.entry[entryKey])
-      // TODO: Load sources in themes?
-      const sources = await loadSources(theme.sources, theme.platform)
-      // TODO: Load mappers in themes?
-      store.set('mapper', await loadMappers(theme.mappers))
-      for (const _themeFileConfig of themeConfig.output.files) {
-        store.set('whitepaper', theme.whitepaper)
-        const styleDictionaryConfig = createStyleDictionaryConfig({
-          source: sources,
-          theme: entryKey,
-          outDir: themeConfig.output.path,
-        })
-        const StyleDictionary = StyleDictionaryApi.extend(styleDictionaryConfig)
-        StyleDictionary.properties = dedupeProps(StyleDictionary.properties)
-        StyleDictionary.buildPlatform('css')
+      for (const platform of theme.platforms) {
+        // TODO: Load sources in themes?
+        const sources = await loadSources(theme.sources, platform)
+        // TODO: Load mappers in themes?
+        store.set('mapper', await loadMappers(theme.mappers))
+        for (const _themeFileConfig of themeConfig.output.files) {
+          store.set('whitepaper', theme.whitepaper)
+          const styleDictionaryConfig = createStyleDictionaryConfig({
+            platform: platform,
+            source: sources,
+            theme: entryKey,
+            outDir: themeConfig.output.path,
+          })
+          const StyleDictionary = StyleDictionaryApi.extend(styleDictionaryConfig)
+          StyleDictionary.properties = dedupeProps(StyleDictionary.properties)
+          StyleDictionary.buildPlatform('css')
+        }
       }
     }
   }
