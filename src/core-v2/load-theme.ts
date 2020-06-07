@@ -4,6 +4,7 @@ import merge from 'deepmerge'
 import glob from 'fast-glob'
 
 import { Platforms } from '../core/platforms'
+import { throwError } from '../core/utils'
 
 type Theme = {
   mappers: string[]
@@ -24,7 +25,7 @@ export async function loadTheme(sources: string, cwd: string = process.cwd()): P
     ])
 
     if (extendsPath === undefined) {
-      throw new Error(`Cannot load theme: "${theme.extends}".`)
+      throwError(`Cannot load theme: "${theme.extends}".`)
     } else {
       const extendsCwd = extendsPath.includes('node_modules')
         ? resolve(cwd, 'node_modules', theme.extends.split('/')[0])
