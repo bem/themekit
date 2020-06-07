@@ -7,7 +7,7 @@ import { readFileSync, writeFileSync } from 'fs-extra'
 import { createStyleDictionaryConfig } from './style-dictionary-config'
 import { variablesWithPrefix } from './variable-with-prefix'
 import { loadMappers } from './mappers'
-import { loadThemes } from './themes'
+import { loadTheme } from './load-theme'
 import { dedupeProps } from './dedupe-props'
 import { loadSources } from './load-sources'
 
@@ -57,14 +57,13 @@ export async function build(config: any): Promise<any> {
   const normalizedConfig = Array.isArray(config) ? config : [config]
   for (const themeConfig of normalizedConfig) {
     for (const entryKey in themeConfig.entry) {
-      // prettier-ignore
-      const { mappers, sources: src, whitepaper, platform } =
-        await loadThemes(themeConfig.entry[entryKey])
-      const sources = await loadSources(src, platform)
+      const theme = await loadTheme(themeConfig.entry[entryKey])
+      // TODO: Load sources in themes?
+      const sources = await loadSources(theme.sources, theme.platform)
       // TODO: Load mappers in themes?
-      store.set('mapper', await loadMappers(mappers))
+      store.set('mapper', await loadMappers(theme.mappers))
       for (const _themeFileConfig of themeConfig.output.files) {
-        store.set('whitepaper', whitepaper)
+        store.set('whitepaper', theme.whitepaper)
         const styleDictionaryConfig = createStyleDictionaryConfig({
           source: sources,
           theme: entryKey,
