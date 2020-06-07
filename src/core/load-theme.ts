@@ -3,8 +3,8 @@ import { readJSON } from 'fs-extra'
 import merge from 'deepmerge'
 import glob from 'fast-glob'
 
-import { Platforms } from '../core/platforms'
-import { throwError } from '../core/utils'
+import { Platforms } from './platforms'
+import { throwError } from './utils'
 
 type Theme = {
   mappers: string[]

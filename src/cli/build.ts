@@ -2,7 +2,7 @@ import { resolve } from 'path'
 import { Command, flags } from '@oclif/command'
 
 import { loadConfig } from '../core/config'
-import { build } from '../core-v2/build'
+import { build } from '../core/build'
 
 type Flags = { config: string }
 
