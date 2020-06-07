@@ -29,7 +29,10 @@ export async function loadTheme(sources: string, cwd: string = process.cwd()): P
       const extendsCwd = extendsPath.includes('node_modules')
         ? resolve(cwd, 'node_modules', theme.extends.split('/')[0])
         : cwd
-      result = merge(result, await loadTheme(extendsPath, extendsCwd))
+      const extendsTheme = await loadTheme(extendsPath, extendsCwd)
+      // Platforms should be defined at project theme.
+      delete extendsTheme.platforms
+      result = merge(result, extendsTheme)
     }
   }
 
