@@ -7,7 +7,7 @@ import { build } from '../core/build'
 type Flags = { config: string }
 
 export default class Build extends Command {
-  static description = 'Builds tokens for configured formats.'
+  static description = 'Builds themes for configured formats.'
 
   static flags = {
     config: flags.string({
