@@ -10,6 +10,7 @@ import { loadMappers } from './mappers'
 import { loadTheme } from './load-theme'
 import { dedupeProps } from './dedupe-props'
 import { loadSources } from './load-sources'
+import { Config } from './config'
 
 const store = new Map()
 
@@ -53,8 +54,8 @@ StyleDictionaryApi.registerAction({
   undo: () => {},
 })
 
-export async function build(config: any): Promise<any> {
-  const normalizedConfig = Array.isArray(config) ? config : [config]
+export async function build(config: Config): Promise<void> {
+  const normalizedConfig: Config[] = Array.isArray(config) ? config : [config]
   for (const themeConfig of normalizedConfig) {
     for (const entryKey in themeConfig.entry) {
       const theme = await loadTheme(themeConfig.entry[entryKey])
