@@ -17,6 +17,8 @@ export async function loadSources(path: string[], platform: Platforms): Promise<
       const filePlatform = getPlatformFromFilePath(file)
       return levels.includes(filePlatform as Platforms)
     })
+    // Use dual sort for idempotent sorting.
+    .sort()
     .sort((a, b) => {
       const a1 = getPlatformFromFilePath(a)
       const b1 = getPlatformFromFilePath(b)
