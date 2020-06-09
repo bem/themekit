@@ -23,7 +23,7 @@
     "lint:js": "eslint --ext .ts,.js .",
     "prepare": "npm run build:manifest",
     "prepublishOnly": "npm run cleanup && npm run build",
-    "unit": "jest"
+    "unit": "jest --passWithNoTests"
   },
   "dependencies": {
     "@oclif/command": "1.5.19",
