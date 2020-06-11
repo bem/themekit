@@ -12,6 +12,22 @@ declare module 'style-dictionary' {
     name: string
   }
 
+  export type Platform = {
+    buildPath: string
+    transforms?: string[]
+    actions?: string
+    files: Array<{
+      destination: string
+      format: string
+      filter?: any
+    }>
+  }
+
+  export type Config = {
+    include: string[]
+    platforms: Record<string, Platform>
+  }
+
   const StyleDictionaryApi: {
     registerFormat: (config: {
       name: string
@@ -29,9 +45,10 @@ declare module 'style-dictionary' {
       undo?: (dictionary: any, config: any) => void
     }) => void
     extend: (
-      config: any,
+      config: Config,
     ) => {
       buildPlatform: (platform: string) => void
+      buildAllPlatforms: () => void
       properties: Record<string, Property>
     }
   }
