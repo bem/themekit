@@ -38,9 +38,6 @@ StyleDictionaryApi.registerAction({
   name: 'process-color',
   do: (_, config) => {
     for (const file of config.files) {
-      if (file.destination.match(/\.css$/) === null) {
-        continue
-      }
       const filePath = resolve(process.cwd(), config.buildPath, file.destination)
       const colorRe = /color\(.+\)/g
       let content = readFileSync(filePath, 'utf8')
