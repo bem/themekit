@@ -52,29 +52,26 @@ StyleDictionaryApi.registerAction({
 })
 
 export async function build(config: Config): Promise<void> {
-  const normalizedConfig: Config[] = Array.isArray(config) ? config : [config]
-  for (const themeConfig of normalizedConfig) {
-    for (const entryKey in themeConfig.entry) {
-      const theme = await loadTheme(themeConfig.entry[entryKey])
-      for (const platform of theme.platforms) {
-        // TODO: Load sources in themes?
-        const sources = await loadSources(theme.sources, platform)
-        // TODO: Load mappers in themes?
-        store.set('mapper', await loadMappers(theme.mappers))
-        for (const _themeFileConfig of themeConfig.output.files) {
-          store.set('whitepaper', theme.whitepaper)
-          const styleDictionaryConfig = createStyleDictionaryConfig({
-            platform: platform,
-            source: sources,
-            theme: entryKey,
-            outDir: themeConfig.output.path,
-            whitepaper: theme.whitepaper,
-          })
-          const StyleDictionary = StyleDictionaryApi.extend(styleDictionaryConfig)
-          StyleDictionary.properties = dedupeProps(StyleDictionary.properties)
-          StyleDictionary.buildPlatform('css')
-        }
-      }
+  for (const entry in config.entry) {
+    const theme = await loadTheme(config.entry[entry])
+    for (const platform of theme.platforms) {
+      // TODO: Load sources in themes?
+      const sources = await loadSources(theme.sources, platform)
+
+      // TODO: Load mappers in themes?
+      store.set('mapper', await loadMappers(theme.mappers))
+      store.set('whitepaper', theme.whitepaper)
+
+      const styleDictionaryConfig = createStyleDictionaryConfig({
+        platform: platform,
+        sources: sources,
+        entry: entry,
+        output: config.output,
+      })
+      const StyleDictionary = StyleDictionaryApi.extend(styleDictionaryConfig)
+
+      StyleDictionary.properties = dedupeProps(StyleDictionary.properties)
+      StyleDictionary.buildAllPlatforms()
     }
   }
 }

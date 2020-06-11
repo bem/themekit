@@ -1,24 +1,34 @@
-export function createStyleDictionaryConfig({
-  source,
-  theme,
-  outDir,
-  platform,
-  whitepaper,
-}: any): any {
-  const themeFolder = platform === 'common' ? theme : `${theme}/${platform}`
+import { Platform, Config } from 'style-dictionary'
+
+type Options = {
+  sources: string[]
+  entry: string
+  platform: string
+  output: Record<string, Platform>
+}
+
+export function createStyleDictionaryConfig({ sources, entry, platform, output }: Options): Config {
+  const platforms = Object.entries<Platform>(output)
+    // prettier-ignore
+    .reduce<Record<string, Platform>>((acc, [key, value]) => {
+      const target = { ...value }
+      // Normalize path for style-dictionary specifics.
+      target.buildPath = target.buildPath.endsWith('/') ? target.buildPath : `${target.buildPath}/`
+      target.files = target.files.map((file) => ({
+        ...file,
+        // Replace placeholders for multiple themes and platforms.
+        destination: file.destination
+          .replace(/\[entry\]/, entry)
+          .replace(/\[platform\]/, platform)
+          // Remove common level, because is root.
+          .replace(/common\/?/, ''),
+      }))
+      acc[key] = target
+      return acc
+    }, {})
+
   return {
-    include: source,
-    platforms: {
-      css: {
-        buildPath: outDir.endsWith('/') ? outDir : `${outDir}/`,
-        transforms: ['attribute/cti', 'time/seconds', 'color/css', 'name/cti/kebab', 'name/mapper'],
-        actions: ['process-color'],
-        files: Object.keys(whitepaper).map((file: any) => ({
-          destination: `${themeFolder}/${file}.css`,
-          format: 'css/whitepaper',
-          filter: (token: any) => token.group === file,
-        })),
-      },
-    },
+    include: sources,
+    platforms: platforms,
   }
 }
