@@ -3,11 +3,25 @@
     "legacy": "./themes/legacy.theme.json"
   },
   "output": {
-    "path": "./themes",
-    "files": [
-      {
-        "format": "css/whitepaper"
-      }
-    ]
+    "css": {
+      "transforms": ["attribute/cti", "time/seconds", "color/css", "name/cti/kebab", "name/mapper"],
+      "buildPath": "./themes",
+      "files": [
+        {
+          "destination": "[entry]/[platform]/color.css",
+          "format": "css/whitepaper",
+          "filter": {
+            "group": "color"
+          }
+        },
+        {
+          "destination": "[entry]/[platform]/size.css",
+          "format": "css/whitepaper",
+          "filter": {
+            "group": "size"
+          }
+        }
+      ]
+    }
   }
 }
