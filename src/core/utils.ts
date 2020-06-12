@@ -1,27 +1,10 @@
-type Fn1 = () => any
-type Fn2 = () => Fn1
-
-export function deepInvoke<T>(fn: Fn1 | Fn2): T {
-  const maybeFn = fn()
-  if (typeof maybeFn === 'function') {
-    return maybeFn()
-  }
-  return maybeFn
-}
-
-/**
- * Returns string with prefix.
- *
- * @param value Raw string.
- * @param prefix Prefix for string.
- */
-export function withPrefix(value: string, prefix?: string): string {
-  if (prefix === undefined) {
-    return value
-  }
-  return `${prefix}_${value}`
-}
+import { Platforms } from '../core/platforms'
 
 export function throwError(messag: string): void {
   throw new Error(messag)
+}
+
+export function getPlatformFromFilePath(filePath: string): Platforms {
+  const matched = filePath.match(/@([\w|-]+)+\./)
+  return matched === null ? 'common' : (matched[1] as Platforms)
 }

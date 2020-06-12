@@ -1,17 +1,10 @@
-import { Platforms } from './platforms'
+import { Platform } from 'style-dictionary'
 
 export type Config = {
-  src: string
-  platforms?: Platforms
-  formats: {
-    [key: string]: {
-      outDir: string
-      fileName?: string
-      transforms: string[]
-    }
-  }
+  entry: Record<string, string>
+  output: Record<string, Platform>
 }
 
 export async function loadConfig(path: string): Promise<Config> {
-  return await import(path)
+  return require(path)
 }

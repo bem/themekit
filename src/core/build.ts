@@ -1,45 +1,77 @@
-import { writeFile, ensureDir } from 'fs-extra'
-import { join, resolve, parse } from 'path'
-import deepmerge from 'deepmerge'
+import './yaml-interop'
+import StyleDictionaryApi from 'style-dictionary'
+import cssColorFn from 'css-color-function'
+import { resolve } from 'path'
+import { readFileSync, writeFileSync } from 'fs-extra'
 
+import { createStyleDictionaryConfig } from './style-dictionary-config'
+import { variablesWithPrefix } from './variable-with-prefix'
+import { loadMappers } from './mappers'
+import { loadTheme } from './load-theme'
+import { dedupeProps } from './dedupe-props'
+import { loadSources } from './load-sources'
 import { Config } from './config'
-import { getThemeLayers } from './theme-layers'
-import { flatTokens } from './flat-tokens'
-import { transformTokens } from './transforms'
-import { formats } from './formats'
 
-export async function build(
-  config: Config,
-  onStart?: (format: string) => void,
-  onFinish?: (format: string, files: string[]) => void,
-): Promise<void> {
-  const themeLayers = await getThemeLayers(config.src, { platforms: config.platforms })
-  for (const format in config.formats) {
-    onStart && onStart(format)
-    const { outDir, fileName, transforms } = config.formats[format]
-    // Copy layers for mutate in future.
-    const result = deepmerge(themeLayers, {})
-    for (const platform in themeLayers) {
-      const themeLayer = themeLayers[platform]
-      for (const layerKey in themeLayer) {
-        const flattenTokens = flatTokens(themeLayer[layerKey].tokens)
-        const transformedTokens = transformTokens(flattenTokens, { transforms })
-        // @ts-ignore (FIXME: Fix transformTokens return type)
-        result[platform][layerKey].tokens = transformedTokens
+const store = new Map()
+
+StyleDictionaryApi.registerFormat({
+  name: 'css/whitepaper',
+  formatter: (dictionary) => {
+    const group = dictionary.allProperties.length ? dictionary.allProperties[0].group : 'unknown'
+    const whitepaper = store.get('whitepaper')
+    const selector = `.Theme_${group}_${whitepaper[group]}`
+    // TODO: Add comment with path for dev mode.
+    return `${selector} {\n${variablesWithPrefix('    --', dictionary.allProperties)}\n}\n`
+  },
+})
+
+StyleDictionaryApi.registerTransform({
+  name: 'name/mapper',
+  type: 'name',
+  transformer: (prop) => {
+    const mapper = store.get('mapper') || {}
+    return mapper[prop.name] || prop.name
+  },
+})
+
+StyleDictionaryApi.registerAction({
+  name: 'process-color',
+  do: (_, config) => {
+    for (const file of config.files) {
+      const filePath = resolve(process.cwd(), config.buildPath, file.destination)
+      const colorRe = /color\(.+\)/g
+      let content = readFileSync(filePath, 'utf8')
+      let executed = null
+      while ((executed = colorRe.exec(content)) !== null) {
+        content = content.replace(executed[0], cssColorFn.convert(executed[0]))
       }
+      writeFileSync(filePath, content)
     }
-    // FIXME: Move formats to fn.
-    // eslint-disable-next-line camelcase
-    const result_to_write = formats[format](result, { fileName })
-    const createdFiles = []
-    // eslint-disable-next-line camelcase
-    for (const file of result_to_write) {
-      const destFilePath = resolve(outDir, file.fileName)
-      const destFolder = parse(destFilePath).dir
-      await ensureDir(destFolder)
-      await writeFile(destFilePath, file.content)
-      createdFiles.push(join(outDir, file.fileName))
+  },
+  undo: () => {},
+})
+
+export async function build(config: Config): Promise<void> {
+  for (const entry in config.entry) {
+    const theme = await loadTheme(config.entry[entry])
+    for (const platform of theme.platforms) {
+      // TODO: Load sources in themes?
+      const sources = await loadSources(theme.sources, platform)
+
+      // TODO: Load mappers in themes?
+      store.set('mapper', await loadMappers(theme.mappers))
+      store.set('whitepaper', theme.whitepaper)
+
+      const styleDictionaryConfig = createStyleDictionaryConfig({
+        platform: platform,
+        sources: sources,
+        entry: entry,
+        output: config.output,
+      })
+      const StyleDictionary = StyleDictionaryApi.extend(styleDictionaryConfig)
+
+      StyleDictionary.properties = dedupeProps(StyleDictionary.properties)
+      StyleDictionary.buildAllPlatforms()
     }
-    onFinish && onFinish(format, createdFiles)
   }
 }

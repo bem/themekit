@@ -1,0 +1,8 @@
+color:
+  controls:
+    type:
+      action:
+        typo:
+          base:
+            value: "#999"
+            group: color

@@ -1,0 +1,6 @@
+{
+  "name": "mappings",
+  "scripts": {
+    "build": "../../bin/themekit build"
+  }
+}
