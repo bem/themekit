@@ -5,6 +5,11 @@
   "description": "Build system of design-tokens for any platforms.",
   "keywords": ["themekit", "design", "css", "tokens", "style", "style-dictionary"],
   "license": "MPL-2.0",
+  "repository": "https://github.com/yarastqt/themekit",
+  "homepage": "https://github.com/yarastqt/themekit",
+  "bugs": {
+    "url": "https://github.com/yarastqt/themekit/issues"
+  },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
