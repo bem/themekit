@@ -8,3 +8,23 @@ export function getPlatformFromFilePath(filePath: string): Platforms {
   const matched = filePath.match(/@([\w|-]+)+\./)
   return matched === null ? 'common' : (matched[1] as Platforms)
 }
+
+export function throttle<T extends []>(
+  callback: (..._: T) => void,
+  delay: number,
+): (..._: T) => void {
+  let timeout: NodeJS.Timeout | undefined
+  let lastArgs: T
+  const next = () => {
+    timeout = clearTimeout(timeout as any) as undefined
+    callback(...lastArgs)
+  }
+
+  return (...args: T) => {
+    lastArgs = args
+
+    if (timeout === undefined) {
+      timeout = setTimeout(next, delay)
+    }
+  }
+}
