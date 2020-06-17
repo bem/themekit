@@ -28,7 +28,8 @@
     "lint:js": "eslint --ext .ts,.js .",
     "prepare": "npm run build:manifest",
     "prepublishOnly": "npm run cleanup && npm run build",
-    "unit": "jest --passWithNoTests"
+    "unit": "jest --passWithNoTests",
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
   },
   "dependencies": {
     "@oclif/command": "1.5.19",
@@ -48,6 +49,7 @@
     "@types/jest": "25.2.1",
     "@typescript-eslint/eslint-plugin": "2.31.0",
     "@typescript-eslint/parser": "2.31.0",
+    "conventional-changelog-cli": "2.0.34",
     "eslint": "6.8.0",
     "husky": "4.2.5",
     "jest": "26.0.1",
