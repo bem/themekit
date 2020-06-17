@@ -37,7 +37,7 @@ export default class Build extends Command {
 
       for (const key in config.entry) {
         const theme = await loadTheme(config.entry[key])
-        themes.push(...theme.mappers, ...theme.sources)
+        themes.push(...theme.mappers, ...theme.sources.flat())
       }
 
       const watcher = watch(themes, { ignoreInitial: true })
