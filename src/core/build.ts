@@ -62,13 +62,14 @@ export async function build(config: Config): Promise<void> {
       store.set('mapper', await loadMappers(theme.mappers))
       store.set('whitepaper', theme.whitepaper)
 
-      const styleDictionaryConfig = createStyleDictionaryConfig({
-        platform: platform,
-        sources: sources,
-        entry: entry,
-        output: config.output,
-      })
-      const StyleDictionary = StyleDictionaryApi.extend(styleDictionaryConfig)
+      const StyleDictionary = StyleDictionaryApi.extend(
+        createStyleDictionaryConfig({
+          platform: platform,
+          sources: sources,
+          entry: entry,
+          output: config.output,
+        }),
+      )
 
       StyleDictionary.properties = dedupeProps(StyleDictionary.properties)
       StyleDictionary.buildAllPlatforms()
