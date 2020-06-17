@@ -1,3 +1,13 @@
+<a name="1.1.1"></a>
+
+## [1.1.1](https://github.com/yarastqt/themekit/compare/v1.1.0...v1.1.1) (2020-06-17)
+
+### Bug Fixes
+
+- fix sources order with extends ([f28d740](https://github.com/yarastqt/themekit/commit/f28d740))
+- use flat sources for watcher ([6a5108a](https://github.com/yarastqt/themekit/commit/6a5108a))
+- use sort for idempotent result ([95e3f59](https://github.com/yarastqt/themekit/commit/95e3f59))
+
 <a name="1.1.0"></a>
 
 # [1.1.0](https://github.com/yarastqt/themekit/compare/v1.0.0...v1.1.0) (2020-06-15)
