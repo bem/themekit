@@ -6,7 +6,7 @@ import glob from 'fast-glob'
 import { Platforms } from './platforms'
 import { throwError } from './utils'
 
-type Theme = {
+type InputTheme = {
   mappers: string[]
   sources: string[]
   whitepaper: {}
@@ -14,9 +14,20 @@ type Theme = {
   extends?: string
 }
 
-export async function loadTheme(sources: string, cwd: string = process.cwd()): Promise<Theme> {
-  let result: Theme = { mappers: [], sources: [], whitepaper: {}, platforms: ['common'] }
-  const theme: Theme = await readJSON(sources)
+type OutputTheme = {
+  mappers: string[]
+  // Uses nested array with paths, cuz glob not save orders with using patterns for path.
+  sources: string[][]
+  whitepaper: {}
+  platforms: Platforms[]
+}
+
+export async function loadTheme(
+  sources: string,
+  cwd: string = process.cwd(),
+): Promise<OutputTheme> {
+  let result: OutputTheme = { mappers: [], sources: [], whitepaper: {}, platforms: ['common'] }
+  const theme: InputTheme = await readJSON(sources)
 
   if (theme.extends !== undefined) {
     const [extendsPath] = await glob([
@@ -49,7 +60,7 @@ export async function loadTheme(sources: string, cwd: string = process.cwd()): P
     result.whitepaper = { ...result.whitepaper, ...theme.whitepaper }
   }
 
-  result.sources.push(...theme.sources.map((filePath) => join(cwd, filePath)))
+  result.sources.push(theme.sources.map((filePath) => join(cwd, filePath)))
 
   return result
 }
