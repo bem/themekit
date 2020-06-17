@@ -16,7 +16,7 @@ export async function loadSources(paths: string[][], platform: Platforms): Promi
     .flat()
     .filter((file) => {
       const filePlatform = getPlatformFromFilePath(file)
-      return levels.includes(filePlatform as Platforms)
+      return levels.includes(filePlatform)
     })
     .sort((a, b) => {
       const a1 = getPlatformFromFilePath(a)
