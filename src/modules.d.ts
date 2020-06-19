@@ -44,6 +44,7 @@ declare module 'style-dictionary' {
       do: (dictionary: any, config: any) => void
       undo?: (dictionary: any, config: any) => void
     }) => void
+    registerFilter: (config: { name: string; matcher: (prop: Property) => boolean }) => void
     extend: (
       config: Config,
     ) => {
