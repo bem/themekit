@@ -18,10 +18,9 @@ const store = new Map()
 StyleDictionaryApi.registerFormat({
   name: 'css/whitepaper',
   formatter: (dictionary) => {
-    const group = dictionary.allProperties.length ? dictionary.allProperties[0].group : 'unknown'
     const whitepaper = store.get('whitepaper')
+    const group = dictionary.allProperties.length ? dictionary.allProperties[0].group : 'unknown'
     const selector = `.Theme_${group}_${whitepaper[group]}`
-    // TODO: Add comment with path for dev mode.
     return `${selector} {\n${variablesWithPrefix('    --', dictionary.allProperties)}\n}\n`
   },
 })
