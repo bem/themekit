@@ -11,6 +11,7 @@ import { loadTheme } from './load-theme'
 import { dedupeProps } from './dedupe-props'
 import { loadSources } from './load-sources'
 import { Config } from './config'
+import { isColor } from './utils'
 
 const store = new Map()
 
@@ -31,6 +32,28 @@ StyleDictionaryApi.registerTransform({
   transformer: (prop) => {
     const mapper = store.get('mapper') || {}
     return mapper[prop.name] || prop.name
+  },
+})
+
+StyleDictionaryApi.registerFilter({
+  name: 'whitepaper/color',
+  matcher: (prop) => {
+    if (isColor(prop.value)) {
+      prop.group = 'color'
+      return true
+    }
+    return false
+  },
+})
+
+StyleDictionaryApi.registerFilter({
+  name: 'whitepaper/root',
+  matcher: (prop) => {
+    if (!isColor(prop.value)) {
+      prop.group = 'root'
+      return true
+    }
+    return false
   },
 })
 
