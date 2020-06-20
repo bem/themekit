@@ -10,7 +10,7 @@ export function getPlatformFromFilePath(filePath: string): Platforms {
 }
 
 export function isColor(value: string | number): boolean {
-  return /^[#|rgba?|hsla?||color]/.test(String(value))
+  return /^[#|rgba?|hsla?|color|transparent]/.test(String(value))
 }
 
 export function throttle<T extends []>(
