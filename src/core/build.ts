@@ -11,16 +11,16 @@ import { loadTheme } from './load-theme'
 import { dedupeProps } from './dedupe-props'
 import { loadSources } from './load-sources'
 import { Config } from './config'
+import { isColor } from './utils'
 
 const store = new Map()
 
 StyleDictionaryApi.registerFormat({
   name: 'css/whitepaper',
   formatter: (dictionary) => {
-    const group = dictionary.allProperties.length ? dictionary.allProperties[0].group : 'unknown'
     const whitepaper = store.get('whitepaper')
+    const group = dictionary.allProperties.length ? dictionary.allProperties[0].group : 'unknown'
     const selector = `.Theme_${group}_${whitepaper[group]}`
-    // TODO: Add comment with path for dev mode.
     return `${selector} {\n${variablesWithPrefix('    --', dictionary.allProperties)}\n}\n`
   },
 })
@@ -31,6 +31,28 @@ StyleDictionaryApi.registerTransform({
   transformer: (prop) => {
     const mapper = store.get('mapper') || {}
     return mapper[prop.name] || prop.name
+  },
+})
+
+StyleDictionaryApi.registerFilter({
+  name: 'whitepaper/color',
+  matcher: (prop) => {
+    if (isColor(prop.value)) {
+      prop.group = 'color'
+      return true
+    }
+    return false
+  },
+})
+
+StyleDictionaryApi.registerFilter({
+  name: 'whitepaper/root',
+  matcher: (prop) => {
+    if (!isColor(prop.value)) {
+      prop.group = 'root'
+      return true
+    }
+    return false
   },
 })
 

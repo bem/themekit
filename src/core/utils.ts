@@ -9,6 +9,10 @@ export function getPlatformFromFilePath(filePath: string): Platforms {
   return matched === null ? 'common' : (matched[1] as Platforms)
 }
 
+export function isColor(value: string | number): boolean {
+  return /^[#|rgba?|hsla?|color|transparent]/.test(String(value))
+}
+
 export function throttle<T extends []>(
   callback: (..._: T) => void,
   delay: number,
