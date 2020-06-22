@@ -1,3 +1,15 @@
+<a name="1.2.0"></a>
+
+# [1.2.0](https://github.com/yarastqt/themekit/compare/v1.1.1...v1.2.0) (2020-06-22)
+
+### Bug Fixes
+
+- support transparent color ([9cc89b9](https://github.com/yarastqt/themekit/commit/9cc89b9))
+
+### Features
+
+- impl wp color and root filters ([52b96f1](https://github.com/yarastqt/themekit/commit/52b96f1))
+
 <a name="1.1.1"></a>
 
 ## [1.1.1](https://github.com/yarastqt/themekit/compare/v1.1.0...v1.1.1) (2020-06-17)
