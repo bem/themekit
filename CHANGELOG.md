@@ -1,3 +1,11 @@
+<a name="1.2.1"></a>
+
+## [1.2.1](https://github.com/yarastqt/themekit/compare/v1.2.0...v1.2.1) (2020-06-23)
+
+### Bug Fixes
+
+- use group capture for color regexp ([b1a34b2](https://github.com/yarastqt/themekit/commit/b1a34b2))
+
 <a name="1.2.0"></a>
 
 # [1.2.0](https://github.com/yarastqt/themekit/compare/v1.1.1...v1.2.0) (2020-06-22)
