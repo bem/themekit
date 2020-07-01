@@ -1,3 +1,11 @@
+<a name="1.2.2"></a>
+
+## [1.2.2](https://github.com/yarastqt/themekit/compare/v1.2.1...v1.2.2) (2020-07-01)
+
+### Bug Fixes
+
+- use pkg-dir for resolve package root ([3015e55](https://github.com/yarastqt/themekit/commit/3015e55))
+
 <a name="1.2.1"></a>
 
 ## [1.2.1](https://github.com/yarastqt/themekit/compare/v1.2.0...v1.2.1) (2020-06-23)
