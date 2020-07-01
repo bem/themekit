@@ -2,6 +2,7 @@ import { join, resolve } from 'path'
 import { readJSON } from 'fs-extra'
 import merge from 'deepmerge'
 import glob from 'fast-glob'
+import pkgDir from 'pkg-dir'
 
 import { Platforms } from './platforms'
 import { throwError } from './utils'
@@ -38,9 +39,7 @@ export async function loadTheme(
     if (extendsPath === undefined) {
       throwError(`Cannot load theme: "${theme.extends}".`)
     } else {
-      const extendsCwd = extendsPath.includes('node_modules')
-        ? resolve(cwd, 'node_modules', theme.extends.split('/')[0])
-        : cwd
+      const extendsCwd = extendsPath.includes('node_modules') ? pkgDir.sync(extendsPath) : cwd
       const extendsTheme = await loadTheme(extendsPath, extendsCwd)
       // Platforms should be defined at project theme.
       delete extendsTheme.platforms
