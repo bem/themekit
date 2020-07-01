@@ -38,6 +38,7 @@
     "deepmerge": "4.2.2",
     "fast-glob": "3.2.2",
     "fs-extra": "8.1.0",
+    "pkg-dir": "4.2.0",
     "style-dictionary": "2.10.0",
     "yaml": "1.10.0"
   },
