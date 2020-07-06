@@ -12,6 +12,7 @@ import { dedupeProps } from './dedupe-props'
 import { loadSources } from './load-sources'
 import { Config } from './config'
 import { isColor } from './utils'
+import { enhanceWhitepaperConfig } from './enhance-whitepaper-config'
 
 const store = new Map()
 
@@ -82,7 +83,7 @@ export async function build(config: Config): Promise<void> {
 
       // TODO: Load mappers in themes?
       store.set('mapper', await loadMappers(theme.mappers))
-      store.set('whitepaper', theme.whitepaper)
+      store.set('whitepaper', enhanceWhitepaperConfig(theme.whitepaper, platform))
 
       const StyleDictionary = StyleDictionaryApi.extend(
         createStyleDictionaryConfig({
