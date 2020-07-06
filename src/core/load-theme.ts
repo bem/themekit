@@ -10,7 +10,7 @@ import { throwError } from './utils'
 type InputTheme = {
   mappers: string[]
   sources: string[]
-  whitepaper: {}
+  whitepaper: Record<string, string>
   platforms: Platforms[]
   extends?: string
 }
@@ -19,7 +19,7 @@ type OutputTheme = {
   mappers: string[]
   // Uses nested array with paths, cuz glob not save orders with using patterns for path.
   sources: string[][]
-  whitepaper: {}
+  whitepaper: Record<string, string>
   platforms: Platforms[]
 }
 
