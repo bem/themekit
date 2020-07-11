@@ -1,0 +1,13 @@
+/**
+ * Do not edit directly
+ * Generated on Sat, 11 Jul 2020 19:19:16 GMT
+ */
+
+:root {
+  --color-typo-base: #000;
+  --color-bg-base: #fff;
+  --color-bg-hover: #ccc;
+  --typo-control-font-family: Arial, sans-serif;
+  --typo-control-size-s-font-size: 20px; /* Font size for all controls with size s */
+  --typo-control-size-m-font-size: 24px; /* Font size for all controls with size m */
+}

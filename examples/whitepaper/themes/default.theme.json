@@ -1,0 +1,8 @@
+{
+  "whitepaper": {
+    "color": "default-[platform]",
+    "root": "default-[platform]"
+  },
+  "platforms": ["desktop", "touch"],
+  "sources": ["./tokens/*.tokens.yml"]
+}

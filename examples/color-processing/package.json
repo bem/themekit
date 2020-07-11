@@ -1,0 +1,6 @@
+{
+  "name": "color-processing",
+  "scripts": {
+    "build": "../../bin/themekit build"
+  }
+}

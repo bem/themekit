@@ -4,9 +4,7 @@ color:
       action:
         typo:
           base:
-            value: "#000"
+            value: "color(#000 a(10%))"
         fillColor:
           base:
-            value: "#fff"
-          hover:
-            value: "#ccc"
+            value: "color(#fff h(+2%) s(20) l(-10))"

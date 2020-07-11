@@ -4,22 +4,12 @@
   },
   "output": {
     "css": {
-      "transforms": ["attribute/cti", "time/seconds", "color/css", "name/cti/kebab", "name/mapper"],
+      "transforms": ["name/cti/kebab"],
       "buildPath": "./themes",
       "files": [
         {
-          "destination": "[entry]/[platform]/color.css",
-          "format": "css/whitepaper",
-          "filter": {
-            "group": "color"
-          }
-        },
-        {
-          "destination": "[entry]/[platform]/size.css",
-          "format": "css/whitepaper",
-          "filter": {
-            "group": "size"
-          }
+          "destination": "[entry]/[platform]/root.css",
+          "format": "css/variables"
         }
       ]
     }

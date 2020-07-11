@@ -8,8 +8,14 @@
       "buildPath": "./themes",
       "files": [
         {
+          "destination": "[entry]/[platform]/color.css",
+          "format": "css/whitepaper",
+          "filter": "whitepaper/color"
+        },
+        {
           "destination": "[entry]/[platform]/root.css",
-          "format": "css/variables"
+          "format": "css/whitepaper",
+          "filter": "whitepaper/root"
         }
       ]
     }

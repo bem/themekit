@@ -1,0 +1,5 @@
+.Theme_color_default-desktop {
+    --color-controls-type-action-typo-base: #ccc;
+    --color-controls-type-action-fill-color-base: #fff;
+    --color-controls-type-action-fill-color-hover: #ccc;
+}
