@@ -1,11 +1,12 @@
 {
   "entry": {
-    "legacy": "./themes/legacy.theme.json"
+    "default": "./themes/default.theme.json"
   },
   "output": {
     "css": {
       "transforms": ["name/cti/kebab"],
       "buildPath": "./themes",
+      "actions": ["process-color"],
       "files": [
         {
           "destination": "[entry]/[platform]/root.css",

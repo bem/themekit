@@ -5,11 +5,8 @@ color:
         typo:
           base:
             value: "#000"
-            group: color
         fillColor:
           base:
             value: "#fff"
-            group: color
           hover:
             value: "#ccc"
-            group: color

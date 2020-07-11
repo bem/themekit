@@ -2,16 +2,13 @@ typo:
   control:
     fontFamily:
       value: "Arial, sans-serif"
-      group: size
 
     size:
       s:
         fontSize:
           value: 20px
-          group: size
           comment: "Font size for all controls with size s"
       m:
         fontSize:
           value: 24px
-          group: size
           comment: "Font size for all controls with size m"

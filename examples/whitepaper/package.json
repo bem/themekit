@@ -1,0 +1,6 @@
+{
+  "name": "whitepaper",
+  "scripts": {
+    "build": "../../bin/themekit build"
+  }
+}
