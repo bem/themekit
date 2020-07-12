@@ -1,7 +1,7 @@
 import glob from 'fast-glob'
 
 import { Platforms, platforms } from '../core/platforms'
-import { getPlatformFromFilePath } from './utils'
+import { getPlatformFromFilePath, flatten } from './utils'
 
 export async function loadSources(paths: string[][], platform: Platforms): Promise<string[]> {
   const levels = platforms.get(platform)
@@ -12,8 +12,7 @@ export async function loadSources(paths: string[][], platform: Platforms): Promi
 
   // Uses nested array with paths, cuz glob not save orders with using patterns for path.
   // Also uses sort after glob for idempotent result.
-  const result = (await Promise.all(paths.map((path) => glob.sync(path).sort())))
-    .flat()
+  const result = flatten(await Promise.all(paths.map((path) => glob.sync(path).sort())))
     .filter((file) => {
       const filePlatform = getPlatformFromFilePath(file)
       return levels.includes(filePlatform)

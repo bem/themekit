@@ -32,3 +32,9 @@ export function throttle<T extends []>(
     }
   }
 }
+
+type ArrayType<T> = T extends (infer U)[] ? U : never
+
+export function flatten<T extends any[]>(arrays: T[]): ArrayType<T>[] {
+  return arrays.reduce<any[]>((acc, value) => acc.concat(value), [])
+}

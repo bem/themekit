@@ -5,7 +5,7 @@ import { watch } from 'chokidar'
 import { loadConfig } from '../core/config'
 import { build } from '../core/build'
 import { loadTheme } from '../core/load-theme'
-import { throttle } from '../core/utils'
+import { throttle, flatten } from '../core/utils'
 
 type Flags = { config: string; watch: boolean }
 
@@ -37,7 +37,7 @@ export default class Build extends Command {
 
       for (const key in config.entry) {
         const theme = await loadTheme(config.entry[key])
-        themes.push(...theme.mappers, ...theme.sources.flat())
+        themes.push(...theme.mappers, ...flatten(theme.sources))
       }
 
       const watcher = watch(themes, { ignoreInitial: true })
