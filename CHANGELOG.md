@@ -1,3 +1,11 @@
+<a name="1.3.1"></a>
+
+## [1.3.1](https://github.com/yarastqt/themekit/compare/v1.3.0...v1.3.1) (2020-07-12)
+
+### Bug Fixes
+
+- use custom flatten instead native for old node ([454ff5e](https://github.com/yarastqt/themekit/commit/454ff5e))
+
 <a name="1.3.0"></a>
 
 # [1.3.0](https://github.com/yarastqt/themekit/compare/v1.2.2...v1.3.0) (2020-07-06)
