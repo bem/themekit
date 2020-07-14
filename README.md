@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/@yandex/themekit.svg?style=flat-square&labelColor=111)][npm] [![examples](https://img.shields.io/badge/examples-folder-007ecc?style=flat-square&labelColor=111)][examples] [![node](https://img.shields.io/badge/node-8+-007ecc?style=flat-square&labelColor=111)][node]
 
-Themkit is a build system for design-tokens for any platform. This system is based on [style-dictionary](sd-github) API and [redefinition levels](#platforms), which allows you to describe platform-specific values. Themkit provides you to extend existing themes in order to supplement or redefine existing tokens, it also allows you to use the basic theme set and add it to the service.
+Themkit is a build system for design-tokens for any platform. This system is based on [style-dictionary](sd-github) API and [redefinition levels](#-platforms), which allows you to describe platform-specific values. Themkit provides you to extend existing themes in order to supplement or redefine existing tokens, it also allows you to use the basic theme set and add it to the service.
 
 ## Features
 
