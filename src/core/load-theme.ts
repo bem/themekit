@@ -5,7 +5,7 @@ import glob from 'fast-glob'
 import pkgDir from 'pkg-dir'
 
 import { Platforms } from './platforms'
-import { throwError } from './utils'
+import { throwError, normalizePaths } from './utils'
 
 type InputTheme = {
   mappers: string[]
@@ -31,10 +31,9 @@ export async function loadTheme(
   const theme: InputTheme = await readJSON(sources)
 
   if (theme.extends !== undefined) {
-    const [extendsPath] = await glob([
-      resolve(cwd, 'node_modules', theme.extends),
-      resolve(cwd, theme.extends),
-    ])
+    const [extendsPath] = await glob(
+      normalizePaths([resolve(cwd, 'node_modules', theme.extends), resolve(cwd, theme.extends)]),
+    )
 
     if (extendsPath === undefined) {
       throwError(`Cannot load theme: "${theme.extends}".`)
