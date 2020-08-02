@@ -313,7 +313,9 @@ At result you get plain value with color:
 }
 ```
 
-### 📚 Whitepaper
+## Formats
+
+### 🗂 css/whitepaper
 
 A themekit supports separation of the tokens into multiple result files.
 
@@ -331,12 +333,20 @@ At themekit config you should define for output files `css/whitepaper` format an
         {
           "destination": "[entry]/[platform]/color.css",
           "format": "css/whitepaper",
-          "filter": "whitepaper/color"
+          "filter": "whitepaper/color",
+          "options": {
+            // default: false
+            "useAliasVariables": true
+          }
         },
         {
           "destination": "[entry]/[platform]/root.css",
           "format": "css/whitepaper",
-          "filter": "whitepaper/root"
+          "filter": "whitepaper/root",
+          "options": {
+            // default: false
+            "useAliasVariables": true
+          }
         }
       ]
     }
@@ -353,6 +363,33 @@ At theme config you should define `whitepaper` for css selectors:
   "whitepaper": {
     "color": "default-[platform]",
     "root": "default-[platform]"
+  }
+}
+```
+
+### 🗂 css/variables
+
+#### tool config
+
+```json
+{
+  "output": {
+    "css": {
+      "transforms": ["name/cti/kebab"],
+      "buildPath": "./src/theme/themes",
+      "files": [
+        {
+          "destination": "[entry]/[platform]/root.css",
+          "format": "css/variables",
+          "options": {
+            // default: ":root"
+            "selector": ".MyTheme",
+            // default: false
+            "useAliasVariables": true
+          }
+        }
+      ]
+    }
   }
 }
 ```
