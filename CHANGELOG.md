@@ -1,3 +1,11 @@
+<a name="1.4.0"></a>
+
+# [1.4.0](https://github.com/yarastqt/themekit/compare/v1.3.2...v1.4.0) (2020-08-02)
+
+### Features
+
+- use css vars for aliases ([92b9174](https://github.com/yarastqt/themekit/commit/92b9174))
+
 <a name="1.3.2"></a>
 
 ## [1.3.2](https://github.com/yarastqt/themekit/compare/v1.3.1...v1.3.2) (2020-07-28)
