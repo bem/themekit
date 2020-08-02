@@ -13,16 +13,44 @@ import { loadSources } from './load-sources'
 import { Config } from './config'
 import { isColor } from './utils'
 import { enhanceWhitepaperConfig } from './enhance-whitepaper-config'
+import { replaceAliasToVariable } from './replace-alias-to-variable'
 
 const store = new Map()
 
 StyleDictionaryApi.registerFormat({
   name: 'css/whitepaper',
-  formatter: (dictionary) => {
+  formatter(dictionary, config) {
+    const defaultOptions = { selector: ':root', useAliasVariables: false }
+    const options = Object.assign(defaultOptions, (this as any).options)
+
     const whitepaper = store.get('whitepaper')
     const group = dictionary.allProperties.length ? dictionary.allProperties[0].group : 'unknown'
     const selector = `.Theme_${group}_${whitepaper[group]}`
-    return `${selector} {\n${variablesWithPrefix('    --', dictionary.allProperties)}\n}\n`
+
+    const transformers = config.transforms.filter((transform) => transform.type === 'name')
+
+    const props = options.useAliasVariables
+      ? replaceAliasToVariable(dictionary.allProperties, transformers[0].transformer)
+      : dictionary.allProperties
+
+    return `${selector} {\n${variablesWithPrefix('    --', props)}\n}\n`
+  },
+})
+
+// NOTE: Override default css/variables format.
+StyleDictionaryApi.registerFormat({
+  name: 'css/variables',
+  formatter(dictionary, config) {
+    const defaultOptions = { selector: ':root', useAliasVariables: false }
+    const options = Object.assign(defaultOptions, (this as any).options)
+
+    const transformers = config.transforms.filter((transform) => transform.type === 'name')
+
+    const props = options.useAliasVariables
+      ? replaceAliasToVariable(dictionary.allProperties, transformers[0].transformer)
+      : dictionary.allProperties
+
+    return `${options.selector} {\n${variablesWithPrefix('    --', props)}\n}\n`
   },
 })
 

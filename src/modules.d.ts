@@ -28,21 +28,34 @@ declare module 'style-dictionary' {
     platforms: Record<string, Platform>
   }
 
+  type InjectedConfig = {
+    buildPath: string
+    transforms: Array<{
+      type: 'name' | 'attribute' | 'value'
+      transformer: (prop: { path: string }, options: any) => string
+    }>
+    files: Array<{
+      destination: string
+      format: any
+      options?: any
+    }>
+  }
+
   const StyleDictionaryApi: {
     registerFormat: (config: {
       name: string
-      formatter: (dictionary: any, config: any) => string
+      formatter: (dictionary: any, config: InjectedConfig) => string
     }) => void
     registerTransform: (config: {
       name: string
       type: 'name' | 'attribute' | 'value'
       matcher?: (prop: Property) => boolean
-      transformer: (prop: Property) => string
+      transformer: (prop: Property, config: InjectedConfig) => string | void
     }) => void
     registerAction: (config: {
       name: string
-      do: (dictionary: any, config: any) => void
-      undo?: (dictionary: any, config: any) => void
+      do: (dictionary: any, config: InjectedConfig) => void
+      undo?: (dictionary: any, config: InjectedConfig) => void
     }) => void
     registerFilter: (config: { name: string; matcher: (prop: Property) => boolean }) => void
     extend: (
