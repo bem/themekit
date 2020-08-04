@@ -30,7 +30,7 @@ StyleDictionaryApi.registerFormat({
     const transformers = config.transforms.filter((transform) => transform.type === 'name')
 
     const props = options.useAliasVariables
-      ? replaceAliasToVariable(dictionary.allProperties, transformers[0].transformer)
+      ? replaceAliasToVariable(dictionary.allProperties, transformers)
       : dictionary.allProperties
 
     return `${selector} {\n${variablesWithPrefix('    --', props)}\n}\n`
@@ -47,7 +47,7 @@ StyleDictionaryApi.registerFormat({
     const transformers = config.transforms.filter((transform) => transform.type === 'name')
 
     const props = options.useAliasVariables
-      ? replaceAliasToVariable(dictionary.allProperties, transformers[0].transformer)
+      ? replaceAliasToVariable(dictionary.allProperties, transformers)
       : dictionary.allProperties
 
     return `${options.selector} {\n${variablesWithPrefix('    --', props)}\n}\n`

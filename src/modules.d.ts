@@ -28,12 +28,14 @@ declare module 'style-dictionary' {
     platforms: Record<string, Platform>
   }
 
+  export type InjectedTransformer = {
+    type: 'name' | 'attribute' | 'value'
+    transformer: (prop: { path: string; name: string }, options: any) => string
+  }
+
   type InjectedConfig = {
     buildPath: string
-    transforms: Array<{
-      type: 'name' | 'attribute' | 'value'
-      transformer: (prop: { path: string }, options: any) => string
-    }>
+    transforms: InjectedTransformer[]
     files: Array<{
       destination: string
       format: any
