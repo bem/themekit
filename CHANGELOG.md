@@ -1,3 +1,11 @@
+<a name="1.4.1"></a>
+
+## [1.4.1](https://github.com/yarastqt/themekit/compare/v1.4.0...v1.4.1) (2020-08-04)
+
+### Bug Fixes
+
+- use transforms for vars with mapping ([b8709d7](https://github.com/yarastqt/themekit/commit/b8709d7))
+
 <a name="1.4.0"></a>
 
 # [1.4.0](https://github.com/yarastqt/themekit/compare/v1.3.2...v1.4.0) (2020-08-02)
