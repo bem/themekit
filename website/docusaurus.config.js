@@ -8,11 +8,18 @@ module.exports = {
   organizationName: 'yarastqt', // Usually your GitHub org/user name.
   projectName: 'themekit', // Usually your repo name.
   themeConfig: {
+    sidebarCollapsible: false,
+    prism: {
+      // theme: require('prism-react-renderer/themes/vsDark'),
+      theme: require('prism-react-renderer/themes/dracula'),
+      darkTheme: require('prism-react-renderer/themes/dracula'),
+    },
     navbar: {
-      title: 'themekit',
+      title: 'Themekit',
       logo: {
         alt: 'themekit logo',
         src: 'img/logo.svg',
+        srcDark: 'img/logo_inverse.svg',
       },
       items: [
         {
@@ -30,40 +37,18 @@ module.exports = {
       ],
     },
     footer: {
-      style: 'dark',
       links: [
         {
           title: 'Docs',
           items: [
             {
-              label: 'Style Guide',
+              label: 'Getting Started',
               to: 'docs/',
             },
-            {
-              label: 'Second Doc',
-              to: 'docs/doc2/',
-            },
           ],
         },
         {
-          title: 'Community',
-          items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/docusaurus',
-            },
-          ],
-        },
-        {
-          title: 'More',
+          title: 'Social',
           items: [
             {
               label: 'Blog',
@@ -71,12 +56,21 @@ module.exports = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/yarastqt/themekit',
+            },
+          ],
+        },
+        {
+          title: 'Built with',
+          items: [
+            {
+              label: 'Docusaurus',
+              href: 'https://v2.docusaurus.io',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} themekit.`,
     },
   },
   presets: [
@@ -85,15 +79,15 @@ module.exports = {
       {
         docs: {
           // It is recommended to set document id as docs home page (`docs/` path).
-          homePageId: 'doc1',
+          homePageId: 'installation',
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/facebook/docusaurus/edit/master/website/',
+          editUrl: 'https://github.com/yarastqt/themekit/edit/master/website/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
-          editUrl: 'https://github.com/facebook/docusaurus/edit/master/website/blog/',
+          editUrl: 'https://github.com/yarastqt/themekit/edit/master/website/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
