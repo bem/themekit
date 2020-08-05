@@ -1,0 +1,82 @@
+---
+id: name-cti-kebab
+title: name/cti/kebab
+sidebar_label: name/cti/kebab
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Create a `kebab-case` name from path of tokens.
+
+:::note
+All notations for example **camelCase** will be transformed in **kebab-case** too.
+:::
+
+## Usage
+
+Configure tool:
+
+```json title="themekit.config.json" {7}
+{
+  "entry": {
+    "default": "./themes/default.theme.json"
+  },
+  "output": {
+    "css": {
+      "transforms": ["name/cti/kebab"],
+      "buildPath": "./themes",
+      "files": [
+        {
+          "destination": "[entry]/root.css",
+          "format": "css/variables"
+        }
+      ]
+    }
+  }
+}
+```
+
+Configure theme:
+
+```json title="themes/default.theme.json"
+{
+  "sources": ["./themes/tokens/*.tokens.yml"]
+}
+```
+
+## Example
+
+<Tabs
+  defaultValue="yml"
+  values={[
+    { label: 'tokens/yaml', value: 'yml' },
+    { label: 'css', value: 'css' },
+]}>
+  <TabItem value="yml">
+
+  ```yml
+  color:
+    controls:
+      typeAaction:
+        typoColor:
+          base:
+            value: "#000"
+        fillColor:
+          base:
+            value: "#fff"
+  ```
+
+  </TabItem>
+
+  <TabItem value="css">
+
+  ```css
+  :root {
+      --color-controls-type-action-typo-color-base: #000;
+      --color-controls-type-action-fill-color-base: #fff;
+  }
+  ```
+
+  </TabItem>
+</Tabs>

@@ -1,0 +1,94 @@
+---
+id: name-mapper
+title: name/mapper
+sidebar_label: name/mapper
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Create a name by mapper.
+
+:::note
+Using this transform available only with another name-transform, example with **name/cti/kebab**.
+:::
+
+
+## Usage
+
+Configure tool:
+
+```json title="themekit.config.json" {7}
+{
+  "entry": {
+    "default": "./themes/default.theme.json"
+  },
+  "output": {
+    "css": {
+      "transforms": ["name/cti/kebab", "name/mapper"],
+      "buildPath": "./themes",
+      "files": [
+        {
+          "destination": "[entry]/root.css",
+          "format": "css/variables"
+        }
+      ]
+    }
+  }
+}
+```
+
+Configure theme with mappers:
+
+```json title="themes/default.theme.json" {3}
+{
+  "sources": ["./themes/tokens/*.tokens.yml"],
+  "mappers": ["./src/theme/legacy.mapper.json"]
+}
+```
+
+## Example
+
+<Tabs
+  defaultValue="yml"
+  values={[
+    { label: 'tokens/yaml', value: 'yml' },
+    { label: 'mapper/yaml', value: 'mapper' },
+    { label: 'css', value: 'css' },
+]}>
+  <TabItem value="yml">
+
+  ```yml
+  color:
+    controls:
+      typeAaction:
+        typoColor:
+          base:
+            value: "#000"
+        fillColor:
+          base:
+            value: "#fff"
+  ```
+
+  </TabItem>
+
+  <TabItem value="mapper">
+
+  ```yml
+  color-controls-type-action-typo-color-base: type-action-typo-color-base
+  color-controls-type-action-fill-color-base: type-action-fill-color-base
+  ```
+
+  </TabItem>
+
+  <TabItem value="css">
+
+  ```css
+  :root {
+      --type-action-typo-color-base: #000;
+      --type-action-fill-color-base: #fff;
+  }
+  ```
+
+  </TabItem>
+</Tabs>

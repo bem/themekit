@@ -1,0 +1,97 @@
+---
+id: css-variables
+title: css/variables
+sidebar_label: css/variables
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+A format for generate single css file with all tokens.
+
+## Usage
+
+Configure tool:
+
+```json title="themekit.config.json" {12}
+{
+  "entry": {
+    "default": "./themes/default.theme.json"
+  },
+  "output": {
+    "css": {
+      "transforms": ["name/cti/kebab"],
+      "buildPath": "./themes",
+      "files": [
+        {
+          "destination": "[entry]/root.css",
+          "format": "css/variables",
+          "options": {
+            "selector": ".Theme",
+            "useAliasVariables": true
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+Configure theme:
+
+```json title="themes/default.theme.json"
+{
+  "sources": ["./themes/tokens/*.tokens.yml"]
+}
+```
+
+## Options
+
+| Option                        | Default   | Description                           |
+| :---------------------------- | :-------- | :------------------------------------ |
+| selector *(string)*           | `":root"` | A css-selector for storage variables. |
+| useAliasVariables *(boolean)* | `false`   | Save aliases as css-variables.        |
+
+## Example
+
+<Tabs
+  defaultValue="yml"
+  values={[
+    { label: 'tokens/yaml', value: 'yml' },
+    { label: 'css', value: 'css' },
+]}>
+  <TabItem value="yml">
+
+  ```yml
+  palette:
+    primary:
+      value: "#000"
+    secondary:
+      value: "#fff"
+
+  color:
+    controls:
+      typeAaction:
+        typoColor:
+          base:
+            value: "{palette.primary.value}"
+        fillColor:
+          base:
+            value: "{palette.secondary.value}"
+  ```
+
+  </TabItem>
+
+  <TabItem value="css">
+
+  ```css
+  .Theme {
+      --palette-primary: #000;
+      --palette-secondary: #000;
+      --color-controls-type-action-typo-color-base: var(--palette-primary);
+      --color-controls-type-action-fill-color-base: var(--palette-secondary);
+  }
+  ```
+
+  </TabItem>
+</Tabs>
