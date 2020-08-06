@@ -5,3 +5,6 @@ examples
 
 # files
 *.d.ts
+
+# website (TODO: fix this)
+website

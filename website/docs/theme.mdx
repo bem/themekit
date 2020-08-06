@@ -1,0 +1,32 @@
+---
+id: theme
+title: Theme
+sidebar_label: Theme
+---
+
+## Interface
+
+```ts
+{
+  /**
+   * Extendable theme
+   */
+  extends?: string
+  /**
+   * Platforms that should be included in the theme (default common)
+   */
+  platforms?: Array<'common' | 'deskpad' | 'desktop' | 'touch' | 'touch-pad' | 'touch-phone'>
+  /**
+   * Whitepaper selectors (only for css)
+   */
+  whitepaper?: Record<string, string>
+  /**
+   * Mappers list
+   */
+  mappers?: string[]
+  /**
+   * Sources list
+   */
+  sources: string[]
+}
+```

@@ -1,0 +1,32 @@
+---
+id: whitepaper-color
+title: whitepaper/color
+sidebar_label: whitepaper/color
+---
+
+Filter marks token as color group.
+
+## Usage
+
+Configure tool:
+
+```json title="themekit.config.json" {13}
+{
+  "entry": {
+    "default": "./themes/default.theme.json"
+  },
+  "output": {
+    "css": {
+      "transforms": ["name/cti/kebab"],
+      "buildPath": "./themes",
+      "files": [
+        {
+          "destination": "[entry]/color.css",
+          "format": "css/whitepaper",
+          "filter": "whitepaper/color"
+        }
+      ]
+    }
+  }
+}
+```

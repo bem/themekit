@@ -1,0 +1,150 @@
+---
+id: token
+title: Token
+sidebar_label: Token
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+**Design token** is an entity that allows you to capture low-level values and then use them to create styles for your product with cross-platform support, since the token is not tied to a specific language or platform.
+
+:::note
+A themekit supports write tokens in **json** or **yaml** format.
+:::
+
+## Aliases
+
+Token supports aliases for values, it's helpful for using primitives in composed tokens.
+
+<Tabs
+  defaultValue="yml"
+  values={[
+    { label: 'yaml', value: 'yml' },
+    { label: 'json', value: 'json' },
+]}>
+  <TabItem value="yml">
+
+  ```yml
+  colorPrimary:
+    value: "#000"
+
+  buttonColor:
+    value: "{color.primary.value}"
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  ```json
+  {
+    "colorPrimary": {
+      "value": "#000"
+    },
+    "buttonColor": {
+      "value": "{color.primary.value}"
+    }
+  }
+  ```
+
+  </TabItem>
+</Tabs>
+
+## Meta
+
+Token can have meta props, like comment for documentation or group for using in filter.
+
+<Tabs
+  defaultValue="yml"
+  values={[
+    { label: 'yaml', value: 'yml' },
+    { label: 'json', value: 'json' },
+]}>
+  <TabItem value="yml">
+
+  ```yml
+  colorPrimary:
+    value: "#000"
+    comment: "Project primary color"
+
+  buttonColor:
+    value: "{color.primary.value}"
+    group: "components"
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  ```json
+  {
+    "colorPrimary": {
+      "value": "#000",
+      "comment": "Project primary color"
+    },
+    "buttonColor": {
+      "value": "{color.primary.value}",
+      "group": "components"
+    }
+  }
+  ```
+
+  </TabItem>
+</Tabs>
+
+## Nesting
+
+Token can be nested for creating hierarchical structure.
+
+<Tabs
+  defaultValue="yml"
+  values={[
+    { label: 'yaml', value: 'yml' },
+    { label: 'json', value: 'json' },
+]}>
+  <TabItem value="yml">
+
+  ```yml
+  color:
+    primary:
+      value: "#000"
+
+  button:
+    color:
+      value: "{color.primary.value}"
+  ```
+
+  </TabItem>
+  <TabItem value="json">
+
+  ```json
+  {
+    "color": {
+      "primary": {
+        "value": "#000"
+      }
+    },
+    "button": {
+      "color": {
+        "value": "{color.primary.value}"
+      }
+    }
+  }
+  ```
+
+  </TabItem>
+</Tabs>
+
+## Interface
+
+```ts
+{
+  /**
+   * Token value
+   */
+  value: string
+  /**
+   * Token comment
+   */
+  comment?: string
+}
+```
