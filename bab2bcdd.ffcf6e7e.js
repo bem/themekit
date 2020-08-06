@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[22],{77:function(e){e.exports=JSON.parse('{"theme":{"allTagsPath":"/themekit/blog/tags","slug":"theme","name":"theme","count":1,"permalink":"/themekit/blog/tags/theme"}}')}}]);
