@@ -1,8 +1,8 @@
 module.exports = {
   title: 'themekit',
   tagline: 'Build system of design-tokens for any platforms',
-  url: 'https://your-docusaurus-test-site.com',
-  baseUrl: '/',
+  url: 'https://yarastqt.github.io',
+  baseUrl: '/themekit/',
   onBrokenLinks: 'throw',
   favicon: 'img/favicon.ico',
   organizationName: 'yarastqt', // Usually your GitHub org/user name.
