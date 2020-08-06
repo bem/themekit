@@ -1,6 +1,6 @@
 module.exports = {
   sidebar: {
-    'Getting Started': ['installation', 'token', 'theme', 'glossary'],
+    'Getting Started': ['introduction', 'installation', 'token', 'theme', 'glossary'],
     Features: [
       {
         type: 'category',

@@ -3,3 +3,30 @@ id: whitepaper-root
 title: whitepaper/root
 sidebar_label: whitepaper/root
 ---
+
+Filter marks token as root group.
+
+## Usage
+
+Configure tool:
+
+```json title="themekit.config.json" {13}
+{
+  "entry": {
+    "default": "./themes/default.theme.json"
+  },
+  "output": {
+    "css": {
+      "transforms": ["name/cti/kebab"],
+      "buildPath": "./themes",
+      "files": [
+        {
+          "destination": "[entry]/root.css",
+          "format": "css/whitepaper",
+          "filter": "whitepaper/root"
+        }
+      ]
+    }
+  }
+}
+```
