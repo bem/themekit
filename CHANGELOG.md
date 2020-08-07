@@ -1,3 +1,11 @@
+<a name="1.5.0"></a>
+
+# [1.5.0](https://github.com/yarastqt/themekit/compare/v1.4.1...v1.5.0) (2020-08-07)
+
+### Features
+
+- supports platform with entry for selector setting ([7ed567e](https://github.com/yarastqt/themekit/commit/7ed567e))
+
 <a name="1.4.1"></a>
 
 ## [1.4.1](https://github.com/yarastqt/themekit/compare/v1.4.0...v1.4.1) (2020-08-04)
