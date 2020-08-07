@@ -20,7 +20,7 @@ const store = new Map()
 StyleDictionaryApi.registerFormat({
   name: 'css/whitepaper',
   formatter(dictionary, config) {
-    const defaultOptions = { selector: ':root', useAliasVariables: false }
+    const defaultOptions = { useAliasVariables: false }
     const options = Object.assign(defaultOptions, (this as any).options)
 
     const whitepaper = store.get('whitepaper')
@@ -43,6 +43,11 @@ StyleDictionaryApi.registerFormat({
   formatter(dictionary, config) {
     const defaultOptions = { selector: ':root', useAliasVariables: false }
     const options = Object.assign(defaultOptions, (this as any).options)
+    const { entry, platform } = store.get('meta')
+    const selector = options.selector
+      .replace(/\[entry\]/, entry)
+      .replace(/\[platform\]/, platform)
+      .replace(/common\/?/, '')
 
     const transformers = config.transforms.filter((transform) => transform.type === 'name')
 
@@ -50,7 +55,7 @@ StyleDictionaryApi.registerFormat({
       ? replaceAliasToVariable(dictionary.allProperties, transformers)
       : dictionary.allProperties
 
-    return `${options.selector} {\n${variablesWithPrefix('    --', props)}\n}\n`
+    return `${selector} {\n${variablesWithPrefix('    --', props)}\n}\n`
   },
 })
 
@@ -112,6 +117,7 @@ export async function build(config: Config): Promise<void> {
       // TODO: Load mappers in themes?
       store.set('mapper', await loadMappers(theme.mappers))
       store.set('whitepaper', enhanceWhitepaperConfig(theme.whitepaper, platform))
+      store.set('meta', { entry, platform })
 
       const StyleDictionary = StyleDictionaryApi.extend(
         createStyleDictionaryConfig({
