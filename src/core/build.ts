@@ -45,9 +45,9 @@ StyleDictionaryApi.registerFormat({
     const options = Object.assign(defaultOptions, (this as any).options)
     const { entry, platform } = store.get('meta')
     const selector = options.selector
-      .replace(/\[entry\]/, entry)
-      .replace(/\[platform\]/, platform)
-      .replace(/common\/?/, '')
+      .replace(/\[entry\]/g, entry)
+      .replace(/\[platform\]/g, platform)
+      .replace(/common\/?/g, '')
 
     const transformers = config.transforms.filter((transform) => transform.type === 'name')
 
