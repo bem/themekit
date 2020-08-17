@@ -15,7 +15,7 @@ import { isColor } from './utils'
 import { enhanceWhitepaperConfig } from './enhance-whitepaper-config'
 import { replaceAliasToVariable } from './replace-alias-to-variable'
 
-const store = new Map()
+const context = new Map()
 
 StyleDictionaryApi.registerFormat({
   name: 'css/whitepaper',
@@ -23,7 +23,7 @@ StyleDictionaryApi.registerFormat({
     const defaultOptions = { useAliasVariables: false }
     const options = Object.assign(defaultOptions, (this as any).options)
 
-    const whitepaper = store.get('whitepaper')
+    const whitepaper = context.get('whitepaper')
     const group = dictionary.allProperties.length ? dictionary.allProperties[0].group : 'unknown'
     const selector = `.Theme_${group}_${whitepaper[group]}`
 
@@ -43,7 +43,7 @@ StyleDictionaryApi.registerFormat({
   formatter(dictionary, config) {
     const defaultOptions = { selector: ':root', useAliasVariables: false }
     const options = Object.assign(defaultOptions, (this as any).options)
-    const { entry, platform } = store.get('meta')
+    const { entry, platform } = context.get('meta')
     const selector = options.selector
       .replace(/\[entry\]/g, entry)
       .replace(/\[platform\]/g, platform)
@@ -63,7 +63,7 @@ StyleDictionaryApi.registerTransform({
   name: 'name/mapper',
   type: 'name',
   transformer: (prop) => {
-    const mapper = store.get('mapper') || {}
+    const mapper = context.get('mapper') || {}
     return mapper[prop.name] || prop.name
   },
 })
@@ -115,9 +115,9 @@ export async function build(config: Config): Promise<void> {
       const sources = await loadSources(theme.sources, platform)
 
       // TODO: Load mappers in themes?
-      store.set('mapper', await loadMappers(theme.mappers))
-      store.set('whitepaper', enhanceWhitepaperConfig(theme.whitepaper, platform))
-      store.set('meta', { entry, platform })
+      context.set('mapper', await loadMappers(theme.mappers))
+      context.set('whitepaper', enhanceWhitepaperConfig(theme.whitepaper, platform))
+      context.set('meta', { entry, platform })
 
       const StyleDictionary = StyleDictionaryApi.extend(
         createStyleDictionaryConfig({
