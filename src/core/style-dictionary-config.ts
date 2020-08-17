@@ -18,10 +18,10 @@ export function createStyleDictionaryConfig({ sources, entry, platform, output }
         ...file,
         // Replace placeholders for multiple themes and platforms.
         destination: file.destination
-          .replace(/\[entry\]/, entry)
-          .replace(/\[platform\]/, platform)
+          .replace(/\[entry\]/g, entry)
+          .replace(/\[platform\]/g, platform)
           // Remove common level, because is root.
-          .replace(/common\/?/, ''),
+          .replace(/common\/?/g, ''),
       }))
       acc[key] = target
       return acc
