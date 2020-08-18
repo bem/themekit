@@ -9,7 +9,8 @@ declare module 'style-dictionary' {
   export type Property = {
     value: string | number
     group: string
-    name: string
+    name: string,
+    attributes: any
   }
 
   export type Platform = {

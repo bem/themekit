@@ -1,5 +1,5 @@
 import './yaml-interop'
-import StyleDictionaryApi from 'style-dictionary'
+import StyleDictionaryApi, { Property } from 'style-dictionary'
 import cssColorFn from 'css-color-function'
 import { resolve } from 'path'
 import { readFileSync, writeFileSync } from 'fs-extra'
@@ -65,6 +65,28 @@ StyleDictionaryApi.registerTransform({
   transformer: (prop) => {
     const mapper = context.get('mapper') || {}
     return mapper[prop.name] || prop.name
+  },
+})
+
+const isTypographyCategory = (prop: Property) => {
+  const category = prop.attributes.category
+  return category === 'fontSize' || category === 'lineHeight'
+}
+
+StyleDictionaryApi.registerTransform({
+  name: 'yaTypography/rem',
+  type: 'value',
+  matcher: isTypographyCategory,
+  transformer: (prop) => {
+    const {
+      value,
+    } = prop
+
+    if (typeof value === 'number') {
+      return `${value}rem`
+    }
+
+    return value
   },
 })
 
