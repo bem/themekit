@@ -34,6 +34,8 @@ USAGE
 
 OPTIONS
   -c, --config=config  [default: themekit.config.{js,json,yml}] The path to a themekit config file.
+  -e, --entry=entry    Builds selected entries.
+  -o, --output=output  Builds selected outputs.
   -w, --watch          Auto rebuilds themes after change sources.
 ```
 
