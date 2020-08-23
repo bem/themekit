@@ -16,6 +16,7 @@ export function createStyleDictionaryConfig({ sources, entry, platform, output }
       target.buildPath = target.buildPath.endsWith('/') ? target.buildPath : `${target.buildPath}/`
       target.files = target.files.map((file) => ({
         ...file,
+        context: { entry, platform },
         // Replace placeholders for multiple themes and platforms.
         destination: file.destination
           .replace(/\[entry\]/g, entry)
