@@ -1,0 +1,3 @@
+button:
+  fillColor:
+    value: "{color.controls.type.action.fillColor.base.value}"

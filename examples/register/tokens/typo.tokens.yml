@@ -1,0 +1,14 @@
+typo:
+  control:
+    fontFamily:
+      value: "Arial, sans-serif"
+
+    size:
+      s:
+        fontSize:
+          value: 20px
+          comment: "Font size for all controls with size s"
+      m:
+        fontSize:
+          value: 24px
+          comment: "Font size for all controls with size m"
