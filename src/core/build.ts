@@ -21,7 +21,7 @@ StyleDictionaryApi.registerFormat({
   name: 'css/whitepaper',
   formatter(dictionary, config) {
     const defaultOptions = { useAliasVariables: false }
-    const options = Object.assign(defaultOptions, (this as any).options)
+    const options = Object.assign(defaultOptions, this.options)
 
     const whitepaper = context.get('whitepaper')
     const group = dictionary.allProperties.length ? dictionary.allProperties[0].group : 'unknown'
@@ -42,8 +42,8 @@ StyleDictionaryApi.registerFormat({
   name: 'css/variables',
   formatter(dictionary, config) {
     const defaultOptions = { selector: ':root', useAliasVariables: false }
-    const options = Object.assign(defaultOptions, (this as any).options)
-    const { entry, platform } = context.get('meta')
+    const options = Object.assign(defaultOptions, this.options)
+    const { entry, platform } = this.context
     const selector = options.selector
       .replace(/\[entry\]/g, entry)
       .replace(/\[platform\]/g, platform)
@@ -117,7 +117,6 @@ export async function build(config: Config): Promise<void> {
       // TODO: Load mappers in themes?
       context.set('mapper', await loadMappers(theme.mappers))
       context.set('whitepaper', enhanceWhitepaperConfig(theme.whitepaper, platform))
-      context.set('meta', { entry, platform })
 
       const StyleDictionary = StyleDictionaryApi.extend(
         createStyleDictionaryConfig({

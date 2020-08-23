@@ -46,7 +46,11 @@ declare module 'style-dictionary' {
   const StyleDictionaryApi: {
     registerFormat: (config: {
       name: string
-      formatter: (dictionary: any, config: InjectedConfig) => string
+      formatter: (
+        this: { context: any; options: any },
+        dictionary: any,
+        config: InjectedConfig,
+      ) => string
     }) => void
     registerTransform: (config: {
       name: string
