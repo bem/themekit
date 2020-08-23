@@ -14,12 +14,19 @@ import { Config } from './config'
 import { isColor } from './utils'
 import { enhanceWhitepaperConfig } from './enhance-whitepaper-config'
 import { replaceAliasToVariable } from './replace-alias-to-variable'
+import { deprecate } from './deprecate'
 
 const context = new Map()
 
 Api.registerFormat({
   name: 'css/whitepaper',
   formatter(dictionary, config) {
+    deprecate(
+      'Warning: css/whitepaper format is deprecated, ' +
+        'you should use css/variables format instead.\n' +
+        'See more information for migration: https://github.com/yarastqt/themekit/tree/master/docs/migrations/0077.md',
+    )
+
     const defaultOptions = { useAliasVariables: false }
     const options = Object.assign(defaultOptions, this.options)
 
