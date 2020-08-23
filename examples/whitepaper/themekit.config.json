@@ -9,13 +9,21 @@
       "files": [
         {
           "destination": "[entry]/[platform]/color.css",
-          "format": "css/whitepaper",
-          "filter": "whitepaper/color"
+          "format": "css/variables",
+          "filter": "whitepaper/color",
+          "options": {
+            "selector": ".Theme_color_default-[platform]",
+            "useAliasVariables": true
+          }
         },
         {
           "destination": "[entry]/[platform]/root.css",
-          "format": "css/whitepaper",
-          "filter": "whitepaper/root"
+          "format": "css/variables",
+          "filter": "whitepaper/root",
+          "options": {
+            "selector": ".Theme_root_default-[platform]",
+            "useAliasVariables": true
+          }
         }
       ]
     }
