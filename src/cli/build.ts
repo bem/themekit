@@ -16,7 +16,7 @@ export default class Build extends Command {
     config: flags.string({
       char: 'c',
       description: 'The path to a themekit config file.',
-      default: 'themekit.config.json',
+      default: 'themekit.config.{js,json,yml}',
     }),
     watch: flags.boolean({
       char: 'w',
