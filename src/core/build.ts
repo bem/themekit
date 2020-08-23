@@ -1,9 +1,9 @@
 import './yaml-interop'
-import StyleDictionaryApi from 'style-dictionary'
 import cssColorFn from 'css-color-function'
 import { resolve } from 'path'
 import { readFileSync, writeFileSync } from 'fs-extra'
 
+import { Api, InternalApi } from '../index'
 import { createStyleDictionaryConfig } from './style-dictionary-config'
 import { variablesWithPrefix } from './variable-with-prefix'
 import { loadMappers } from './mappers'
@@ -17,7 +17,7 @@ import { replaceAliasToVariable } from './replace-alias-to-variable'
 
 const context = new Map()
 
-StyleDictionaryApi.registerFormat({
+Api.registerFormat({
   name: 'css/whitepaper',
   formatter(dictionary, config) {
     const defaultOptions = { useAliasVariables: false }
@@ -38,7 +38,7 @@ StyleDictionaryApi.registerFormat({
 })
 
 // NOTE: Override default css/variables format.
-StyleDictionaryApi.registerFormat({
+Api.registerFormat({
   name: 'css/variables',
   formatter(dictionary, config) {
     const defaultOptions = { selector: ':root', useAliasVariables: false }
@@ -59,7 +59,7 @@ StyleDictionaryApi.registerFormat({
   },
 })
 
-StyleDictionaryApi.registerTransform({
+Api.registerTransform({
   name: 'name/mapper',
   type: 'name',
   transformer: (prop) => {
@@ -68,7 +68,7 @@ StyleDictionaryApi.registerTransform({
   },
 })
 
-StyleDictionaryApi.registerFilter({
+Api.registerFilter({
   name: 'whitepaper/color',
   matcher: (prop) => {
     if (isColor(prop.value)) {
@@ -79,7 +79,7 @@ StyleDictionaryApi.registerFilter({
   },
 })
 
-StyleDictionaryApi.registerFilter({
+Api.registerFilter({
   name: 'whitepaper/root',
   matcher: (prop) => {
     if (!isColor(prop.value)) {
@@ -90,7 +90,7 @@ StyleDictionaryApi.registerFilter({
   },
 })
 
-StyleDictionaryApi.registerAction({
+Api.registerAction({
   name: 'process-color',
   do: (_, config) => {
     for (const file of config.files) {
@@ -118,7 +118,7 @@ export async function build(config: Config): Promise<void> {
       context.set('mapper', await loadMappers(theme.mappers))
       context.set('whitepaper', enhanceWhitepaperConfig(theme.whitepaper, platform))
 
-      const StyleDictionary = StyleDictionaryApi.extend(
+      const StyleDictionary = InternalApi.extend(
         createStyleDictionaryConfig({
           platform: platform,
           sources: sources,
