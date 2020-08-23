@@ -138,7 +138,6 @@
       }
     ],
     "space-in-parens": 2,
-    "no-console": [2, { "allow": ["assert", "error", "warn"] }],
     "key-spacing": [2, { "beforeColon": false, "afterColon": true, "mode": "strict" }],
     "space-infix-ops": 2,
 
