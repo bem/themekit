@@ -33,7 +33,7 @@ USAGE
   $ themekit build
 
 OPTIONS
-  -c, --config=config  [default: themekit.config.json] The path to a themekit config file.
+  -c, --config=config  [default: themekit.config.{js,json,yml}] The path to a themekit config file.
   -w, --watch          Auto rebuilds themes after change sources.
 ```
 
