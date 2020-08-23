@@ -7,7 +7,12 @@ import { build } from '../core/build'
 import { loadTheme } from '../core/load-theme'
 import { throttle, flatten } from '../core/utils'
 
-type Flags = { config: string; watch: boolean }
+type Flags = {
+  config: string
+  watch: boolean
+  entry: string[]
+  output: string[]
+}
 
 export default class Build extends Command {
   static description = 'Builds themes for configured formats.'
@@ -22,11 +27,24 @@ export default class Build extends Command {
       char: 'w',
       description: 'Auto rebuilds themes after change sources.',
     }),
+    entry: flags.string({
+      char: 'e',
+      multiple: true,
+      description: 'Builds selected entries.',
+    }),
+    output: flags.string({
+      char: 'o',
+      multiple: true,
+      description: 'Builds selected outputs.',
+    }),
   }
 
   async run() {
     const { flags } = this.parse<Flags, any>(Build)
-    const config = await loadConfig(resolve(flags.config))
+    const config = await loadConfig(resolve(flags.config), {
+      entries: flags.entry,
+      outputs: flags.output,
+    })
 
     await build(config)
 
