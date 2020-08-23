@@ -6,7 +6,7 @@ import chalk from 'chalk'
 import { loadConfig } from '../core/config'
 import { build } from '../core/build'
 import { loadTheme } from '../core/load-theme'
-import { throttle, flatten } from '../core/utils'
+import { debounce, flatten } from '../core/utils'
 
 type Flags = {
   config: string
@@ -61,7 +61,7 @@ export default class Build extends Command {
       }
 
       const watcher = watch(themes, { ignoreInitial: true })
-      const onChange = throttle(async () => {
+      const onChange = debounce(async () => {
         if (!isShutdown) {
           this.clear()
           await this.build(config)

@@ -19,24 +19,19 @@ export function isAlias(value: string | number): boolean {
   return /^{.+}$/.test(String(value))
 }
 
-export function throttle<T extends []>(
-  callback: (..._: T) => void,
-  delay: number,
-): (..._: T) => void {
-  let timeout: NodeJS.Timeout | undefined
-  let lastArgs: T
-  const next = () => {
-    timeout = clearTimeout(timeout as any) as undefined
-    callback(...lastArgs)
-  }
+// eslint-disable-next-line space-before-function-paren
+export function debounce<F extends (...args: any[]) => any>(func: F, waitFor: number) {
+  let timeout: ReturnType<typeof setTimeout> | null = null
 
-  return (...args: T) => {
-    lastArgs = args
-
-    if (timeout === undefined) {
-      timeout = setTimeout(next, delay)
+  const debounced = (...args: Parameters<F>) => {
+    if (timeout !== null) {
+      clearTimeout(timeout)
+      timeout = null
     }
+    timeout = setTimeout(() => func(...args), waitFor)
   }
+
+  return debounced as (...args: Parameters<F>) => ReturnType<F>
 }
 
 type ArrayType<T> = T extends (infer U)[] ? U : never
