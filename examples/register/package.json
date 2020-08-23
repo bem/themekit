@@ -1,0 +1,6 @@
+{
+  "name": "register",
+  "scripts": {
+    "build": "../../bin/themekit build -c themekit.config.js"
+  }
+}
