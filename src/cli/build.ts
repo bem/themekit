@@ -1,6 +1,7 @@
 import { resolve } from 'path'
 import { Command, flags } from '@oclif/command'
 import { watch } from 'chokidar'
+import chalk from 'chalk'
 
 import { loadConfig } from '../core/config'
 import { build } from '../core/build'
@@ -46,12 +47,13 @@ export default class Build extends Command {
       outputs: flags.output,
     })
 
-    await build(config)
+    await this.build(config)
 
     if (flags.watch) {
-      this.log('\nWatching for file changes.')
+      this.emitWatching()
 
       const themes = []
+      let isShutdown = false
 
       for (const key in config.entry) {
         const theme = await loadTheme(config.entry[key])
@@ -60,20 +62,40 @@ export default class Build extends Command {
 
       const watcher = watch(themes, { ignoreInitial: true })
       const onChange = throttle(async () => {
-        this.clear()
-        await build(config)
-        this.log('\nWatching for file changes.')
+        if (!isShutdown) {
+          this.clear()
+          await this.build(config)
+          this.emitWatching()
+        }
       }, 500)
 
       watcher
         .on('unlink', onChange)
         .on('add', onChange)
         .on('change', onChange)
+
+      const shutdown = () => {
+        isShutdown = true
+        console.log('\nShutting down watch')
+        watcher.close()
+      }
+
+      process.once('SIGINT', shutdown)
+      process.once('SIGTERM', shutdown)
     }
   }
 
+  private async build(config: any) {
+    console.log(`----------------- ${chalk.yellow('Build started')} -----------------`)
+    await build(config)
+    console.log(`\n---------------- ${chalk.green('Build completed')} ----------------`)
+  }
+
+  private emitWatching() {
+    console.log('\nWatching for changes...')
+  }
+
   private clear() {
-    // eslint-disable-next-line no-console
     console.clear()
   }
 }
