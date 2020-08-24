@@ -1,3 +1,9 @@
+## [1.6.1](https://github.com/yarastqt/themekit/compare/v1.6.0...v1.6.1) (2020-08-24)
+
+### Bug Fixes
+
+- find correct package root ([46dbd1d](https://github.com/yarastqt/themekit/commit/46dbd1d38cb78c78e35d3773ae2af4a800364f25))
+
 # [1.6.0](https://github.com/yarastqt/themekit/compare/v1.5.0...v1.6.0) (2020-08-24)
 
 ### Bug Fixes
