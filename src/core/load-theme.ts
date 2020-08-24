@@ -58,7 +58,10 @@ export async function loadTheme(
     result.whitepaper = { ...result.whitepaper, ...theme.whitepaper }
   }
 
-  result.sources.push(theme.sources.map((filePath) => join(cwd, filePath)))
+  for (const source of theme.sources) {
+    // Makes array of arrays with each source for save order after glob.
+    result.sources.push([join(cwd, source)])
+  }
 
   return result
 }
