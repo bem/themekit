@@ -1,3 +1,22 @@
+# [1.6.0](https://github.com/yarastqt/themekit/compare/v1.5.0...v1.6.0) (2020-08-24)
+
+### Bug Fixes
+
+- close watcher after kill process ([f85d398](https://github.com/yarastqt/themekit/commit/f85d398a72975da268f633dfadcf584fd6b1a784))
+- replace placeholders with global flag ([71c3759](https://github.com/yarastqt/themekit/commit/71c37592a476d701f4eda573a402183efbb1d2df))
+- save sources order after glob ([24b4a0a](https://github.com/yarastqt/themekit/commit/24b4a0accfd93a6d2f8385863919704ca1e01c1e))
+
+### Features
+
+- add autoload config with js, json and yml ext ([e4305c5](https://github.com/yarastqt/themekit/commit/e4305c5add78b74dddf896911528cfd7ca20b682))
+- add flags for selected builds ([2425f72](https://github.com/yarastqt/themekit/commit/2425f72dde7909ccd9d025ae7ddee28fd61425d4))
+- deprecate css/whitepaper format ([89b1754](https://github.com/yarastqt/themekit/commit/89b17542a084f6ea8044cacfda4d97fcd3cc5f1f))
+- export public API for register own plugins ([d331790](https://github.com/yarastqt/themekit/commit/d331790d86327e18047e78d148f954accddf19d0))
+
+### Performance Improvements
+
+- replace throttle to debounce for watcher cb ([db3592c](https://github.com/yarastqt/themekit/commit/db3592c53eaaa1ddfaab17b3aca0304ce05fcb34))
+
 <a name="1.5.0"></a>
 
 # [1.5.0](https://github.com/yarastqt/themekit/compare/v1.4.1...v1.5.0) (2020-08-07)
