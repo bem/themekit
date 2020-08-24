@@ -1,8 +1,8 @@
-import { join, resolve } from 'path'
+import { join, resolve, dirname } from 'path'
 import { readJSON } from 'fs-extra'
 import merge from 'deepmerge'
 import glob from 'fast-glob'
-import pkgDir from 'pkg-dir'
+import readPkgUp from 'read-pkg-up'
 
 import { Platforms } from './platforms'
 import { throwError, normalizePaths } from './utils'
@@ -23,6 +23,18 @@ type OutputTheme = {
   platforms: Platforms[]
 }
 
+function findPackageRoot(path: string): string {
+  const data = readPkgUp.sync({ cwd: path })
+  if (data === undefined) {
+    throw new Error('Cannot find package root, please check exists package.json.')
+  }
+  if (data.packageJson.version !== '' && data.packageJson.name !== '') {
+    return dirname(data.path)
+  }
+  const prevDir = join(dirname(data.path), '..')
+  return findPackageRoot(prevDir)
+}
+
 export async function loadTheme(
   sources: string,
   cwd: string = process.cwd(),
@@ -38,7 +50,7 @@ export async function loadTheme(
     if (extendsPath === undefined) {
       throwError(`Cannot load theme: "${theme.extends}".`)
     } else {
-      const extendsCwd = extendsPath.includes('node_modules') ? pkgDir.sync(extendsPath) : cwd
+      const extendsCwd = extendsPath.includes('node_modules') ? findPackageRoot(extendsPath) : cwd
       const extendsTheme = await loadTheme(extendsPath, extendsCwd)
       // Platforms should be defined at project theme.
       delete extendsTheme.platforms
