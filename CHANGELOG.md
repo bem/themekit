@@ -1,3 +1,9 @@
+## [1.6.2](https://github.com/yarastqt/themekit/compare/v1.6.1...v1.6.2) (2020-08-26)
+
+### Bug Fixes
+
+- dont remove common platform from css selector ([3be6159](https://github.com/yarastqt/themekit/commit/3be61594eea84506d477ea0a6ff307a3547bcbb2))
+
 ## [1.6.1](https://github.com/yarastqt/themekit/compare/v1.6.0...v1.6.1) (2020-08-24)
 
 ### Bug Fixes
