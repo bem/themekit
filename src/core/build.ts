@@ -54,7 +54,6 @@ Api.registerFormat({
     const selector = options.selector
       .replace(/\[entry\]/g, entry)
       .replace(/\[platform\]/g, platform)
-      .replace(/common\/?/g, '')
 
     const transformers = config.transforms.filter((transform) => transform.type === 'name')
 
