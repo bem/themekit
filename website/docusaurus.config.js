@@ -30,6 +30,11 @@ module.exports = {
         },
         { to: 'blog', label: 'Blog', position: 'left' },
         {
+          href: 'https://github.com/yarastqt/themekit/blob/master/CHANGELOG.md',
+          label: 'Changelog',
+          position: 'right',
+        },
+        {
           href: 'https://github.com/yarastqt/themekit',
           label: 'GitHub',
           position: 'right',
@@ -44,6 +49,10 @@ module.exports = {
             {
               label: 'Getting Started',
               to: 'docs/',
+            },
+            {
+              label: 'Changelog',
+              to: 'https://github.com/yarastqt/themekit/blob/master/CHANGELOG.md',
             },
           ],
         },
