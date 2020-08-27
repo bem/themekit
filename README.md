@@ -302,7 +302,7 @@ component:
   type:
     base:
       fillColor:
-        value: 'color(#000, a(80%))'
+        value: 'color(#000 a(80%))'
 ```
 
 #### result
