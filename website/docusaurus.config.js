@@ -29,6 +29,7 @@ module.exports = {
           position: 'left',
         },
         { to: 'blog', label: 'Blog', position: 'left' },
+        { to: 'repl', label: 'Repl (β)', position: 'left' },
         {
           href: 'https://github.com/yarastqt/themekit',
           label: 'GitHub',

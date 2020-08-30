@@ -3,6 +3,7 @@
 
 # Production
 /build
+!/src/**/lib
 
 # Generated files
 .docusaurus

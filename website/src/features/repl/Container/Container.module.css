@@ -1,0 +1,12 @@
+.Container {
+  display: flex;
+  /**
+   * 60px — header
+   * 206px — footer
+   */
+  min-height: calc(100vh - (60px + 206px));
+}
+
+.ContainerSide {
+  flex: 0 0 50%;
+}
