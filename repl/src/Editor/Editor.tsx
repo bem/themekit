@@ -1,5 +1,5 @@
-import React, { FC } from 'react'
-import MonacoEditor, { monaco } from '@monaco-editor/react'
+import React, { FC, useCallback } from 'react'
+import { ControlledEditor, monaco } from '@monaco-editor/react'
 import './Editor.css'
 
 monaco.init().then((instance) => {
@@ -45,8 +45,8 @@ const options = {
   minimap: { enabled: false },
 }
 
-export const Editor: FC<any> = ({ value, language }) => {
+export const Editor: FC<any> = ({ value, language, onChange }) => {
   return (
-    <MonacoEditor value={value} language={language} options={options} />
+    <ControlledEditor onChange={onChange} value={value} language={language} options={options} />
   )
 }

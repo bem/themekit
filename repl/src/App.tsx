@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 
 import { Tabs } from './Tabs/Tabs'
 import { presets, presetsKeys } from './presets'
 import { Editor } from './Editor/Editor'
 import { trim } from './utils'
+import { executeCode } from './execute-code'
 import './App.css'
 
+// TODO: возможность ренеймить табы
 export const App = () => {
   const [presetKey, setPresetKey] = useState('css-whitepaper')
   const [files, setFiles] = useState<any>({})
@@ -15,6 +17,8 @@ export const App = () => {
     setFiles(presets[presetKey])
     setTabKey(Object.keys(presets[presetKey])[0])
   }, [presetKey])
+
+  console.log('>>> tabKey', tabKey)
 
   return (
     <div className="App">
@@ -33,10 +37,26 @@ export const App = () => {
             />
             <div className="Container-Acitons">
               <button>Add</button>
-              <button>Run</button>
+              <button
+                onClick={() => {
+                  // console.log('>>> sourceEditorRef.current', sourceEditorRef.current.getValue())
+                  // const res = executeCode('module.exports.fake = 10', () => {})
+                  // console.log('>>> res', res)
+                }}
+              >
+                Run
+              </button>
             </div>
           </div>
-          <Editor value={trim(files[tabKey])} language="typescript" />
+          <Editor
+            value={trim(files[tabKey])}
+            language="typescript"
+            onChange={(_: any, value: any) => {
+              // console.log('>>> value', value)
+              // console.log('>>> tabKey', tabKey)
+              // setFiles({ ...files, [tabKey]: 'const a = 10' })
+            }}
+          />
         </div>
         <div className="Container-Side"></div>
       </div>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="361px" preserveAspectRatio="none" style="width:1025px;height:361px;" version="1.1" viewBox="0 0 1025 361" width="1025px" zoomAndPan="magnify"><defs/><g><!--MD5=[a1815833472a18906be4f77557efdeed]
+entity _cli_build--><rect fill="#F8F8F8" height="34.4844" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="74" x="254.5" y="8"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="54" x="264.5" y="30.0059">cli/build</text><!--MD5=[9b175bf41d9031fc73b2d23114484617]
+entity _config--><rect fill="#F8F8F8" height="34.4844" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="56" x="189.5" y="128"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="36" x="199.5" y="150.0059">config</text><ellipse cx="367.7132" cy="25.242" fill="#F8F8F8" rx="24.2132" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="30" x="352.7132" y="28.9842">core</text><ellipse cx="362.5122" cy="85.242" fill="#F8F8F8" rx="44.0122" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="58" x="333.5122" y="88.9842">core/build</text><ellipse cx="641.3406" cy="145.242" fill="#F8F8F8" rx="46.8406" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="62" x="610.3406" y="148.9842">flat-tokens</text><ellipse cx="513.5478" cy="145.0096" fill="#F8F8F8" rx="65.5478" ry="15.5096" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="102" x="462.5478" y="148.7518">flat-tokens.unit</text><ellipse cx="979.3198" cy="145.242" fill="#F8F8F8" rx="34.8198" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="45" x="956.8198" y="148.9842">formats</text><ellipse cx="871.3275" cy="144.8655" fill="#F8F8F8" rx="57.3275" ry="13.8655" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="81" x="830.8275" y="148.6077">formats.unit</text><ellipse cx="135.3344" cy="269.1669" fill="#F8F8F8" rx="58.8344" ry="14.1669" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="85" x="92.8344" y="272.9091">import-module</text><ellipse cx="33.7487" cy="269.242" fill="#F8F8F8" rx="27.7487" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="35" x="16.2487" y="272.9842">index</text><ellipse cx="458.2904" cy="25.242" fill="#F8F8F8" rx="51.7904" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="69" x="423.7904" y="28.9842">modules.d</text><!--MD5=[668f0de59b51105d05a2ca165765455d]
+entity _platforms--><rect fill="#F8F8F8" height="34.4844" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="75" x="346" y="316"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="55" x="356" y="338.0059">platforms</text><ellipse cx="268.6777" cy="85.242" fill="#F8F8F8" rx="20.6777" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="25" x="256.1777" y="88.9842">repl</text><ellipse cx="300.5993" cy="206.8199" fill="#F8F8F8" rx="59.5993" ry="14.3199" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="87" x="257.0993" y="210.562">service-locator</text><ellipse cx="739.3051" cy="207.242" fill="#F8F8F8" rx="43.3051" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="57" x="710.8051" y="210.9842">templates</text><ellipse cx="555.7284" cy="206.9457" fill="#F8F8F8" rx="62.7284" ry="14.9457" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="95" x="508.2284" y="210.6879">templates.unit</text><ellipse cx="377.6295" cy="144.9259" fill="#F8F8F8" rx="55.1295" ry="13.4259" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="75" x="340.1295" y="148.6681">theme-layers</text><ellipse cx="751.5477" cy="145.242" fill="#F8F8F8" rx="47.5477" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="63" x="720.0477" y="148.9842">transforms</text><!--MD5=[0190f419ef54fc162964943b68b4f170]
+entity _types--><rect fill="#F8F8F8" height="34.4844" rx="3" ry="3" style="stroke: #000000; stroke-width: 0.5;" width="51" x="530" y="252"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="31" x="540" y="274.0059">types</text><ellipse cx="457.4706" cy="207.242" fill="#F8F8F8" rx="19.9706" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="24" x="445.4706" y="210.9842">utils</text><!--MD5=[a61dc8b1fea8c68b9d3ad333a37e9eb4]
+link _cli_build to _config--><path d="M268.895,42.006 C258.981,50.025 247.935,60.478 240.5,72 C230.464,87.553 224.505,107.825 221.177,122.895 " fill="none" id="_cli_build-&gt;_config" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="220.147,127.792,225.9152,119.809,221.177,122.8992,218.0868,118.161,220.147,127.792" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[0047904bd8142894ea11340abcdd10c5]
+link _cli_build to core/build--><path d="M311.277,42.156 C321.71,50.678 334.412,61.055 344.558,69.343 " fill="none" id="_cli_build-&gt;core/build" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="348.451,72.524,344.0104,63.733,344.5784,69.3613,338.9501,69.9293,348.451,72.524" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[4b3ab21faf094055da59fde35d2fabc3]
+link _config to _platforms--><path d="M217.614,162.093 C218.44,178.4 221.735,203.756 233.5,222 C260.467,263.8172 309.312,295.1452 343.929,313.4617 " fill="none" id="_config-&gt;_platforms" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="348.503,315.8499,342.3785,308.1369,344.0714,313.5345,338.6738,315.2274,348.503,315.8499" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[3df906bcc2c981d5bf236152d0bee0f1]
+link core/build to _config--><path d="M337.903,95.839 C313.866,105.453 277.115,120.154 250.538,130.785 " fill="none" id="core/build-&gt;_config" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="245.699,132.72,255.5409,133.0914,250.3414,130.863,252.5697,125.6636,245.699,132.72" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[50a4ed62ed3f78c9b101e1e9ed858609]
+link core/build to flat-tokens--><path d="M399.992,91.878 C444.671,99.148 521.458,112.481 586.5,128 C593.129,129.582 600.15,131.463 606.879,133.371 " fill="none" id="core/build-&gt;flat-tokens" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="611.956,134.83,604.4118,128.4987,607.1507,133.4483,602.2011,136.1871,611.956,134.83" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[852be7d2576293d499018e8797c262de]
+link core/build to formats--><path d="M406.012,87.59 C521.768,92.074 835.334,105.947 936.5,128 C941.982,129.195 947.702,130.944 953.115,132.851 " fill="none" id="core/build-&gt;formats" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="957.984,134.636,950.9114,127.7819,953.2897,132.9146,948.1571,135.2929,957.984,134.636" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[e5abf093d09190f98ec312f760d2e9de]
+link core/build to service-locator--><path d="M344.69,97.061 C334.233,104.509 321.696,115.278 314.5,128 C304.154,146.29 301.17,170.52 300.446,187.092 " fill="none" id="core/build-&gt;service-locator" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="300.28,192.399,304.5608,183.5291,300.4371,187.4015,296.5648,183.2778,300.28,192.399" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[0a3aaea954631939f0e434e3a5bee8ca]
+link core/build to theme-layers--><path d="M365.608,98.018 C367.722,106.193 370.555,117.147 372.926,126.314 " fill="none" id="core/build-&gt;theme-layers" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="374.188,131.193,375.805,121.4778,372.935,126.3525,368.0603,123.4826,374.188,131.193" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[8303d5b708bf350824deda595facc255]
+link core/build to transforms--><path d="M404.242,89.117 C467.812,94.342 592.485,106.471 696.5,128 C703.329,129.413 710.543,131.253 717.42,133.179 " fill="none" id="core/build-&gt;transforms" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="722.601,134.664,715.0506,128.3401,717.7944,133.287,712.8474,136.0307,722.601,134.664" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[f5216832126670fd267dcbe93559c54a]
+link flat-tokens to _types--><path d="M641.701,158.156 C641.389,174.148 638.793,202.504 625.5,222 C615.784,236.249 600.048,247.168 585.954,254.7841 " fill="none" id="flat-tokens-&gt;_types" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="581.248,257.2405,591.0773,256.6208,585.6802,254.9263,587.3747,249.5292,581.248,257.2405" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[21d013ef6b703db4ae1edc059b054970]
+link flat-tokens to utils--><path d="M611.047,154.906 C566.502,167.944 488.497,190.82 485.5,192 C482.58,193.15 479.552,194.494 476.614,195.885 " fill="none" id="flat-tokens-&gt;utils" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="472.1,198.09,481.9424,197.7346,476.5928,195.8957,478.4316,190.5461,472.1,198.09" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[a9e4474b08ad11a413462d929dc15219]
+link <b>flat-tokens.unit</b> to flat-tokens--><path d="M579,145 C582.311,145 585.622,145 588.933,145 " fill="none" id="&lt;b&gt;flat-tokens.unit&lt;/b&gt;-&gt;flat-tokens" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="594.137,145,585.137,141,589.137,145,585.137,149,594.137,145" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[8eccd91e7e787f61e72d8020aa4045d4]
+link formats to templates--><path d="M956.933,155.056 C950.402,157.496 943.221,160.009 936.5,162 C883.441,177.717 820.883,190.786 780.734,198.493 " fill="none" id="formats-&gt;templates" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="775.464,199.499,785.0548,201.7386,780.3751,198.5605,783.5532,193.8808,775.464,199.499" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[994ffd3ae85a41db1a86654b2135b42f]
+link <b>formats.unit</b> to formats--><path d="M929.297,145 C932.557,145 935.817,145 939.078,145 " fill="none" id="&lt;b&gt;formats.unit&lt;/b&gt;-&gt;formats" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="944.201,145,935.201,141,939.201,145,935.201,149,944.201,145" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[73e8f5ff60b654b0e9634fa82594d5db]
+link <b>index</b> to import-module--><path d="M61.3906,269 C64.6836,269 67.9765,269 71.2695,269 " fill="none" id="&lt;b&gt;index&lt;/b&gt;-&gt;import-module" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="76.4441,269,67.4441,265,71.4441,269,67.4441,273,76.4441,269" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[d20016cf3e2f15f1781a014eeb6fc419]
+link <b>index</b> to _types--><path d="M44.9077,257.1238 C52.8371,249.766 64.0872,240.983 76,237 C141.544,215.084 318.193,230.524 387,237 C435.541,241.568 490.921,253.3841 524.533,261.3072 " fill="none" id="&lt;b&gt;index&lt;/b&gt;-&gt;_types" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="529.736,262.5437,521.906,256.5695,524.8717,261.3866,520.0546,264.3524,529.736,262.5437" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[06f6621ce58cca84e84854cb67655b9b]
+link <b>repl</b> to _config--><path d="M259.146,96.638 C252.402,104.307 243.1,114.886 234.997,124.101 " fill="none" id="&lt;b&gt;repl&lt;/b&gt;-&gt;_config" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="231.609,127.954,240.5561,123.8369,234.9108,124.1993,234.5485,118.554,231.609,127.954" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[64507481f1a1753207c9a2311f366bb3]
+link <b>repl</b> to core/build--><path d="M289.062,85 C297.14,85 305.217,85 313.294,85 " fill="none" id="&lt;b&gt;repl&lt;/b&gt;-&gt;core/build" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="318.323,85,309.323,81,313.323,85,309.323,89,318.323,85" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[dd48719c11babab6bd49a040bfb9e1c1]
+link <b>repl</b> to service-locator--><path d="M271.585,97.856 C275.486,112.817 282.427,139.332 288.5,162 C290.698,170.203 293.16,179.255 295.28,187.005 " fill="none" id="&lt;b&gt;repl&lt;/b&gt;-&gt;service-locator" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="296.685,192.137,298.1638,182.3998,295.3634,187.3148,290.4483,184.5144,296.685,192.137" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[e6b0cad75eabbea83e35e13a3897a3d6]
+link templates to _types--><path d="M711.554,217.113 C677.729,228.143 620.971,246.651 586.027,258.0456 " fill="none" id="templates-&gt;_types" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="581.035,259.6735,590.8316,260.6864,585.7887,258.1235,588.3516,253.0805,581.035,259.6735" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[704f34419cd8b5de68cbf62a1992baf9]
+link <b>templates.unit</b> to templates--><path d="M618.031,207 C642.247,207 666.464,207 690.68,207 " fill="none" id="&lt;b&gt;templates.unit&lt;/b&gt;-&gt;templates" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="695.847,207,686.847,203,690.847,207,686.847,211,695.847,207" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[afbc78e80b06bce84df0d5943ebc0cff]
+link <b>templates.unit</b> to _types--><path d="M555.5,222.219 C555.5,229.427 555.5,238.334 555.5,246.37 " fill="none" id="&lt;b&gt;templates.unit&lt;/b&gt;-&gt;_types" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="555.5,251.7631,559.5,242.7631,555.5,246.7631,551.5,242.7631,555.5,251.7631" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[b0352dce5705d70a9341f6a3f4a3a0cb]
+link theme-layers to _platforms--><path d="M377.912,158.785 C378.924,190.154 381.539,271.2135 382.8,310.2961 " fill="none" id="theme-layers-&gt;_platforms" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="382.976,315.7469,386.6837,306.6226,382.8148,310.7495,378.6878,306.8806,382.976,315.7469" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[f6253ddaf4c829a74fda5a76715880b4]
+link theme-layers to service-locator--><path d="M361.918,158.142 C350.231,167.248 334.115,179.806 321.324,189.773 " fill="none" id="theme-layers-&gt;service-locator" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="317.125,193.046,326.6825,190.6681,321.0686,189.9722,321.7645,184.3584,317.125,193.046" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[776e0ad052af28aceb41e95d264469dd]
+link theme-layers to _types--><path d="M383.05,158.57 C391.033,175.29 407.278,204.74 429.5,222 C457.808,243.988 497.624,256.1641 524.877,262.3789 " fill="none" id="theme-layers-&gt;_types" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="529.814,263.471,521.8905,257.6214,524.932,262.391,520.1625,265.4326,529.814,263.471" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[ebeb5b740d0bd283bc7aac38d61054b2]
+link theme-layers to utils--><path d="M393.689,158.142 C407.426,168.445 427.054,183.165 440.905,193.554 " fill="none" id="theme-layers-&gt;utils" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="445.005,196.629,440.205,188.029,441.005,193.629,435.405,194.429,445.005,196.629" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[40770a6d2f684f121e3fda43bf639b8c]
+link transforms to _types--><path d="M735.775,157.45 C710.469,175.811 661.706,210.902 643.5,222 C624.798,233.401 602.983,244.816 585.753,253.4224 " fill="none" id="transforms-&gt;_types" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="581.021,255.7732,590.8608,255.3518,585.499,253.5489,587.3019,248.187,581.021,255.7732" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[e57ff24bac57fd1bc47b95e6214fb9c0]
+link transforms to utils--><path d="M722.297,155.33 C714.019,157.747 704.958,160.178 696.5,162 C603.903,181.946 575.922,163.787 485.5,192 C482.436,192.956 479.295,194.216 476.276,195.589 " fill="none" id="transforms-&gt;utils" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="471.661,197.812,481.5052,197.5094,476.1655,195.6419,478.033,190.3022,471.661,197.812" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[710f36e38d3e3b68463cf9cbc84d3b24]
+link _types to _platforms--><path d="M529.75,279.282 C502.328,289.1667 458.482,304.9716 425.941,316.7015 " fill="none" id="_types-&gt;_platforms" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="421.225,318.4013,431.0482,319.112,425.9287,316.7056,428.3351,311.5861,421.225,318.4013" style="stroke: #000000; stroke-width: 0.5;"/><script type="text/plantuml"><![CDATA[MD5=[3d99109f864c160cb53b27a816e66bc1]
+@startuml
+
+scale max 1920 width
+top to bottom direction
+
+skinparam nodesep 15
+skinparam ranksep 30
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Tahoma
+skinparam defaultFontSize 12
+skinparam roundCorner 6
+skinparam dpi 150
+skinparam arrowColor black
+skinparam arrowThickness 0.5
+skinparam packageTitleAlignment left
+
+skinparam usecase {
+  borderThickness 0.5
+}
+
+skinparam rectangle {
+  borderThickness 0.5
+}
+
+skinparam component {
+  borderThickness 1
+}
+
+
+rectangle "<b>cli/build</b>" as _cli_build
+rectangle "config" as _config
+(<b>core</b>)
+(core/build)
+(flat-tokens)
+(<b>flat-tokens.unit</b>)
+(formats)
+(<b>formats.unit</b>)
+(import-module)
+(<b>index</b>)
+(<b>modules.d</b>)
+rectangle "platforms" as _platforms
+(<b>repl</b>)
+(service-locator)
+(templates)
+(<b>templates.unit</b>)
+(theme-layers)
+(transforms)
+rectangle "types" as _types
+(utils)
+
+
+_cli_build --[thickness=1]> _config
+_cli_build --[thickness=1]> (core/build)
+_config --> _platforms
+(core/build) --> _config
+(core/build) --> (flat-tokens)
+(core/build) --> (formats)
+(core/build) --> (service-locator)
+(core/build) --> (theme-layers)
+(core/build) --> (transforms)
+(flat-tokens) --> _types
+(flat-tokens) --> (utils)
+(<b>flat-tokens.unit</b>) -[thickness=1]> (flat-tokens)
+(formats) --> (templates)
+(<b>formats.unit</b>) -[thickness=1]> (formats)
+(<b>index</b>) -[thickness=1]> (import-module)
+(<b>index</b>) -[thickness=1]> _types
+(<b>repl</b>) -[thickness=1]> _config
+(<b>repl</b>) -[thickness=1]> (core/build)
+(<b>repl</b>) --[thickness=1]> (service-locator)
+(templates) --> _types
+(<b>templates.unit</b>) -[thickness=1]> (templates)
+(<b>templates.unit</b>) -[thickness=1]> _types
+(theme-layers) --> _platforms
+(theme-layers) --> (service-locator)
+(theme-layers) --> _types
+(theme-layers) --> (utils)
+(transforms) --> _types
+(transforms) --> (utils)
+_types --> _platforms
+
+@enduml
+
+
+' View and edit on https://arkit.pro
+]]></script></g></svg>

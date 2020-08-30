@@ -1,9 +1,7 @@
-import { resolve, parse } from 'path'
-import fg from 'fast-glob'
 import deepmerge from 'deepmerge'
 
+import { locator } from '../lib/service-locator'
 import { Platforms, platforms } from './platforms'
-import { importModule } from './import-module'
 import { Shape, TokensMap, ThemeTokens, Meta } from './types'
 import { deepInvoke, throwError } from './utils'
 
@@ -18,17 +16,21 @@ type ThemeLayers = Shape<
 
 export async function getThemeLayers(
   source: string,
-  options: { platforms?: Platforms } = {},
+  options: { platforms?: Platforms[] } = {},
 ): Promise<ThemeLayers> {
+  const $glob = locator.get('glob')
+  const $import = locator.get('import')
+  const $path = locator.get('path')
+
   const result: ThemeLayers = {}
-  const files = await fg(source)
+  const files = await $glob(source)
   for (const fileName of files) {
-    const source = await importModule(resolve(fileName))
+    const source = await $import($path.resolve(fileName))
     if (typeof source !== 'function') {
       throwError('Theme should return "withTokens" call.')
     }
     const themeLayer = deepInvoke<ThemeTokens>(source)
-    const { name } = parse(fileName)
+    const { name } = $path.parse(fileName)
     for (const [platform, levels] of platforms) {
       if (options.platforms !== undefined && !options.platforms.includes(platform)) {
         continue

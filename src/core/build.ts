@@ -1,7 +1,8 @@
-import { writeFile, ensureDir } from 'fs-extra'
-import { join, resolve, parse } from 'path'
+// import { writeFile, ensureDir } from 'fs-extra' // TODO: Should be injected.
+// import { join, resolve, parse } from 'path' // TODO: Should be injected.
 import deepmerge from 'deepmerge'
 
+import { locator } from '../lib/service-locator'
 import { Config } from './config'
 import { getThemeLayers } from './theme-layers'
 import { flatTokens } from './flat-tokens'
@@ -13,6 +14,8 @@ export async function build(
   onStart?: (format: string) => void,
   onFinish?: (format: string, files: string[]) => void,
 ): Promise<void> {
+  // const $path = locator.get('path')
+
   const themeLayers = await getThemeLayers(config.src, { platforms: config.platforms })
   for (const format in config.formats) {
     onStart && onStart(format)
@@ -31,14 +34,15 @@ export async function build(
     // FIXME: Move formats to fn.
     // eslint-disable-next-line camelcase
     const result_to_write = formats[format](result, { fileName })
+    console.log('>>> result_to_write', result_to_write)
     const createdFiles = []
     // eslint-disable-next-line camelcase
     for (const file of result_to_write) {
-      const destFilePath = resolve(outDir, file.fileName)
-      const destFolder = parse(destFilePath).dir
-      await ensureDir(destFolder)
-      await writeFile(destFilePath, file.content)
-      createdFiles.push(join(outDir, file.fileName))
+      // const destFilePath = resolve(outDir, file.fileName)
+      // const destFolder = parse(destFilePath).dir
+      // await ensureDir(destFolder)
+      // await writeFile(destFilePath, file.content)
+      // createdFiles.push(join(outDir, file.fileName))
     }
     onFinish && onFinish(format, createdFiles)
   }

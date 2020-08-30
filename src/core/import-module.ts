@@ -1,11 +1,11 @@
-import { register } from 'ts-node'
+// import { register } from 'ts-node'
 
-register({
-  transpileOnly: true,
-  compilerOptions: {
-    module: 'commonjs',
-  },
-})
+// register({
+//   transpileOnly: true,
+//   compilerOptions: {
+//     module: 'commonjs',
+//   },
+// })
 
 export function esModuleInterop<T>(box?: T): T {
   if (box === undefined) {
@@ -20,7 +20,7 @@ export function esModuleInterop<T>(box?: T): T {
  * @param path Module path.
  * @return Promise with data.
  */
-export async function importModule<T = any>(path: string): Promise<T> {
-  const result = await import(path)
-  return esModuleInterop(result)
-}
+// export async function importModule<T = any>(path: string): Promise<T> {
+//   const result = await import(path)
+//   return esModuleInterop(result)
+// }

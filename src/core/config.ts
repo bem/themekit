@@ -2,7 +2,7 @@ import { Platforms } from './platforms'
 
 export type Config = {
   src: string
-  platforms?: Platforms
+  platforms?: Platforms[]
   formats: {
     [key: string]: {
       outDir: string
