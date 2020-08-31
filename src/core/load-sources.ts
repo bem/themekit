@@ -13,7 +13,7 @@ export async function loadSources(paths: string[][], platform: Platforms): Promi
   // Uses nested array with paths, cuz glob not save orders with using patterns for path.
   // Also uses sort after glob for idempotent result.
   const resolvedPaths = await Promise.all(
-    paths.map((path) => glob.sync(normalizePaths(path)).sort()),
+    paths.map((path) => glob.sync(normalizePaths(path), { fs: require('fs') }).sort()),
   )
   const result = flatten(resolvedPaths)
     .filter((file) => {

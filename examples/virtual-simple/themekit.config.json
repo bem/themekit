@@ -1,0 +1,20 @@
+{
+  "entry": {
+    "default": "./themes/default.theme.json"
+  },
+  "output": {
+    "css": {
+      "transforms": ["name/cti/kebab"],
+      "buildPath": "./themes",
+      "files": [
+        {
+          "destination": "[entry]/[platform]/root.css",
+          "format": "css/variables",
+          "options": {
+            "useAliasVariables": true
+          }
+        }
+      ]
+    }
+  }
+}

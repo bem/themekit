@@ -23,12 +23,9 @@ type OutputTheme = {
   platforms: Platforms[]
 }
 
-export async function loadTheme(
-  sources: string,
-  cwd: string = process.cwd(),
-): Promise<OutputTheme> {
+export async function loadTheme(source: string, cwd: string = process.cwd()): Promise<OutputTheme> {
   let result: OutputTheme = { mappers: [], sources: [], whitepaper: {}, platforms: ['common'] }
-  const theme: InputTheme = await readJSON(sources)
+  const theme: InputTheme = await readJSON(source, { fs: require('fs') })
 
   if (theme.extends !== undefined) {
     const [extendsPath] = await glob(

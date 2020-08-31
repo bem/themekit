@@ -2,20 +2,21 @@ import React from 'react'
 
 import { Editor } from '../Editor'
 import { yamlToJson } from '../lib/yamlToJson'
+import { buildTokens } from '../api'
 import styles from './Container.module.css'
 
 export const Container = () => {
   const [currentLanguage, setCurrentLanguage] = React.useState('yaml')
+  const [result, setResult] = React.useState('')
   const editorRef = React.useRef(null)
-  const onRunClick = React.useCallback(() => {
+  const onRunClick = React.useCallback(async () => {
     if (editorRef.current === null) {
       return
     }
     const value = editorRef.current.getValue()
     const content = currentLanguage === 'yaml' ? yamlToJson(value) : value
-    console.log('>>> content', content)
-    // buildTokens({ content: editorRef.current.getValue() })
-    // console.log('>>> editorRef.current.getValue()', editorRef.current.getValue())
+    const _r = await buildTokens({ content })
+    setResult(_r)
   }, [currentLanguage, editorRef])
 
   return (
@@ -33,7 +34,11 @@ export const Container = () => {
           // onChange={() => (void 0)}
         />
       </div>
-      <div className={styles.ContainerSide}>hello</div>
+      <div className={styles.ContainerSide}>
+        <pre>
+          {result}
+        </pre>
+      </div>
     </div>
   )
 }

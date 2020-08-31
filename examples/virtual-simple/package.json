@@ -1,0 +1,14 @@
+{
+  "name": "virtual-simple",
+  "scripts": {
+    "build": "../../bin/themekit build"
+  },
+  "devDependencies": {
+    "fs-monkey": "1.0.1",
+    "memfs": "3.2.0"
+  },
+  "dependencies": {
+    "mock-fs": "4.13.0",
+    "mock-require": "3.0.3"
+  }
+}
