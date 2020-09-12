@@ -1,13 +1,8 @@
-/**
- * Do not edit directly
- * Generated on Sat, 11 Jul 2020 19:17:56 GMT
- */
-
 :root {
-  --color-controls-type-action-typo-base: #ccc;
-  --color-controls-type-action-fill-color-base: #fff;
-  --color-controls-type-action-fill-color-hover: #ccc;
-  --typo-control-font-family: Arial, sans-serif;
-  --typo-control-size-s-font-size: 20px; /* Font size for all controls with size s */
-  --typo-control-size-m-font-size: 24px; /* Font size for all controls with size m */
+    --color-controls-type-action-fill-color-base: #fff;
+    --color-controls-type-action-fill-color-hover: #ccc;
+    --color-controls-type-action-typo-base: #ccc;
+    --typo-control-font-family: Arial, sans-serif;
+    --typo-control-size-m-font-size: 24px; /* Font size for all controls with size m */
+    --typo-control-size-s-font-size: 20px; /* Font size for all controls with size s */
 }
