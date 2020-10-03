@@ -39,9 +39,12 @@
     "deepmerge": "4.2.2",
     "fast-glob": "3.2.2",
     "fs-extra": "8.1.0",
+    "fs-monkey": "^1.0.1",
+    "memfs": "^3.2.0",
     "normalize-path": "3.0.0",
     "read-pkg-up": "7.0.1",
     "style-dictionary": "2.10.0",
+    "unionfs": "^4.4.0",
     "yaml": "1.10.0"
   },
   "devDependencies": {
