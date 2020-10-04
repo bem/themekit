@@ -43,3 +43,9 @@ export function flatten<T extends any[]>(arrays: T[]): ArrayType<T>[] {
 export function normalizePaths(paths: string[]): string[] {
   return paths.map((path) => normalize(path))
 }
+
+export function normalizeCss(text: string): string {
+  const csso = require('csso')
+  // workaround https://github.com/css/csso/issues/422
+  return csso.minify(text.replace(/--/g, '____')).css.replace(/____/g, '--')
+}

@@ -10,7 +10,7 @@ import chalk from 'chalk'
 import { Config, loadConfig } from '../core/config'
 import { build } from '../core/build'
 import { loadTheme } from '../core/load-theme'
-import { debounce, flatten } from '../core/utils'
+import { debounce, flatten, normalizeCss } from '../core/utils'
 
 type Flags = {
   config: string
@@ -131,10 +131,19 @@ export default class Build extends Command {
 
     for (const [fileName, fileContent] of Object.entries(files)) {
       if (fileContent) {
+        if (!fs.existsSync(fileName)) {
+          console.log(chalk.red(`${relative(process.cwd(), fileName)} doesn't exist`))
+          continue
+        }
         const fileOldContent = fs.readFileSync(fileName, 'utf8')
-        if (fileOldContent !== fileContent) {
+        if (fileName.endsWith('.css')) {
+          if (normalizeCss(fileContent) !== normalizeCss(fileOldContent)) {
+            failed = true
+            console.log(chalk.red(`${relative(process.cwd(), fileName)} (CSS file) is outdated`))
+          }
+        } else if (fileContent !== fileOldContent) {
           failed = true
-          console.log(chalk.red(`${relative(process.cwd(), fileName)} is outdated`))
+          console.log(chalk.red(`${relative(process.cwd(), fileName)} (text file) is outdated`))
         }
       }
     }
