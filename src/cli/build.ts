@@ -44,7 +44,7 @@ export default class Build extends Command {
       description: 'Builds selected outputs.',
     }),
     check: flags.boolean({
-      description: 'Checks output files will not be modified on build',
+      description: 'Checks existent output files satisfy the config file.',
       default: false,
     }),
   }
