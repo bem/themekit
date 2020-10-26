@@ -91,6 +91,7 @@ export default class Build extends Command {
       await build(config)
       console.log(`\n>--------------- ${chalk.green('Build completed')} ---------------<`)
     } catch (error) {
+      console.log('\r')
       console.log(error)
       console.log(`\n>---------------- ${chalk.red('Build failed')} -----------------<`)
     }
