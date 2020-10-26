@@ -86,9 +86,14 @@ export default class Build extends Command {
   }
 
   private async build(config: any) {
-    console.log(`----------------- ${chalk.yellow('Build started')} -----------------`)
-    await build(config)
-    console.log(`\n---------------- ${chalk.green('Build completed')} ----------------`)
+    console.log(`>---------------- ${chalk.yellow('Build started')} ----------------<`)
+    try {
+      await build(config)
+      console.log(`\n>--------------- ${chalk.green('Build completed')} ---------------<`)
+    } catch (error) {
+      console.log(error)
+      console.log(`\n>---------------- ${chalk.red('Build failed')} -----------------<`)
+    }
   }
 
   private emitWatching() {
