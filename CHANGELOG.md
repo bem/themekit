@@ -1,3 +1,10 @@
+## [1.6.3](https://github.com/yarastqt/themekit/compare/v1.6.2...v1.6.3) (2020-10-26)
+
+### Bug Fixes
+
+- throw custom YamlParseError while yaml parse ([a16bbf4](https://github.com/yarastqt/themekit/commit/a16bbf43b88c9ffdd1c95014870da7e70a7505e1))
+- wrap build to try-catch ([0f8213c](https://github.com/yarastqt/themekit/commit/0f8213c65414dc44d019b934c7b03da1e4d28ba0))
+
 ## [1.6.2](https://github.com/yarastqt/themekit/compare/v1.6.1...v1.6.2) (2020-08-26)
 
 ### Bug Fixes
