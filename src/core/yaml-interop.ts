@@ -22,6 +22,9 @@ class YamlParseError extends Error {
   }
 }
 
+/**
+ * Patched native `require` for importing module with `yaml` extensions.
+ */
 Module.prototype.require = new Proxy(Module.prototype.require, {
   apply(target, thisArg, args) {
     if (/\.ya?ml$/.test(args[0])) {
