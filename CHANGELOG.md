@@ -1,3 +1,9 @@
+## [1.6.4](https://github.com/yarastqt/themekit/compare/v1.6.3...v1.6.4) (2020-10-27)
+
+### Bug Fixes
+
+- use normalize for glob path ([0f5e17b](https://github.com/yarastqt/themekit/commit/0f5e17bcaa908167d0ae64de55c07ecc6efd52d6))
+
 ## [1.6.3](https://github.com/yarastqt/themekit/compare/v1.6.2...v1.6.3) (2020-10-26)
 
 ### Bug Fixes
