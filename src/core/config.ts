@@ -1,5 +1,6 @@
 import { Platform } from 'style-dictionary'
 import fg from 'fast-glob'
+import normalize from 'normalize-path'
 
 export type Config = {
   entry: Record<string, string>
@@ -12,9 +13,11 @@ export async function loadConfig(
   filters: { entries?: string[]; outputs?: string[]; [key: string]: any },
 ): Promise<Config> {
   filters
-  const resolvedPath = fg.sync(path)
+  const resolvedPath = fg.sync(normalize(path))
   if (resolvedPath.length === 0) {
-    throw new Error(`Cannot load config from "${path}", please check path or file are exists.`)
+    throw new Error(
+      `Cannot load config from "${normalize(path)}", please check path or file are exists.`,
+    )
   }
   const config: Config = require(resolvedPath[0])
   if (filters.entries !== undefined || filters.outputs !== undefined) {
