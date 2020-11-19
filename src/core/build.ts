@@ -24,7 +24,7 @@ Api.registerFormat({
     deprecate(
       'Warning: css/whitepaper format is deprecated, ' +
         'you should use css/variables format instead.\n' +
-        'See more information for migration: https://github.com/yarastqt/themekit/tree/master/docs/migrations/0077.md',
+        'See more information for migration: https://github.com/bem/themekit/tree/master/docs/migrations/0077.md',
     )
 
     const defaultOptions = { useAliasVariables: false }

@@ -1,4 +1,4 @@
-[![themekit](https://user-images.githubusercontent.com/7934638/83977761-b6831600-a90b-11ea-84a4-8c4dd3b60cc1.png)](https://github.com/yarastqt/themekit)
+[![themekit](https://user-images.githubusercontent.com/7934638/83977761-b6831600-a90b-11ea-84a4-8c4dd3b60cc1.png)](https://github.com/bem/themekit)
 
 [![npm](https://img.shields.io/npm/v/@yandex/themekit.svg?style=flat-square&labelColor=111)][npm] [![examples](https://img.shields.io/badge/examples-folder-007ecc?style=flat-square&labelColor=111)][examples] [![node](https://img.shields.io/badge/node-8+-007ecc?style=flat-square&labelColor=111)][node]
 
@@ -402,6 +402,6 @@ At theme config you should define `whitepaper` for css selectors:
 
 [node]: https://nodejs.org/en/
 [npm]: https://www.npmjs.com/package/@yandex/themekit
-[license]: https://github.com/yarastqt/themekit/blob/master/LICENSE.md
-[examples]: https://github.com/yarastqt/themekit/tree/master/examples
+[license]: https://github.com/bem/themekit/blob/master/LICENSE.md
+[examples]: https://github.com/bem/themekit/tree/master/examples
 [sd-github]: https://github.com/amzn/style-dictionary
