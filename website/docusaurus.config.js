@@ -1,11 +1,11 @@
 module.exports = {
   title: 'themekit',
   tagline: 'Build system of design-tokens for any platforms',
-  url: 'https://yarastqt.github.io',
+  url: 'https://bem.github.io',
   baseUrl: '/themekit/',
   onBrokenLinks: 'throw',
   favicon: 'img/favicon.ico',
-  organizationName: 'yarastqt', // Usually your GitHub org/user name.
+  organizationName: 'bem', // Usually your GitHub org/user name.
   projectName: 'themekit', // Usually your repo name.
   themeConfig: {
     sidebarCollapsible: false,
@@ -30,12 +30,12 @@ module.exports = {
         },
         { to: 'blog', label: 'Blog', position: 'left' },
         {
-          href: 'https://github.com/yarastqt/themekit/blob/master/CHANGELOG.md',
+          href: 'https://github.com/bem/themekit/blob/master/CHANGELOG.md',
           label: 'Changelog',
           position: 'right',
         },
         {
-          href: 'https://github.com/yarastqt/themekit',
+          href: 'https://github.com/bem/themekit',
           label: 'GitHub',
           position: 'right',
         },
@@ -52,7 +52,7 @@ module.exports = {
             },
             {
               label: 'Changelog',
-              to: 'https://github.com/yarastqt/themekit/blob/master/CHANGELOG.md',
+              to: 'https://github.com/bem/themekit/blob/master/CHANGELOG.md',
             },
           ],
         },
@@ -65,7 +65,7 @@ module.exports = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/yarastqt/themekit',
+              href: 'https://github.com/bem/themekit',
             },
           ],
         },
@@ -91,12 +91,12 @@ module.exports = {
           homePageId: 'installation',
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/yarastqt/themekit/edit/master/website/',
+          editUrl: 'https://github.com/bem/themekit/edit/master/website/',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
-          editUrl: 'https://github.com/yarastqt/themekit/edit/master/website/blog/',
+          editUrl: 'https://github.com/bem/themekit/edit/master/website/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
