@@ -155,10 +155,6 @@ The basic theme configuration consists of the sources section, which lists which
    */
   platforms?: Array<'common' | 'deskpad' | 'desktop' | 'touch' | 'touch-pad' | 'touch-phone'>
   /**
-   * Whitepaper selectors (only for css)
-   */
-  whitepaper?: Record<string, string>
-  /**
    * Mappers list
    */
   mappers?: string[]
@@ -316,58 +312,6 @@ At result you get plain value with color:
 ```
 
 ## Formats
-
-### 🗂 css/whitepaper
-
-A themekit supports separation of the tokens into multiple result files.
-
-#### tool config
-
-At themekit config you should define for output files `css/whitepaper` format and `whitepaper/[color|root]` filter:
-
-```json
-{
-  "output": {
-    "css": {
-      "transforms": ["name/cti/kebab"],
-      "buildPath": "./src/theme/themes",
-      "files": [
-        {
-          "destination": "[entry]/[platform]/color.css",
-          "format": "css/whitepaper",
-          "filter": "whitepaper/color",
-          "options": {
-            // default: false
-            "useAliasVariables": true
-          }
-        },
-        {
-          "destination": "[entry]/[platform]/root.css",
-          "format": "css/whitepaper",
-          "filter": "whitepaper/root",
-          "options": {
-            // default: false
-            "useAliasVariables": true
-          }
-        }
-      ]
-    }
-  }
-}
-```
-
-#### theme config
-
-At theme config you should define `whitepaper` for css selectors:
-
-```json
-{
-  "whitepaper": {
-    "color": "default-[platform]",
-    "root": "default-[platform]"
-  }
-}
-```
 
 ### 🗂 css/variables
 
