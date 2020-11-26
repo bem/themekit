@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   title: 'themekit',
   tagline: 'Build system of design-tokens for any platforms',
@@ -81,6 +83,9 @@ module.exports = {
       ],
       copyright: `Copyright © ${new Date().getFullYear()} themekit.`,
     },
+    yandexMetika: {
+      counterId: 69813862,
+    },
   },
   presets: [
     [
@@ -104,4 +109,5 @@ module.exports = {
       },
     ],
   ],
+  plugins: [path.resolve(__dirname, 'plugins/yandex-metrika.js')],
 }
