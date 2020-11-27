@@ -12,7 +12,6 @@ export async function loadConfig(
   path: string,
   filters: { entries?: string[]; outputs?: string[]; [key: string]: any },
 ): Promise<Config> {
-  filters
   const resolvedPath = fg.sync(normalize(path))
   if (resolvedPath.length === 0) {
     throw new Error(
