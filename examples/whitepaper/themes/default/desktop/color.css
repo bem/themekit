@@ -1,6 +1,6 @@
 .Theme_color_default-desktop {
-    --color-controls-type-action-typo-base: #ccc;
+    --button-fill-color: var(--color-controls-type-action-fill-color-base);
     --color-controls-type-action-fill-color-base: #fff;
     --color-controls-type-action-fill-color-hover: #ccc;
-    --button-fill-color: var(--color-controls-type-action-fill-color-base);
+    --color-controls-type-action-typo-base: #ccc;
 }

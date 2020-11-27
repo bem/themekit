@@ -16,5 +16,6 @@ export function variablesWithPrefix(prefix: any, properties: any): any {
       return nextProp
     })
     .filter((strVal: any) => Boolean(strVal))
+    .sort()
     .join('\n')
 }
