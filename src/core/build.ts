@@ -5,7 +5,7 @@ import { readFileSync, writeFileSync } from 'fs-extra'
 
 import { Api, InternalApi } from '../index'
 import { createStyleDictionaryConfig } from './style-dictionary-config'
-import { variablesWithPrefix } from './variable-with-prefix'
+import { variablesWithPrefix } from './variablesWithPrefix'
 import { loadMappers } from './mappers'
 import { loadTheme } from './load-theme'
 import { dedupeProps } from './dedupe-props'
