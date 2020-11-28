@@ -1,5 +1,7 @@
 import { Platform, Config } from 'style-dictionary'
 
+import { Api } from '../index'
+
 type Options = {
   sources: string[]
   entry: string
@@ -12,6 +14,17 @@ export function createStyleDictionaryConfig({ sources, entry, platform, output }
     // prettier-ignore
     .reduce<Record<string, Platform>>((acc, [key, value]) => {
       const target = { ...value }
+
+      if (target.preset !== undefined) {
+        const maybePrese = Api.presets.get(target.preset)
+        if (maybePrese === undefined) {
+          throw new Error(`Used unexpected preset "${target.preset}" for "${key}" platform.`)
+        } else {
+          target.transforms = maybePrese.transforms || target.transforms
+          target.actions = maybePrese.actions || target.actions
+        }
+      }
+
       // Normalize path for style-dictionary specifics.
       target.buildPath = target.buildPath.endsWith('/') ? target.buildPath : `${target.buildPath}/`
       target.files = target.files.map((file) => ({

@@ -13,6 +13,7 @@ declare module 'style-dictionary' {
   }
 
   export type Platform = {
+    preset?: string
     buildPath: string
     transforms?: string[]
     actions?: string[]
