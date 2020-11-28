@@ -157,7 +157,7 @@
   },
   "overrides": [
     {
-      "files": ["*.unit.{ts,tsx}"],
+      "files": ["*.test.ts"],
       "env": {
         "jest": true
       }
