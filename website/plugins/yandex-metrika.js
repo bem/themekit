@@ -3,19 +3,19 @@ module.exports = function(context) {
 
   const { siteConfig } = context
   const { themeConfig } = siteConfig
-  const { yandexMetika } = themeConfig || {}
+  const { yandexMetrika } = themeConfig || {}
 
-  if (!yandexMetika) {
+  if (!yandexMetrika) {
     throw new Error(
-      `You need to specify 'yandexMetika' object in 'themeConfig' with 'counterId' field in it to use docusaurus-plugin-yandex-metrika`,
+      `You need to specify 'yandexMetrika' object in 'themeConfig' with 'counterId' field in it to use docusaurus-plugin-yandex-metrika`,
     )
   }
 
-  const { counterId, debug = false } = yandexMetika
+  const { counterId, debug = false } = yandexMetrika
 
   if (!counterId) {
     throw new Error(
-      "You specified the 'yandexMetika' object in 'themeConfig' but the 'counterId' field was missing. " +
+      "You specified the 'yandexMetrika' object in 'themeConfig' but the 'counterId' field was missing. " +
         'Please ensure this is not a mistake.',
     )
   }
