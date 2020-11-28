@@ -113,6 +113,12 @@ Api.registerAction({
   undo: () => {},
 })
 
+Api.registerPreset({
+  name: 'css',
+  transforms: ['name/cti/kebab', 'name/mapper'],
+  actions: ['process-color'],
+})
+
 export async function build(config: Config): Promise<void> {
   for (const entry in config.entry) {
     const theme = await loadTheme(config.entry[entry])

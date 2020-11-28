@@ -1,0 +1,58 @@
+---
+id: presets
+title: Presets
+---
+
+Presets contains transforms and actions for easy usage.
+
+## Usage
+
+Usually preset used for platform instead transforms and actions.
+
+```js title="themekit.config.js"
+module.exports = {
+  output: {
+    web: {
+      preset: 'css',
+      ...
+    }
+  }
+}
+```
+
+## Predefined presets
+
+### css
+
+```json
+{
+  "name": "css",
+  "transforms": ["name/cti/kebab", "name/mapper"],
+  "actions": ["process-color"],
+}
+```
+
+## Register own preset
+
+You can define a custom preset with predefined transforms and actions.
+
+```js title="themekit.config.js"
+const { Api } = require('@yandex/themekit')
+
+Api.registerPreset({
+  /**
+   * Preset name
+   */
+  name: 'custom-preset',
+  /**
+   * Predefined transforms
+   */
+  transforms: ['name/cti/kebab', 'name/mapper'],
+  /**
+   * Predefined actions
+   */
+  actions: ['process-color'],
+})
+
+module.exports = { ... }
+```
