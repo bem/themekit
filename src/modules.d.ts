@@ -15,7 +15,7 @@ declare module 'style-dictionary' {
   export type Platform = {
     buildPath: string
     transforms?: string[]
-    actions?: string
+    actions?: string[]
     files: Array<{
       destination: string
       format: string
