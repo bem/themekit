@@ -83,7 +83,7 @@ module.exports = {
       ],
       copyright: `Copyright © ${new Date().getFullYear()} themekit.`,
     },
-    yandexMetika: {
+    yandexMetrika: {
       counterId: 69813862,
     },
   },
