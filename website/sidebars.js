@@ -2,6 +2,7 @@ module.exports = {
   sidebar: {
     'Getting Started': ['introduction', 'installation', 'token', 'theme', 'glossary'],
     Features: [
+      'presets',
       {
         type: 'category',
         label: 'transforms',
