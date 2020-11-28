@@ -18,13 +18,18 @@ Api.registerFormat({
   },
 })
 
+Api.registerPreset({
+  name: 'custom-preset',
+  transforms: ['custom-transform'],
+})
+
 module.exports = {
   entry: {
     default: './themes/default.theme.json',
   },
   output: {
     css: {
-      transforms: ['custom-transform'],
+      preset: 'custom-preset',
       buildPath: './themes',
       files: [
         {
