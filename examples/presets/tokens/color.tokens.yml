@@ -1,0 +1,12 @@
+color:
+  controls:
+    type:
+      action:
+        typo:
+          base:
+            value: "#000"
+        fillColor:
+          base:
+            value: "#fff"
+          hover:
+            value: "#ccc"

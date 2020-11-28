@@ -1,0 +1,6 @@
+{
+  "name": "presets",
+  "scripts": {
+    "build": "../../bin/themekit build"
+  }
+}

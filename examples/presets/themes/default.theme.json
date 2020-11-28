@@ -1,0 +1,3 @@
+{
+  "sources": ["./tokens/*.tokens.yml"]
+}
