@@ -1,6 +1,6 @@
-const { Api } = require('../../src/index')
+const Themekit = require('../../src/index')
 
-Api.registerTransform({
+Themekit.registerTransform({
   name: 'custom-transform',
   type: 'name',
   transformer(token) {
@@ -8,7 +8,7 @@ Api.registerTransform({
   },
 })
 
-Api.registerFormat({
+Themekit.registerFormat({
   name: 'custom-format',
   formatter(dictionary) {
     const props = dictionary.allProperties
@@ -18,7 +18,7 @@ Api.registerFormat({
   },
 })
 
-Api.registerPreset({
+Themekit.registerPreset({
   name: 'custom-preset',
   transforms: ['custom-transform'],
 })

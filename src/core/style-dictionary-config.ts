@@ -1,6 +1,6 @@
 import { Platform, Config } from 'style-dictionary'
 
-import { Api } from '../index'
+import Themekit from '../index'
 
 type Options = {
   sources: string[]
@@ -16,7 +16,7 @@ export function createStyleDictionaryConfig({ sources, entry, platform, output }
       const target = { ...value }
 
       if (target.preset !== undefined) {
-        const maybePrese = Api.presets.get(target.preset)
+        const maybePrese = Themekit.presets.get(target.preset)
         if (maybePrese === undefined) {
           throw new Error(`Used unexpected preset "${target.preset}" for "${key}" platform.`)
         } else {

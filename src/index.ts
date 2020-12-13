@@ -1,8 +1,9 @@
 import StyleDictionary from 'style-dictionary'
 
+import { withDeprecated } from './core/deprecate'
 import { Preset } from './index.h'
 
-export const Api = {
+const Themekit = {
   registerFormat: StyleDictionary.registerFormat.bind(StyleDictionary),
   registerTransform: StyleDictionary.registerTransform.bind(StyleDictionary),
   registerAction: StyleDictionary.registerAction.bind(StyleDictionary),
@@ -21,13 +22,14 @@ export const Api = {
    * @param preset - Preset settings
    */
   registerPreset: (preset: Preset): void => {
-    Api.presets.set(preset.name, preset)
+    Themekit.presets.set(preset.name, preset)
   },
 }
 
-/**
- * @internal
- */
-export const InternalApi = {
-  extend: StyleDictionary.extend.bind(StyleDictionary),
-}
+const Api = withDeprecated(
+  Themekit,
+  'Warning: Named import "Api" is deprecated, use default import instead.',
+)
+
+export { Api }
+module.exports = Themekit
