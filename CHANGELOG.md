@@ -1,3 +1,14 @@
+## [1.6.5](https://github.com/bem/themekit/compare/v1.6.4...v1.6.5) (2021-01-04)
+
+### Bug Fixes
+
+- fix resolving nested themes ([2cd439f](https://github.com/bem/themekit/commit/2cd439febfaed7b4c7bbadc1e210c39ed85bab5c))
+
+### Features
+
+- impl presets registration ([3c70d79](https://github.com/bem/themekit/commit/3c70d79785493e19de6f322a5df23aaea66af072))
+- register css preset ([f5eeae5](https://github.com/bem/themekit/commit/f5eeae53927a30e70a3f4701178b8a18f05e135a))
+
 ## [1.6.4](https://github.com/bem/themekit/compare/v1.6.3...v1.6.4) (2020-10-27)
 
 ### Bug Fixes
