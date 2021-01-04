@@ -5,7 +5,7 @@ import chalk from 'chalk'
 
 import { loadConfig } from '../core/config'
 import { build } from '../core/build'
-import { loadTheme } from '../core/load-theme'
+import { loadTheme } from '../core/loadTheme'
 import { debounce, flatten } from '../core/utils'
 
 type Flags = {
