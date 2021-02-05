@@ -1,3 +1,9 @@
+## [1.6.6](https://github.com/bem/themekit/compare/v1.6.5...v1.6.6) (2021-02-05)
+
+### Bug Fixes
+
+- fix broken sources ([dd0229e](https://github.com/bem/themekit/commit/dd0229ea15ee3bb7857cf12aaf321f96294c628c))
+
 ## [1.6.5](https://github.com/bem/themekit/compare/v1.6.4...v1.6.5) (2021-01-04)
 
 ### Bug Fixes
