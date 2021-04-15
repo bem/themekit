@@ -17,12 +17,10 @@ export async function loadTheme(
     platforms: ['common'],
   }
   const theme: InputTheme = await readJSON(source)
-
-  // In case with node_modules in cwd need resolve all sources from package root.
-  root = root.match(/node_modules/) === null ? root : findPackageRoot(root)
+  const packageRootPath = findPackageRoot(root)
 
   if (theme.extends !== undefined) {
-    const parentThemePath = resolveFrom(root, theme.extends)
+    const parentThemePath = resolveFrom(packageRootPath, theme.extends)
     if (parentThemePath && existsSync(parentThemePath)) {
       const parentThemeCwd = dirname(parentThemePath)
       const parentTheme = await loadTheme(parentThemePath, parentThemeCwd)
@@ -38,7 +36,7 @@ export async function loadTheme(
   }
 
   if (theme.mappers !== undefined) {
-    derivedTheme.mappers.push(...theme.mappers.map((filePath) => join(root, filePath)))
+    derivedTheme.mappers.push(...theme.mappers.map((filePath) => join(packageRootPath, filePath)))
   }
 
   if (theme.whitepaper !== undefined) {
@@ -47,7 +45,7 @@ export async function loadTheme(
 
   for (const source of theme.sources) {
     // Makes array of arrays with each source for save order after glob.
-    derivedTheme.sources.push([resolve(root, source)])
+    derivedTheme.sources.push([resolve(packageRootPath, source)])
   }
 
   return derivedTheme
