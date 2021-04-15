@@ -1,3 +1,9 @@
+## [1.6.7](https://github.com/bem/themekit/compare/v1.6.6...v1.6.7) (2021-04-15)
+
+### Bug Fixes
+
+- always resolve pkg root for loadTheme ([38846d1](https://github.com/bem/themekit/commit/38846d14be585a4a1d50c1efa4a2497a8c673267))
+
 ## [1.6.6](https://github.com/bem/themekit/compare/v1.6.5...v1.6.6) (2021-02-05)
 
 ### Bug Fixes
