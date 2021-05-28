@@ -1,4 +1,4 @@
-import { Property } from 'style-dictionary'
+import { Property } from '../vendors/style-dictionary'
 import merge from 'deepmerge'
 
 function toDeepToken(path: string, prop: Property): any {

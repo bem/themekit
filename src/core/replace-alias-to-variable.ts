@@ -1,5 +1,5 @@
 import merge from 'deepmerge'
-import { InjectedTransformer } from 'style-dictionary'
+import { InjectedTransformer } from '../vendors/style-dictionary'
 
 import { isAlias } from './utils'
 

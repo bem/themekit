@@ -3,7 +3,14 @@
   "version": "1.6.7",
   "author": "Eugene Tropin <yarastqt@gmail.com>",
   "description": "Build system of design-tokens for any platforms.",
-  "keywords": ["themekit", "design", "css", "tokens", "style", "style-dictionary"],
+  "keywords": [
+    "themekit",
+    "design",
+    "css",
+    "tokens",
+    "style",
+    "style-dictionary"
+  ],
   "license": "MPL-2.0",
   "repository": "https://github.com/bem/themekit",
   "homepage": "https://github.com/bem/themekit",
@@ -36,13 +43,16 @@
     "@oclif/command": "1.5.19",
     "chalk": "4.1.0",
     "chokidar": "3.4.0",
-    "css-color-function": "1.3.3",
+    "commander": "^7.2.0",
+    "css-color-function": "^1.3.3",
     "deepmerge": "4.2.2",
     "fast-glob": "3.2.2",
     "fs-extra": "8.1.0",
+    "json5": "^2.2.0",
+    "lodash": "^4.17.21",
     "normalize-path": "3.0.0",
     "read-pkg-up": "7.0.1",
-    "style-dictionary": "2.10.0",
+    "resolve-cwd": "^3.0.0",
     "yaml": "1.10.0"
   },
   "devDependencies": {
@@ -68,5 +78,9 @@
     "commands": "lib/cli",
     "bin": "themekit"
   },
-  "files": ["bin", "lib", "oclif.manifest.json"]
+  "files": [
+    "bin",
+    "lib",
+    "oclif.manifest.json"
+  ]
 }
