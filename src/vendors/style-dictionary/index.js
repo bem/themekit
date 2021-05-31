@@ -1,20 +1,23 @@
 /*
  * Copyright 2017 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *
- * Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with
  * the License. A copy of the License is located at
  *
  * http://www.apache.org/licenses/LICENSE-2.0
  *
- * or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
- * CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
+ * or in the "license" file accompanying this file.
+ * This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+ * CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions
  * and limitations under the License.
  */
-var chalk = require('chalk')
-var GroupMessages = require('./lib/utils/groupMessages')
-var TEMPLATE_DEPRECATION_WARNINGS = GroupMessages.GROUP.TemplateDeprecationWarnings
-var REGISTER_TEMPLATE_DEPRECATION_WARNINGS = GroupMessages.GROUP.RegisterTemplateDeprecationWarnings
-var SASS_MAP_FORMAT_DEPRECATION_WARNINGS = GroupMessages.GROUP.SassMapFormatDeprecationWarnings
+let chalk = require('chalk')
+let GroupMessages = require('./lib/utils/groupMessages')
+let TEMPLATE_DEPRECATION_WARNINGS = GroupMessages.GROUP.TemplateDeprecationWarnings
+let REGISTER_TEMPLATE_DEPRECATION_WARNINGS = GroupMessages.GROUP.RegisterTemplateDeprecationWarnings
+let SASS_MAP_FORMAT_DEPRECATION_WARNINGS = GroupMessages.GROUP.SassMapFormatDeprecationWarnings
 
 /**
  * Style Dictionary module
@@ -28,7 +31,7 @@ var SASS_MAP_FORMAT_DEPRECATION_WARNINGS = GroupMessages.GROUP.SassMapFormatDepr
  * StyleDictionary.buildAllPlatforms();
  * ```
  */
-var StyleDictionary = {
+let StyleDictionary = {
   VERSION: '2.10.0',
   properties: {},
   allProperties: [],
@@ -52,7 +55,7 @@ var StyleDictionary = {
   buildAllPlatforms: require('./lib/buildAllPlatforms'),
 
   cleanPlatform: require('./lib/cleanPlatform'),
-  cleanAllPlatforms: require('./lib/cleanAllPlatforms'),
+  cleanAllPlatforms: require('./lib/cleanAllPlatforms').default,
 
   extend: require('./lib/extend'),
 }
@@ -61,7 +64,7 @@ module.exports = StyleDictionary
 
 process.on('exit', function() {
   if (GroupMessages.count(TEMPLATE_DEPRECATION_WARNINGS) > 0) {
-    var template_warnings = GroupMessages.flush(TEMPLATE_DEPRECATION_WARNINGS).join('\n  ')
+    let templateWarnings = GroupMessages.flush(TEMPLATE_DEPRECATION_WARNINGS).join('\n  ')
     console.log(
       chalk.bold.yellow(`
 ⚠️ DEPRECATION WARNING ️️️️️⚠️
@@ -81,13 +84,13 @@ After:
   }]
 
 Your current config uses the following templates:
-  ${template_warnings}
+  ${templateWarnings}
 `),
     )
   }
 
   if (GroupMessages.count(REGISTER_TEMPLATE_DEPRECATION_WARNINGS) > 0) {
-    var register_template_warnings = GroupMessages.flush(
+    let registerTemplateWarnings = GroupMessages.flush(
       REGISTER_TEMPLATE_DEPRECATION_WARNINGS,
     ).join('\n  ')
     console.log(
@@ -118,12 +121,12 @@ process the style dictionary.
 
 Calls to registerTemplate included the registration of the following
 custom templates:
-  ${register_template_warnings}`),
+  ${registerTemplateWarnings}`),
     )
   }
 
   if (GroupMessages.count(SASS_MAP_FORMAT_DEPRECATION_WARNINGS) > 0) {
-    var sass_map_format_warnings = GroupMessages.flush(SASS_MAP_FORMAT_DEPRECATION_WARNINGS).join(
+    let sassMapFormatWarnings = GroupMessages.flush(SASS_MAP_FORMAT_DEPRECATION_WARNINGS).join(
       '\n  ',
     )
     console.log(
@@ -146,7 +149,7 @@ After:
   }]
 
 Your current config uses the following formats:
-  ${sass_map_format_warnings}
+  ${sassMapFormatWarnings}
 `),
     )
   }
