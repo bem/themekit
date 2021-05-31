@@ -1,4 +1,4 @@
-import { Platform } from 'style-dictionary'
+import { Platform } from '../vendors/style-dictionary'
 import fg from 'fast-glob'
 import normalize from 'normalize-path'
 

@@ -131,3 +131,6 @@ lib
 oclif.manifest.json
 
 # End of https://www.gitignore.io/api/node,osx,windows,linux
+
+# Libs inside the project should be resolved
+!src/**/lib

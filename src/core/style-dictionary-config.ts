@@ -1,4 +1,4 @@
-import { Platform, Config } from 'style-dictionary'
+import { Platform, Config } from '../vendors/style-dictionary'
 
 import { Api } from '../index'
 

@@ -1,4 +1,4 @@
-import StyleDictionary from 'style-dictionary'
+import StyleDictionary from './vendors/style-dictionary'
 
 import { Preset } from './index.h'
 
