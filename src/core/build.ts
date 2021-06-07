@@ -119,7 +119,17 @@ Api.registerPreset({
   actions: ['process-color'],
 })
 
-export async function build(config: Config): Promise<void> {
+export type BuildResult = Record<
+  string,
+  {
+    dictionary: any
+    platform: any
+  }
+>
+
+export async function build(config: Config): Promise<BuildResult> {
+  let result = {}
+
   for (const entry in config.entry) {
     const theme = await loadTheme(config.entry[entry])
     for (const platform of theme.platforms) {
@@ -140,7 +150,9 @@ export async function build(config: Config): Promise<void> {
       )
 
       StyleDictionary.properties = dedupeProps(StyleDictionary.properties)
-      StyleDictionary.buildAllPlatforms()
+      result = { ...result, ...StyleDictionary.buildAllPlatforms() }
     }
   }
+
+  return result
 }

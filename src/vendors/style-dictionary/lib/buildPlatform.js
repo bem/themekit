@@ -62,11 +62,10 @@ function buildPlatform(platform) {
     allProperties: flattenProperties( properties )
   };
 
-  buildFiles(dictionary, platformConfig);
-  performActions(dictionary, platformConfig);
-
-  // For chaining
-  return this;
+  return {
+    dictionary,
+    platform: platformConfig
+  };
 }
 
 
