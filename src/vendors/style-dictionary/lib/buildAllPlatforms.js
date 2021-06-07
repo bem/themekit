@@ -27,14 +27,13 @@ var _ = require('lodash');
  * ```
  */
 function buildAllPlatforms() {
-  var self = this;
+  const result = {}
 
-  _.forIn(this.options.platforms, function (platform, key) {
-    self.buildPlatform(key);
-  });
+  for (let key of Object.keys(this.options.platforms)) { 
+    result[key] = this.buildPlatform(key);
+  }
 
-  // For chaining
-  return this;
+  return result;
 }
 
 

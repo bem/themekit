@@ -4,9 +4,10 @@ import { watch } from 'chokidar'
 import chalk from 'chalk'
 
 import { loadConfig } from '../core/config'
-import { build } from '../core/build'
+import { build, BuildResult } from '../core/build'
 import { loadTheme } from '../core/loadTheme'
 import { debounce, flatten } from '../core/utils'
+import { buildFiles } from '../core/buildFiles'
 
 type Flags = {
   config: string
@@ -47,7 +48,13 @@ export default class Build extends Command {
       outputs: flags.output,
     })
 
-    await this.build(config)
+    const result = await this.build(config)
+
+    if (!result) {
+      return
+    }
+
+    await this.buildFiles(result)
 
     if (flags.watch) {
       this.emitWatching()
@@ -88,12 +95,27 @@ export default class Build extends Command {
   private async build(config: any) {
     console.log(`>---------------- ${chalk.yellow('Build started')} ----------------<`)
     try {
-      await build(config)
-      console.log(`\n>--------------- ${chalk.green('Build completed')} ---------------<`)
+      const result = await build(config)
+      console.log(`\n>--------------- ${chalk.green('Build completed')} ---------------<\n\n`)
+      return result
     } catch (error) {
       console.log('\r')
       console.log(error)
       console.log(`\n>---------------- ${chalk.red('Build failed')} -----------------<`)
+    }
+  }
+
+  private async buildFiles(results: BuildResult) {
+    console.log(`\n>---------------- ${chalk.yellow('Files build started')} ----------------<`)
+    try {
+      for (let { dictionary, platform } of Object.values(results)) {
+        buildFiles(dictionary, platform)
+      }
+      console.log(`\n>--------------- ${chalk.green('Files build completed')} ---------------<\n\n`)
+    } catch (error) {
+      console.log('\r')
+      console.log(error)
+      console.log(`\n>---------------- ${chalk.red('Files build failed')} -----------------<`)
     }
   }
 

@@ -61,7 +61,7 @@ declare const StyleDictionaryApi: {
     config: Config,
   ) => {
     buildPlatform: (platform: string) => void
-    buildAllPlatforms: () => void
+    buildAllPlatforms: () => Record<string, Array<any>>
     properties: Record<string, Property>
   }
 }
