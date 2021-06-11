@@ -1,7 +1,8 @@
 import './yaml-interop'
 import cssColorFn from 'css-color-function'
 
-import { Api, InternalApi } from '../index'
+import Themekit from '../index'
+import ThemekitInternal from '../internal'
 import { createStyleDictionaryConfig } from './style-dictionary-config'
 import { variablesWithPrefix } from './variablesWithPrefix'
 import { loadMappers } from './mappers'
@@ -18,7 +19,7 @@ import { performActions } from './perfomActions'
 
 const context = new Map()
 
-Api.registerFormat({
+Themekit.registerFormat({
   name: 'css/whitepaper',
   formatter(dictionary, config) {
     deprecate(
@@ -45,7 +46,7 @@ Api.registerFormat({
 })
 
 // NOTE: Override default css/variables format.
-Api.registerFormat({
+Themekit.registerFormat({
   name: 'css/variables',
   formatter(dictionary, config) {
     const defaultOptions = { selector: ':root', useAliasVariables: false }
@@ -65,7 +66,7 @@ Api.registerFormat({
   },
 })
 
-Api.registerTransform({
+Themekit.registerTransform({
   name: 'name/mapper',
   type: 'name',
   transformer: (prop) => {
@@ -74,7 +75,7 @@ Api.registerTransform({
   },
 })
 
-Api.registerFilter({
+Themekit.registerFilter({
   name: 'whitepaper/color',
   matcher: (prop) => {
     if (isColor(prop.value)) {
@@ -85,7 +86,7 @@ Api.registerFilter({
   },
 })
 
-Api.registerFilter({
+Themekit.registerFilter({
   name: 'whitepaper/root',
   matcher: (prop) => {
     if (!isColor(prop.value)) {
@@ -96,7 +97,7 @@ Api.registerFilter({
   },
 })
 
-Api.registerAction({
+Themekit.registerAction({
   name: 'process-color',
   // We need to apply the cssColorFn to the value.
   // Also should retain the original value unchanged
@@ -134,7 +135,7 @@ Api.registerAction({
   undo: () => {},
 })
 
-Api.registerPreset({
+Themekit.registerPreset({
   name: 'css',
   transforms: ['name/cti/kebab', 'name/mapper'],
   actions: ['process-color'],
@@ -153,7 +154,7 @@ export async function build(config: Config): Promise<Platforms> {
       context.set('mapper', await loadMappers(theme.mappers))
       context.set('whitepaper', enhanceWhitepaperConfig(theme.whitepaper, platform))
 
-      const StyleDictionary = InternalApi.extend(
+      const StyleDictionary = ThemekitInternal.extend(
         createStyleDictionaryConfig({
           platform: platform,
           sources: sources,
