@@ -41,3 +41,19 @@ export function flatten<T extends any[]>(arrays: T[]): ArrayType<T>[] {
 export function normalizePaths(paths: string[]): string[] {
   return paths.map((path) => normalize(path))
 }
+
+export function deepClone(object: object): object {
+  const result: Record<string, any> = {}
+
+  for (let [key, value] of Object.entries(object)) {
+    if (Array.isArray(value)) {
+      result[key] = value.map((el) => (typeof el === 'object' ? deepClone(el) : el))
+    } else if (value !== null && typeof value === 'object') {
+      result[key] = deepClone(value)
+    } else {
+      result[key] = value
+    }
+  }
+
+  return result
+}

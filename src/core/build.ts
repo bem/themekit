@@ -1,7 +1,5 @@
 import './yaml-interop'
 import cssColorFn from 'css-color-function'
-import { resolve } from 'path'
-import { readFileSync, writeFileSync } from 'fs-extra'
 
 import { Api, InternalApi } from '../index'
 import { createStyleDictionaryConfig } from './style-dictionary-config'
@@ -15,6 +13,8 @@ import { isColor } from './utils'
 import { enhanceWhitepaperConfig } from './enhance-whitepaper-config'
 import { replaceAliasToVariable } from './replace-alias-to-variable'
 import { deprecate } from './deprecate'
+import { Platforms } from './types'
+import { performActions } from './perfomActions'
 
 const context = new Map()
 
@@ -98,17 +98,38 @@ Api.registerFilter({
 
 Api.registerAction({
   name: 'process-color',
-  do: (_, config) => {
-    for (const file of config.files) {
-      const filePath = resolve(process.cwd(), config.buildPath, file.destination)
-      const colorRe = /color\(.+\)/g
-      let content = readFileSync(filePath, 'utf8')
-      let executed = null
-      while ((executed = colorRe.exec(content)) !== null) {
-        content = content.replace(executed[0], cssColorFn.convert(executed[0]))
+  // We need to apply the cssColorFn to the value.
+  // Also should retain the original value unchanged
+  do: (dictionary) => {
+    const content = JSON.stringify(dictionary)
+
+    return JSON.parse(content, (key, value) => {
+      // When meet key "value" return original and converted versions
+      if (key === 'value') {
+        let convertedValue = value
+
+        const colorRe = /color\(.+\)/g
+        let executed
+        while ((executed = colorRe.exec(convertedValue)) !== null) {
+          convertedValue = convertedValue.replace(executed[0], cssColorFn.convert(executed[0]))
+        }
+
+        return {
+          original: value,
+          value: convertedValue,
+        }
       }
-      writeFileSync(filePath, content)
-    }
+
+      // If the value has "value" key, spread the original and converted values
+      if (value.value) {
+        return {
+          ...value,
+          ...value.value,
+        }
+      }
+
+      return value
+    })
   },
   undo: () => {},
 })
@@ -119,15 +140,7 @@ Api.registerPreset({
   actions: ['process-color'],
 })
 
-export type BuildResult = Record<
-  string,
-  {
-    dictionary: any
-    platform: any
-  }
->
-
-export async function build(config: Config): Promise<BuildResult> {
+export async function build(config: Config): Promise<Platforms> {
   let result = {}
 
   for (const entry in config.entry) {
@@ -154,5 +167,5 @@ export async function build(config: Config): Promise<BuildResult> {
     }
   }
 
-  return result
+  return performActions(result)
 }

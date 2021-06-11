@@ -4,10 +4,11 @@ import { watch } from 'chokidar'
 import chalk from 'chalk'
 
 import { loadConfig } from '../core/config'
-import { build, BuildResult } from '../core/build'
+import { build } from '../core/build'
 import { loadTheme } from '../core/loadTheme'
 import { debounce, flatten } from '../core/utils'
 import { buildFiles } from '../core/buildFiles'
+import { Platforms } from '../core/types'
 
 type Flags = {
   config: string
@@ -105,10 +106,10 @@ export default class Build extends Command {
     }
   }
 
-  private async buildFiles(results: BuildResult) {
+  private async buildFiles(platforms: Platforms) {
     console.log(`\n>---------------- ${chalk.yellow('Files build started')} ----------------<`)
     try {
-      for (let { dictionary, platform } of Object.values(results)) {
+      for (let { dictionary, platform } of Object.values(platforms)) {
         buildFiles(dictionary, platform)
       }
       console.log(`\n>--------------- ${chalk.green('Files build completed')} ---------------<\n\n`)
