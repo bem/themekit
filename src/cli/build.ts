@@ -3,12 +3,14 @@ import { Command, flags } from '@oclif/command'
 import { watch } from 'chokidar'
 import chalk from 'chalk'
 
+import { Config } from '../core/config'
 import { loadConfig } from '../core/config'
 import { build } from '../core/build'
 import { loadTheme } from '../core/loadTheme'
 import { debounce, flatten } from '../core/utils'
 import { buildFiles } from '../core/buildFiles'
-import { Platforms } from '../core/types'
+import { Data, Platforms } from '../core/types'
+import { loadData } from '../core/loadData'
 
 type Flags = {
   config: string
@@ -49,7 +51,13 @@ export default class Build extends Command {
       outputs: flags.output,
     })
 
-    const result = await this.build(config)
+    const data = await this.loadData(config)
+
+    if (!data) {
+      return
+    }
+
+    const result = await this.build(data)
 
     if (!result) {
       return
@@ -93,7 +101,17 @@ export default class Build extends Command {
     }
   }
 
-  private async build(config: any) {
+  private async loadData(config: Config): Promise<Data | undefined> {
+    try {
+      return await loadData(config)
+    } catch (error) {
+      console.log('\r')
+      console.log(error)
+      console.log(`\n>---------------- ${chalk.red('Data loading failed')} -----------------<`)
+    }
+  }
+
+  private async build(config: any): Promise<Platforms | undefined> {
     console.log(`>---------------- ${chalk.yellow('Build started')} ----------------<`)
     try {
       const result = await build(config)
