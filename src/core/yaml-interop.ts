@@ -25,16 +25,18 @@ class YamlParseError extends Error {
 /**
  * Patched native `require` for importing module with `yaml` extensions.
  */
-Module.prototype.require = new Proxy(Module.prototype.require, {
-  apply(target, thisArg, args) {
-    if (/\.ya?ml$/.test(args[0])) {
-      const file = readFileSync(args[0], 'utf8')
-      try {
-        return YAML.parse(file, { prettyErrors: true })
-      } catch (error) {
-        throw new YamlParseError(args[0], file, error.message, error.linePos)
+if (typeof window === 'undefined') {
+  Module.prototype.require = new Proxy(Module.prototype.require, {
+    apply(target, thisArg, args) {
+      if (/\.ya?ml$/.test(args[0])) {
+        const file = readFileSync(args[0], 'utf8')
+        try {
+          return YAML.parse(file, { prettyErrors: true })
+        } catch (error) {
+          throw new YamlParseError(args[0], file, error.message, error.linePos)
+        }
       }
-    }
-    return Reflect.apply(target, thisArg, args)
-  },
-})
+      return Reflect.apply(target, thisArg, args)
+    },
+  })
+}

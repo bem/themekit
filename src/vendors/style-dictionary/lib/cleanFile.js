@@ -12,10 +12,12 @@
  */
 
 var path  = require('path'),
-    fs    = require('fs-extra'),
     chalk = require('chalk');
 
-
+let fs
+if (typeof window === 'undefined') {
+	require('fs-extra')
+}
 /**
  * Takes the style property object and a format and returns a
  * string that can be written to a file.

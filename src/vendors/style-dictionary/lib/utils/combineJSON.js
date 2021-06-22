@@ -11,7 +11,10 @@
  * and limitations under the License.
  */
 
-require('json5/lib/register')
+if (typeof window === 'undefined') {
+	require('json5/lib/register')
+}
+
 
 let glob = require('glob')
 let deepExtend = require('./deepExtend')
