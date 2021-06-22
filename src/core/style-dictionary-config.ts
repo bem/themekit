@@ -7,9 +7,16 @@ type Options = {
   entry: string
   platform: string
   output: Record<string, Platform>
+  properties: object
 }
 
-export function createStyleDictionaryConfig({ sources, entry, platform, output }: Options): Config {
+export function createStyleDictionaryConfig({
+  sources,
+  entry,
+  platform,
+  output,
+  properties,
+}: Options): Config {
   const platforms = Object.entries<Platform>(output)
     // prettier-ignore
     .reduce<Record<string, Platform>>((acc, [key, value]) => {
@@ -41,8 +48,10 @@ export function createStyleDictionaryConfig({ sources, entry, platform, output }
       return acc
     }, {})
 
+  // To work in browser we should pass `properties` and set `include` to []
   return {
-    include: sources,
-    platforms: platforms,
+    include: properties ? [] : sources,
+    platforms,
+    properties,
   }
 }
