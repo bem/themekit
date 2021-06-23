@@ -3,8 +3,9 @@ import { readJSON, readFileSync } from 'fs-extra'
 import YAML from 'yaml'
 
 import { normalizePaths } from './utils'
+import { Mapper } from './types'
 
-export async function loadMappers(paths: string[]): Promise<any> {
+export async function loadMappers(paths: string[]): Promise<Mapper> {
   const result = {}
   for (const file of await glob(normalizePaths(paths))) {
     if (/\.ya?ml$/.test(file)) {

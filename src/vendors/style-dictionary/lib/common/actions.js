@@ -12,8 +12,12 @@
  */
 
 let _ = require('lodash')
-let fs = require('fs-extra')
 let chalk = require('chalk')
+
+let fs
+if (typeof window === 'undefined') {
+	require('fs-extra')
+}
 
 /**
  * @namespace Actions

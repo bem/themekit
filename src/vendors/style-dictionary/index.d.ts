@@ -19,6 +19,7 @@ export type Platform = {
 export type Config = {
   include: string[]
   platforms: Record<string, Platform>
+  properties: object
 }
 
 export type InjectedTransformer = {

@@ -11,16 +11,13 @@
  * and limitations under the License.
  */
 
-require('json5/lib/register');
+if (typeof window === 'undefined') {
+	require('json5/lib/register')
+}
 
 var combineJSON = require('./utils/combineJSON'),
     deepExtend = require('./utils/deepExtend'),
-    resolveCwd = require('resolve-cwd'),
-    _ = require('lodash'),
-    chalk = require('chalk'),
-    GroupMessages = require('./utils/groupMessages');
-
-var PROPERTY_VALUE_COLLISIONS = GroupMessages.GROUP.PropertyValueCollisions;
+    _ = require('lodash');
 
 /**
  * Either a string to a JSON file that contains configuration for the style dictionary or a plain Javascript object
@@ -60,13 +57,10 @@ var PROPERTY_VALUE_COLLISIONS = GroupMessages.GROUP.PropertyValueCollisions;
  * Create a Style Dictionary
  * @static
  * @memberof module:style-dictionary
- * @param {Config} config - Configuration options to build your style dictionary. If you pass a string,
- * it will be used as a path to a JSON config file. You can also pass an object with the configuration.
+ * @param {Config} config - Configuration options to build your style dictionary. Pass an object with the configuration.
  * @returns {module:style-dictionary}
  * @example
  * ```js
- * const StyleDictionary = require('style-dictionary').extend('config.json');
- *
  * const StyleDictionary = require('style-dictionary').extend({
  *   source: ['properties/*.json'],
  *   platforms: {
@@ -86,13 +80,7 @@ var PROPERTY_VALUE_COLLISIONS = GroupMessages.GROUP.PropertyValueCollisions;
 function extend(opts) {
   var options, to_ret;
 
-  // Overloaded method, can accept a string as a path that points to a JS or
-  // JSON file or a plain object. Potentially refactor.
-  if (_.isString(opts)) {
-    options = require(resolveCwd(opts));
-  } else {
-    options = opts;
-  }
+	options = opts;
 
   // Creating a new object and copying over the options
   // Also keeping an options object in case
@@ -103,36 +91,19 @@ function extend(opts) {
     if (!_.isArray(options.include))
       throw new Error('include must be an array');
 
-    to_ret.properties = combineJSON(options.include, true);
+		if (options.include.length > 0) {
+			to_ret.properties = combineJSON(options.include, true);
+
+			to_ret.include = null; // We don't want to carry over include references
+		}
+  }
+
+	if (options.properties) {
+		to_ret.properties = options.properties
 
     to_ret.include = null; // We don't want to carry over include references
-  }
+	}
 
-  // Update properties with current package's source
-  // These highest precedence
-  if (options.source) {
-    if (!_.isArray(options.source))
-      throw new Error('source must be an array');
-
-    var props = combineJSON(options.source, true, function Collision(prop) {
-      GroupMessages.add(
-        PROPERTY_VALUE_COLLISIONS,
-        `Collision detected at: ${prop.path.join('.')}! Original value: ${prop.target[prop.key]}, New value: ${prop.copy[prop.key]}`
-      );
-    });
-
-    if(GroupMessages.count(PROPERTY_VALUE_COLLISIONS) > 0) {
-      var collisions = GroupMessages.flush(PROPERTY_VALUE_COLLISIONS).join('\n');
-      console.log(`\n${PROPERTY_VALUE_COLLISIONS}:\n${collisions}\n\n`);
-      if (options.log === 'error') {
-        throw new Error('Collisions detected');
-      }
-    }
-
-    to_ret.properties = deepExtend([{}, to_ret.properties, props]);
-
-    to_ret.source = null; // We don't want to carry over the source references
-  }
 
   return to_ret;
 }

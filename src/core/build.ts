@@ -4,17 +4,12 @@ import cssColorFn from 'css-color-function'
 import { Api, InternalApi } from '../index'
 import { createStyleDictionaryConfig } from './style-dictionary-config'
 import { variablesWithPrefix } from './variablesWithPrefix'
-import { loadMappers } from './mappers'
-import { loadTheme } from './loadTheme'
 import { dedupeProps } from './dedupe-props'
-import { loadSources } from './load-sources'
-import { Config } from './config'
 import { isColor } from './utils'
-import { enhanceWhitepaperConfig } from './enhance-whitepaper-config'
 import { replaceAliasToVariable } from './replace-alias-to-variable'
 import { deprecate } from './deprecate'
-import { Platforms } from './types'
 import { performActions } from './perfomActions'
+import { Platforms, Data } from './types'
 
 const context = new Map()
 
@@ -74,6 +69,32 @@ Api.registerTransform({
   },
 })
 
+Api.registerFormat({
+  name: 'json/extended',
+  formatter(dictionary) {
+    const result: Record<string, any> = {}
+    console.log(dictionary)
+    for (const prop of dictionary.allProperties) {
+      result[prop.name] = {
+        name: prop.name,
+        value: prop.value,
+        rawValue: prop.original.value,
+        path: prop.path,
+        comment: prop.comment,
+      }
+    }
+    return JSON.stringify(result, null, 2)
+  },
+})
+
+Api.registerTransform({
+  name: 'json/extended/mapper',
+  type: 'name',
+  transformer: (prop) => {
+    return context.get('mapper')[prop.name] || prop.name
+  },
+})
+
 Api.registerFilter({
   name: 'whitepaper/color',
   matcher: (prop) => {
@@ -108,24 +129,13 @@ Api.registerAction({
       if (key === 'value') {
         let convertedValue = value
 
-        const colorRe = /color\(.+\)/g
+        const colorRe = /color\((?!{).+\)/g
         let executed
         while ((executed = colorRe.exec(convertedValue)) !== null) {
           convertedValue = convertedValue.replace(executed[0], cssColorFn.convert(executed[0]))
         }
 
-        return {
-          original: value,
-          value: convertedValue,
-        }
-      }
-
-      // If the value has "value" key, spread the original and converted values
-      if (value.value) {
-        return {
-          ...value,
-          ...value.value,
-        }
+        return convertedValue
       }
 
       return value
@@ -140,32 +150,28 @@ Api.registerPreset({
   actions: ['process-color'],
 })
 
-export async function build(config: Config): Promise<Platforms> {
+export async function build(data: Data): Promise<Platforms> {
   let result = {}
 
-  for (const entry in config.entry) {
-    const theme = await loadTheme(config.entry[entry])
-    for (const platform of theme.platforms) {
-      // TODO: Load sources in themes?
-      const sources = await loadSources(theme.sources, platform)
+  data.forEach((el: any) => {
+    const { sources, mapper, whitepaper, platform, entry, output, properties } = el
 
-      // TODO: Load mappers in themes?
-      context.set('mapper', await loadMappers(theme.mappers))
-      context.set('whitepaper', enhanceWhitepaperConfig(theme.whitepaper, platform))
+    context.set('mapper', mapper)
+    context.set('whitepaper', whitepaper)
 
-      const StyleDictionary = InternalApi.extend(
-        createStyleDictionaryConfig({
-          platform: platform,
-          sources: sources,
-          entry: entry,
-          output: config.output,
-        }),
-      )
+    const StyleDictionary = InternalApi.extend(
+      createStyleDictionaryConfig({
+        platform,
+        sources,
+        entry,
+        output,
+        properties,
+      }),
+    )
 
-      StyleDictionary.properties = dedupeProps(StyleDictionary.properties)
-      result = { ...result, ...StyleDictionary.buildAllPlatforms() }
-    }
-  }
+    StyleDictionary.properties = dedupeProps(StyleDictionary.properties)
+    result = { ...result, ...StyleDictionary.buildAllPlatforms() }
+  })
 
   return performActions(result)
 }

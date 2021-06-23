@@ -12,10 +12,14 @@
  */
 
 var path = require('path'),
-    fs   = require('fs-extra'),
     chalk = require('chalk'),
     filterProperties = require('./filterProperties'),
     GroupMessages = require('./utils/groupMessages');
+
+let fs
+if (typeof window === 'undefined') {
+	fs = require('fs-extra')
+}
 
 /**
  * Takes the style property object and a format and returns a

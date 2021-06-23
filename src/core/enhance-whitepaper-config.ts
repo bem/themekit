@@ -1,4 +1,4 @@
-type WhitepaperConfig = Record<string, string>
+import { WhitepaperConfig } from './types'
 
 export function enhanceWhitepaperConfig(
   config: WhitepaperConfig,
