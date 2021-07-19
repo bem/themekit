@@ -19,6 +19,7 @@ class YamlParseError extends Error {
     this.location = location
   }
 }
+
 export function parse(source: string, path?: string) {
   try {
     return YAML.parse(source, { prettyErrors: true })

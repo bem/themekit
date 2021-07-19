@@ -45,6 +45,10 @@ function createCacheKey(path: string[]) {
   )
 }
 
+function normalizeAliasKey(alias: string) {
+  return dotCase(alias)
+}
+
 function resolveValueAliases(value: TokenValue, visited = new Set<string>()) {
   const result = { value, refs: [] }
 
@@ -60,20 +64,20 @@ function resolveValueAliases(value: TokenValue, visited = new Set<string>()) {
       visited.add(alias)
     }
 
-    const refToken = tokensRef.current[indexCache.get(alias)]
+    const resolvedToken = tokensRef.current[indexCache.get(normalizeAliasKey(alias))]
 
-    if (!refToken) {
+    if (!resolvedToken) {
       throw new NotFoundRefException(alias)
     }
 
-    if (isAlias(refToken.value)) {
-      const compileResult = resolveValueAliases(refToken.value, visited)
-      refToken.refs = compileResult.refs
-      refToken.value = compileResult.value
+    if (isAlias(resolvedToken.value)) {
+      const compileResult = resolveValueAliases(resolvedToken.value, visited)
+      resolvedToken.refs = compileResult.refs
+      resolvedToken.value = compileResult.value
     }
 
-    result.refs.push(refToken)
-    result.value = String(result.value).replace(match, refToken.value)
+    result.refs.push(resolvedToken)
+    result.value = String(result.value).replace(match, resolvedToken.value)
   }
 
   return result
