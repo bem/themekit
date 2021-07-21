@@ -1,10 +1,19 @@
 {
   "name": "@yandex/themekit-core",
-  "version": "0.0.0-alpha.0",
+  "version": "0.0.1-alpha.0",
+  "author": "Eugene Tropin <yarastqt@gmail.com>",
+  "license": "MPL-2.0",
+  "repository": "https://github.com/bem/themekit",
+  "homepage": "https://github.com/bem/themekit",
+  "bugs": {
+    "url": "https://github.com/bem/themekit/issues"
+  },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
   },
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "scripts": {
     "build": "../../node_modules/.bin/tsc --build tsconfig.prod.json",
     "cleanup": "rm -rf lib",
@@ -21,5 +30,6 @@
   },
   "devDependencies": {
     "@types/babel__code-frame": "7.0.2"
-  }
+  },
+  "files": ["lib"]
 }

@@ -1,10 +1,13 @@
 import { extname } from 'path'
 import { readFileSync } from 'fs-extra'
+// TODO: Think about this.
+import { parse as parseYaml } from '@yandex/themekit-core/lib/parsers/yaml-parser'
+import { parse as parseJson } from '@yandex/themekit-core/lib/parsers/json-parser'
 
-import { parse as parseYaml } from '../../parsers/yaml-parser'
-import { parse as parseJson } from '../../parsers/json-parser'
-
-export function readFile(path: string) {
+/**
+ *
+ */
+export function readFile<T>(path: string): T {
   const source = readFileSync(path, 'utf8')
 
   switch (extname(path)) {
