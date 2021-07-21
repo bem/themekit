@@ -3,7 +3,13 @@
   "version": "2.0.0-alpha.0",
   "author": "Eugene Tropin <yarastqt@gmail.com>",
   "description": "Build system of design-tokens for any platforms",
-  "keywords": ["themekit", "design", "css", "tokens", "style"],
+  "keywords": [
+    "themekit",
+    "design",
+    "css",
+    "tokens",
+    "style"
+  ],
   "license": "MPL-2.0",
   "repository": "https://github.com/bem/themekit",
   "homepage": "https://github.com/bem/themekit",
@@ -27,7 +33,7 @@
     "unit": "../../node_modules/.bin/jest"
   },
   "dependencies": {
-    "@oclif/command": "1.5.19",
+    "@oclif/command": "1.8.0",
     "@yandex/themekit-core": "0.0.1-alpha.0",
     "chalk": "4.1.0",
     "chokidar": "3.4.0",
@@ -37,8 +43,9 @@
     "read-pkg-up": "7.0.1"
   },
   "devDependencies": {
-    "@oclif/dev-cli": "1.22.2",
-    "@types/fs-extra": "8.1.0"
+    "@oclif/dev-cli": "1.26.0",
+    "@types/fs-extra": "8.1.0",
+    "@types/normalize-path": "3.0.0"
   },
   "oclif": {
     "commands": "src/commands",

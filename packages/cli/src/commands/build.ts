@@ -46,35 +46,30 @@ export default class Build extends Command {
   async run() {
     // TODO: вернуть фильтрацию конфига
     const { flags } = this.parse<BuildFlags, never>(Build)
-    // TODO: resolve from cwd?
     const { entry, output } = loadConfig(resolve(flags.config))
 
-    // компиляцию можно распаралелить
-    // TODO: проверить как будет работать асинхронно и синхронно
     this.build(entry, output)
 
     if (flags.watch) {
       // TODO: move to utils or method?
       const sources = []
-
       for (const entryName in entry) {
         const theme = loadTheme(entry[entryName])
         sources.push(...theme.mappers.flat(), ...theme.sources.flat())
       }
-
       watch(sources, () => {
         this.build(entry, output)
       })
     }
   }
 
-  async catch(error) {
-    // TODO: тут можно не делать exit1, но сперва стоит написать что фейл билда а затем кинуть ошибку
-    console.error(chalk.red(error.stack))
-    console.log(`>---------------- ${chalk.red('Build failed')} -----------------<`)
-    // process.exit(1)
-    this.exit(1)
-  }
+  // async catch(error) {
+  //   // TODO: тут можно не делать exit1, но сперва стоит написать что фейл билда а затем кинуть ошибку
+  //   console.error(chalk.red(error.stack))
+  //   console.log(`>---------------- ${chalk.red('Build failed')} -----------------<`)
+  //   // process.exit(1)
+  //   this.exit(1)
+  // }
 
   // TODO: check failed build
   private build(entry, output) {
@@ -83,6 +78,7 @@ export default class Build extends Command {
 
     for (const entryName in entry) {
       const theme = loadTheme(entry[entryName])
+      // @ts-expect-error
       const mapper = loadMapper(theme.mappers)
 
       for (const platform of theme.platforms) {

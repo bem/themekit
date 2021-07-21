@@ -4,7 +4,7 @@
   },
   "output": {
     "css": {
-      "transforms": ["name/cti/kebab"],
+      "transforms": ["name/param-case"],
       "buildPath": "./themes",
       "files": [
         {

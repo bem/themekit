@@ -6,7 +6,7 @@ type Mapper = Record<string, string>
 /**
  *
  */
-export function loadMapper(paths: []): Mapper {
+export function loadMapper(paths: string[]): Mapper {
   const result = {}
   const files = glob(paths)
 

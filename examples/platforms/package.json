@@ -2,6 +2,6 @@
   "name": "platforms",
   "version": "0.0.1",
   "scripts": {
-    "build": "../../bin/themekit build"
+    "build": "../../packages/cli/bin/themekit build"
   }
 }
