@@ -4,42 +4,38 @@ import merge from 'deepmerge'
 
 import { resolveFrom } from './path-resolver'
 import { findPackageRoot } from './package-resolver'
+import { NotFoundThemeException } from './errors'
 
-type Platforms = any
-
-export function loadTheme(source: string, root: string = process.cwd()): OutputTheme {
+export function loadTheme(path: string, root: string = process.cwd()): OutputTheme {
   // TODO: use ref?
-  let derivedTheme: OutputTheme = {
-    mappers: [],
-    sources: [],
-    platforms: ['common'],
-  }
-  const theme: InputTheme = readJsonSync(source)
+  let derivedTheme: OutputTheme = { mappers: [], sources: [], exclude: [] }
+  const theme: InputTheme = readJsonSync(path)
   const packageRootPath = findPackageRoot(root)
 
   if (theme.extends !== undefined) {
     const parentThemePath = resolveFrom(packageRootPath, theme.extends)
+
     if (parentThemePath && existsSync(parentThemePath)) {
       const parentThemeCwd = dirname(parentThemePath)
       const parentTheme = loadTheme(parentThemePath, parentThemeCwd)
-      // Platforms should be defined at project theme.
-      derivedTheme = merge(derivedTheme, { ...parentTheme, platforms: [] })
+      derivedTheme = merge(derivedTheme, parentTheme)
     } else {
-      throw new Error(`Cannot load theme: "${theme.extends}".`)
+      throw new NotFoundThemeException(theme.extends)
     }
   }
 
-  if (theme.platforms !== undefined) {
-    derivedTheme.platforms = theme.platforms
+  if (theme.exclude !== undefined) {
+    derivedTheme.exclude = theme.exclude
   }
 
   if (theme.mappers !== undefined) {
+    // TODO: Переписать эту херовину
     derivedTheme.mappers.push(...theme.mappers.map((filePath) => join(packageRootPath, filePath)))
   }
 
   for (const source of theme.sources) {
-    // Makes array of arrays with each source for save order after glob.
-    derivedTheme.sources.push([resolve(packageRootPath, source)])
+    const resolvedSource = resolve(packageRootPath, source)
+    derivedTheme.sources.push(resolvedSource)
   }
 
   return derivedTheme
@@ -47,15 +43,14 @@ export function loadTheme(source: string, root: string = process.cwd()): OutputT
 
 // TODO: rewrite to interface
 type InputTheme = {
+  exclude: string[]
   mappers: string[]
   sources: string[]
-  platforms: Platforms[]
   extends?: string
 }
 
 type OutputTheme = {
+  exclude: string[]
   mappers: string[]
-  // Uses nested array with paths, cuz glob not save orders with using patterns for path.
-  sources: string[][]
-  platforms: Platforms[]
+  sources: string[]
 }

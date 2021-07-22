@@ -7,6 +7,7 @@ export abstract class Command extends BaseCommand {
   static flags = {
     silent: flags.boolean({
       description: 'Silence CLI output',
+      default: false,
     }),
   }
 
@@ -14,8 +15,9 @@ export abstract class Command extends BaseCommand {
 
   constructor(argv: string[], config: IConfig) {
     super(argv, config)
+
     const { flags } = this.parse<{ silent?: boolean }, never>(BaseCommand)
-    this.isSilent = flags.silent ?? false
+    this.isSilent = flags.silent
   }
 
   log(message?: string, ...args: any[]) {

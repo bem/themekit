@@ -20,7 +20,7 @@ class YamlParseError extends Error {
   }
 }
 
-export function parse(source: string, path?: string) {
+export function parseYaml(source: string, path?: string) {
   try {
     return YAML.parse(source, { prettyErrors: true })
   } catch (error) {

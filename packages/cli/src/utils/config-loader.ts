@@ -1,4 +1,4 @@
-import type { Output } from '@yandex/themekit-core/lib/compiler/types'
+import type { Output } from '@yandex/themekit-core'
 
 import { glob } from './glob'
 

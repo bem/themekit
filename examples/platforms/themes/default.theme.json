@@ -1,4 +1,7 @@
 {
-  "platforms": ["desktop", "touch"],
-  "sources": ["./tokens/*.tokens.yml"]
+  "exclude": ["**/tokens/*@touch.tokens.yml"],
+  "sources": [
+    "./tokens/*.tokens.yml",
+    "./tokens/*@desktop.tokens.yml"
+  ]
 }

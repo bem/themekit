@@ -63,13 +63,13 @@ export default class Build extends Command {
     }
   }
 
-  // async catch(error) {
-  //   // TODO: тут можно не делать exit1, но сперва стоит написать что фейл билда а затем кинуть ошибку
-  //   console.error(chalk.red(error.stack))
-  //   console.log(`>---------------- ${chalk.red('Build failed')} -----------------<`)
-  //   // process.exit(1)
-  //   this.exit(1)
-  // }
+  async catch(error) {
+    // TODO: тут можно не делать exit1, но сперва стоит написать что фейл билда а затем кинуть ошибку
+    console.error(chalk.red(error.stack))
+    console.log(`>---------------- ${chalk.red('Build failed')} -----------------<`)
+    // process.exit(1)
+    this.exit(1)
+  }
 
   // TODO: check failed build
   private build(entry, output) {
@@ -78,29 +78,28 @@ export default class Build extends Command {
 
     for (const entryName in entry) {
       const theme = loadTheme(entry[entryName])
-      // @ts-expect-error
       const mapper = loadMapper(theme.mappers)
+      // @ts-expect-error
+      const tokens = loadSources(theme.sources, theme.exclude) as any
+      const result = compile({ tokens, output, context: { entry: entryName, mapper } })
 
-      for (const platform of theme.platforms) {
-        const tokens = loadSources(theme.sources, platform) as any
-        const result = compile({ tokens, output, context: { entry: entryName, platform, mapper } })
+      for (const [outputName, files] of Object.entries(result)) {
+        for (const file of files) {
+          // TODO: move to utils?
+          const destination = file.destination
+            .replace(/\[entry\]/g, entryName)
+            // .replace(/\[platform\]/g, platform)
+            // Remove common level, because is root.
+            .replace(/common\/?/g, '')
 
-        for (const [outputName, files] of Object.entries(result)) {
-          for (const file of files) {
-            // TODO: move to utils?
-            const destination = file.destination
-              .replace(/\[entry\]/g, entryName)
-              .replace(/\[platform\]/g, platform)
-              // Remove common level, because is root.
-              .replace(/common\/?/g, '')
-
-            const filePath = join(process.cwd(), output[outputName].buildPath, destination)
-            // console.log('>>> filePath', destination)
-            fs.writeFile(filePath, file.content)
-            this.log(`⚡️ ${destination}`)
-          }
+          const filePath = join(process.cwd(), output[outputName].buildPath, destination)
+          // console.log('>>> filePath', destination)
+          fs.writeFile(filePath, file.content)
+          this.log(`⚡️ ${destination}`)
         }
       }
+      // for (const platform of theme.platforms) {
+      // }
     }
 
     this.log(`>--------------- ${chalk.green('Build completed')} ---------------<\n`)

@@ -1,38 +1,23 @@
-import { basename } from 'path'
-// TODO: Think about this.
-import type { DeepRawToken } from '@yandex/themekit-core/lib/types'
+import type { DeepRawToken } from '@yandex/themekit-core'
 
-import { Platforms, platforms } from '../legacy/platforms'
-import { readFile } from './file-reader'
 import { glob } from './glob'
+import { readFile } from './file-reader'
 
-export function loadSources(paths: string[][], platform: Platforms): string[] {
-  const result = []
-  const levels = platforms.get(platform)
+export function loadSources(paths: string[], exclude: string[]) {
+  let files: string[] = []
+  const result: DeepRawToken[] = []
 
-  if (levels === undefined) {
-    throw new Error(`Unexpected platform: ${platform}, please check configuration.`)
+  for (const path of paths) {
+    // Use each path separately because glob
+    // not save ordering with using patterns for path.
+    const entries = glob(path, exclude).sort()
+    // Remove exists files from list for save ordering with compicated globs.
+    // example:
+    // ./tokens/*.tokens.yml
+    // ./tokens/*@desktop.tokens.yml
+    files = files.filter((value) => !entries.includes(value))
+    files.push(...entries)
   }
-
-  // А может быть тут стоит сперва сделать flat в нужном порядке, а затем заинжектить?
-
-  // console.log('>>> paths', paths)
-  // Uses nested array with paths, cuz glob not save orders with using patterns for path.
-  // Also uses sort after glob for idempotent result.
-  const resolvedPaths = paths.map((path) => glob(path).sort())
-
-  const files = resolvedPaths
-    // .flatMap((value) => value)
-    .flat()
-    .filter((file) => {
-      const filePlatform = getPlatformFromFilePath(file)
-      return levels.includes(filePlatform)
-    })
-    .sort((a, b) => {
-      const a1 = getPlatformFromFilePath(a)
-      const b1 = getPlatformFromFilePath(b)
-      return levels.indexOf(a1) - levels.indexOf(b1)
-    })
 
   for (const file of files) {
     const tokens = readFile<DeepRawToken | null>(file)
@@ -43,12 +28,4 @@ export function loadSources(paths: string[][], platform: Platforms): string[] {
   }
 
   return result
-}
-
-// TODO: Надо посмотреть насколько актуальна данная фича вообще
-function getPlatformFromFilePath(filePath: string): Platforms {
-  const fileName = basename(filePath)
-  const matched = fileName.match(/@([\w|-]+)+\./)
-
-  return matched === null ? 'common' : (matched[1] as Platforms)
 }

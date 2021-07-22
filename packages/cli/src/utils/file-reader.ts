@@ -1,8 +1,6 @@
 import { extname } from 'path'
 import { readFileSync } from 'fs-extra'
-// TODO: Think about this.
-import { parse as parseYaml } from '@yandex/themekit-core/lib/parsers/yaml-parser'
-import { parse as parseJson } from '@yandex/themekit-core/lib/parsers/json-parser'
+import { parseYaml, parseJson } from '@yandex/themekit-core'
 
 /**
  *

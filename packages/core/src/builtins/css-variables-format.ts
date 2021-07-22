@@ -36,9 +36,8 @@ export const formatToCssVariables: Format<CssVariablesFormatOptions> = {
     const { entry, platform } = context
 
     // call default create selector with replacer
-    const selector = originalSelector
-      .replace(/\[entry\]/g, entry)
-      .replace(/\[platform\]/g, platform)
+    const selector = originalSelector.replace(/\[entry\]/g, entry)
+    // .replace(/\[platform\]/g, platform)
 
     return `${selector} {\n${variablesWithPrefix(tokens, otherOptions)}\n}\n`
   },

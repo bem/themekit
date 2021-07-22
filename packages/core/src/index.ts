@@ -2,6 +2,12 @@ import { createCompiler } from './compiler'
 import { createContext } from './context'
 import { registerBuiltins } from './builtins'
 
+export * from './types'
+export * from './compiler/types'
+export * from './parsers/yaml-parser'
+export * from './parsers/json-parser'
+export * from './internal/observer'
+
 const context = createContext()
 registerBuiltins(context)
 
