@@ -1,0 +1,4 @@
+{
+  "extends": "./b.theme.json",
+  "sources": ["./a.tokens.yml"]
+}

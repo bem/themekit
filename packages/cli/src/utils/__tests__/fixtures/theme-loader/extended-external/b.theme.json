@@ -1,0 +1,4 @@
+{
+  "extends": "module-b/theme.json",
+  "sources": []
+}
