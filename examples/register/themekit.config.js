@@ -1,24 +1,22 @@
-const { Api } = require('../../src/index')
+const Themekit = require('../../packages/cli/src/index')
 
-Api.registerTransform({
+Themekit.registerTransform({
   name: 'custom-transform',
   type: 'name',
-  transformer(token) {
+  transformer({ token }) {
     return token.path.join('-')
   },
 })
 
-Api.registerFormat({
+Themekit.registerFormat({
   name: 'custom-format',
-  formatter(dictionary) {
-    const props = dictionary.allProperties
-      .map((token) => `  --${token.name}: ${token.value};`)
-      .join('\n')
+  formatter({ tokens }) {
+    const props = tokens.map((token) => `  --${token.name}: ${token.value};`).join('\n')
     return `:root {\n${props}\n}\n`
   },
 })
 
-Api.registerPreset({
+Themekit.registerPreset({
   name: 'custom-preset',
   transforms: ['custom-transform'],
 })
@@ -33,7 +31,7 @@ module.exports = {
       buildPath: './themes',
       files: [
         {
-          destination: '[entry]/[platform]/root.css',
+          destination: '[entry]/root.css',
           format: 'custom-format',
           options: {
             useAliasVariables: true,

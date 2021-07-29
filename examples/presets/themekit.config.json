@@ -8,7 +8,7 @@
       "buildPath": "./themes",
       "files": [
         {
-          "destination": "[entry]/[platform]/root.css",
+          "destination": "[entry]/root.css",
           "format": "css/variables",
           "options": {
             "useAliasVariables": true

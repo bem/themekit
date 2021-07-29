@@ -1,0 +1,4 @@
+{
+  "exclude": ["**/tokens/*-desktop.tokens.yml"],
+  "sources": ["./tokens/*.tokens.yml", "./tokens/*-touch.tokens.yml"]
+}

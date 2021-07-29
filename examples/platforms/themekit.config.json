@@ -1,14 +1,15 @@
 {
   "entry": {
-    "default": "./themes/default.theme.json"
+    "default-desktop": "./themes/default-desktop.theme.json",
+    "default-touch": "./themes/default-touch.theme.json"
   },
   "output": {
     "css": {
-      "transforms": ["name/cti/kebab"],
+      "transforms": ["name/param-case"],
       "buildPath": "./themes",
       "files": [
         {
-          "destination": "[entry]/[platform]/root.css",
+          "destination": "[entry]/root.css",
           "format": "css/variables"
         }
       ]

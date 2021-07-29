@@ -1,4 +1,4 @@
 {
-  "platforms": ["desktop", "touch"],
+  "aliases": ["./tokens/*.aliases.yml"],
   "sources": ["./tokens/*.tokens.yml"]
 }

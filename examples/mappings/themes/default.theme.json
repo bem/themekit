@@ -1,4 +1,0 @@
-{
-  "mappers": ["./tokens/*.mapper.yml"],
-  "sources": ["./tokens/*.tokens.yml"]
-}

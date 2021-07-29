@@ -4,24 +4,24 @@
   },
   "output": {
     "css": {
-      "transforms": ["name/cti/kebab"],
+      "transforms": ["name/param-case"],
       "buildPath": "./themes",
       "files": [
         {
-          "destination": "[entry]/[platform]/color.css",
+          "destination": "[entry]/color.css",
           "format": "css/variables",
-          "filter": "whitepaper/color",
+          "filter": "value/is-color",
           "options": {
-            "selector": ".Theme_color_default-[platform]",
+            "selector": ".Theme_color_[entry]",
             "useAliasVariables": true
           }
         },
         {
-          "destination": "[entry]/[platform]/root.css",
+          "destination": "[entry]/root.css",
           "format": "css/variables",
-          "filter": "whitepaper/root",
+          "filter": "value/is-not-color",
           "options": {
-            "selector": ".Theme_root_default-[platform]",
+            "selector": ".Theme_root_[entry]",
             "useAliasVariables": true
           }
         }

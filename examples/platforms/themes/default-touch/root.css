@@ -1,8 +1,7 @@
 :root {
-  --color-controls-type-action-typo-base: #000;
+  --color-controls-type-action-typo-base: #999;
   --color-controls-type-action-fill-color-base: #fff;
   --color-controls-type-action-fill-color-hover: #ccc;
-  --button-fill-color: var(--color-controls-type-action-fill-color-base);
   --typo-control-font-family: Arial, sans-serif;
   --typo-control-size-s-font-size: 20px;
   --typo-control-size-m-font-size: 24px;

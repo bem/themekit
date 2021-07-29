@@ -4,14 +4,15 @@
   },
   "output": {
     "css": {
-      "transforms": ["name/cti/kebab", "name/mapper"],
+      "transforms": ["name/param-case", "name/alias"],
       "buildPath": "./themes",
       "files": [
         {
-          "destination": "[entry]/[platform]/root.css",
+          "destination": "[entry]/root.css",
           "format": "css/variables",
           "options": {
-            "useAliasVariables": true
+            "useAliasVariables": true,
+            "useComments": true
           }
         }
       ]
