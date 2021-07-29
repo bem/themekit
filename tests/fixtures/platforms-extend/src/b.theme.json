@@ -1,5 +1,0 @@
-{
-  "extends": "./src/a.theme.json",
-  "sources": [],
-  "platforms": ["desktop"]
-}
