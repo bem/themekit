@@ -1,4 +1,0 @@
-{
-  "platforms": ["desktop", "touch"],
-  "sources": ["./tokens/*.tokens.yml"]
-}

@@ -4,11 +4,11 @@
   },
   "output": {
     "css": {
-      "transforms": ["name/cti/kebab"],
+      "transforms": ["name/param-case"],
       "buildPath": "./themes",
       "files": [
         {
-          "destination": "[entry]/[platform]/root.css",
+          "destination": "[entry]/root.css",
           "format": "css/variables"
         }
       ]

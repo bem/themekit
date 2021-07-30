@@ -1,7 +1,0 @@
-color:
-  controls:
-    type:
-      action:
-        typo:
-          base:
-            value: "#ccc"

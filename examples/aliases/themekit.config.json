@@ -1,0 +1,21 @@
+{
+  "entry": {
+    "default": "./themes/default.theme.json"
+  },
+  "output": {
+    "css": {
+      "transforms": ["name/param-case", "name/alias"],
+      "buildPath": "./themes",
+      "files": [
+        {
+          "destination": "[entry]/root.css",
+          "format": "css/variables",
+          "options": {
+            "useAliasVariables": true,
+            "useComments": true
+          }
+        }
+      ]
+    }
+  }
+}

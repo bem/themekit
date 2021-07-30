@@ -1,0 +1,7 @@
+{
+  "name": "mappings",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "../../packages/cli/bin/themekit build"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "entry": {
+    "default": "./themes/default.theme.json"
+  },
+  "output": {
+    "css": {
+      "transforms": ["name/param-case"],
+      "buildPath": "./themes",
+      "files": [
+        {
+          "destination": "[entry]/color.css",
+          "format": "css/variables",
+          "filter": "value/is-color",
+          "options": {
+            "selector": ".Theme_color_[entry]",
+            "useAliasVariables": true
+          }
+        },
+        {
+          "destination": "[entry]/root.css",
+          "format": "css/variables",
+          "filter": "value/is-not-color",
+          "options": {
+            "selector": ".Theme_root_[entry]",
+            "useAliasVariables": true
+          }
+        }
+      ]
+    }
+  }
+}
