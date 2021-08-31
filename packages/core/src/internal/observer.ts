@@ -1,19 +1,17 @@
 import { compile } from '../index'
 import { CompileResult, CompileOptions } from '../compiler'
-import { RawToken, TokenValue } from '../types'
+import { TokenValue } from '../types'
 
 export type Watcher = (payload: CompileResult) => void
 type Compile = typeof compile
 
 export class ThemekitObserver {
-  private tokens: RawToken[]
   private options: CompileOptions
   private compile: Compile
   private watchers: Set<Watcher> = new Set()
 
   constructor(options: CompileOptions, _compile: Compile = compile) {
     this.compile = _compile
-    this.tokens = options.tokens
     this.options = options
     this.run(options)
   }
@@ -27,10 +25,8 @@ export class ThemekitObserver {
   }
 
   update(token: string, value: TokenValue) {
-    const tokens = [...this.tokens, { [token]: { value } }]
-    const options = { ...this.options, tokens }
-
-    this.run(options)
+    this.options.tokens.push({ [token]: { value } })
+    this.run(this.options)
   }
 
   private run(options: CompileOptions) {

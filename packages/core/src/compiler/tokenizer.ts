@@ -1,3 +1,5 @@
+import { dotCase } from 'change-case'
+
 import type { Token } from '../types'
 import { isObject } from '../utils/is-object'
 
@@ -17,11 +19,13 @@ export function tokenize(
   const result = prev
 
   for (const key in tokens) {
-    if (isObject(tokens[key]) && tokens[key].value) {
+    if (isObject(tokens[key]) && tokens[key].value !== undefined) {
       result.push({
         comment: tokens[key].comment,
         name: '',
-        path: [...context, key],
+        // `path` can consist out of complex words (['color', 'viewAction'])
+        // `normalizePath` converts into uniform form (['color', 'view', 'action'])
+        path: normalizePath([...context, key]),
         refs: [],
         value: tokens[key].value,
         original: {
@@ -34,4 +38,13 @@ export function tokenize(
   }
 
   return result
+}
+
+function normalizePath(path: string[]) {
+  return (
+    path
+      .map((chunk) => dotCase(chunk))
+      .join('.')
+      .split('.')
+  )
 }
