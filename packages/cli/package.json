@@ -1,6 +1,6 @@
 {
   "name": "@yandex/themekit",
-  "version": "2.0.0-alpha.0",
+  "version": "2.0.0-alpha.1",
   "author": "Eugene Tropin <yarastqt@gmail.com>",
   "description": "Build system of design-tokens for any platforms",
   "keywords": ["themekit", "design", "css", "tokens", "style"],
