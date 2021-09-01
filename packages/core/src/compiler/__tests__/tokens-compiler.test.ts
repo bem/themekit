@@ -77,4 +77,13 @@ describe('tokens-compiler', () => {
       expect(error instanceof NotFoundRef).toBeTruthy()
     }
   })
+
+  test('should merge tokens in different formats', () => {
+    const tokens: RawToken[] = [
+      { token1: { token2: { value: 'value-1' } } },
+      { 'token1-token2': { value: 'value-2' } },
+    ]
+    const result = compileTokens(tokens)
+    expect(result[0].value).toEqual('value-2')
+  })
 })
