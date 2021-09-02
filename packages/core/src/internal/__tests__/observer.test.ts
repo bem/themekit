@@ -1,6 +1,6 @@
 import { createCompiler } from '../../compiler'
 import { ThemekitObserver } from '../observer'
-import { simple } from './fixtures/simple'
+import { simple, anotherSimple } from './fixtures/simple'
 
 describe('ThemekitObserver', () => {
   test('should trigger watch after first compile', async () => {
@@ -51,6 +51,46 @@ describe('ThemekitObserver', () => {
       css: [
         {
           content: 'token1:value-1,token2:value-2',
+          destination: 'tokens.css',
+        },
+      ],
+    })
+  })
+
+  test('should set new tokens on setTokens', async () => {
+    const onWatch = jest.fn()
+    const compile = createCompiler(simple.context)
+    const observer = new ThemekitObserver(simple.options, compile)
+    observer.watch(onWatch)
+    observer.update('token1', 'value-1-updated')
+    observer.setTokens(anotherSimple.options.tokens)
+    await wait(100)
+    expect(onWatch).toBeCalledTimes(3)
+    expect(onWatch).toHaveBeenLastCalledWith({
+      css: [
+        {
+          content: 'token-another1:value-another-1,token-another2:value-another-2',
+          destination: 'tokens.css',
+        },
+      ],
+    })
+  })
+
+  test('should reset to tokens set on setTokens', async () => {
+    const onWatch = jest.fn()
+    const compile = createCompiler(simple.context)
+    const observer = new ThemekitObserver(simple.options, compile)
+    observer.watch(onWatch)
+    observer.update('token1', 'value-1-updated')
+    observer.setTokens(anotherSimple.options.tokens)
+    observer.update('token-another2', 'value-another-2-updated')
+    observer.reset()
+    await wait(100)
+    expect(onWatch).toBeCalledTimes(5)
+    expect(onWatch).toHaveBeenLastCalledWith({
+      css: [
+        {
+          content: 'token-another1:value-another-1,token-another2:value-another-2',
           destination: 'tokens.css',
         },
       ],
