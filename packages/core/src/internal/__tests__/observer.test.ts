@@ -37,6 +37,25 @@ describe('ThemekitObserver', () => {
       ],
     })
   })
+
+  test('should reset tokens on reset', async () => {
+    const onWatch = jest.fn()
+    const compile = createCompiler(simple.context)
+    const observer = new ThemekitObserver(simple.options, compile)
+    observer.watch(onWatch)
+    observer.update('token1', 'value-1-updated')
+    observer.reset()
+    await wait(100)
+    expect(onWatch).toBeCalledTimes(3)
+    expect(onWatch).toHaveBeenLastCalledWith({
+      css: [
+        {
+          content: 'token1:value-1,token2:value-2',
+          destination: 'tokens.css',
+        },
+      ],
+    })
+  })
 })
 
 function wait(delay: number) {
