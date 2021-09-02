@@ -37,6 +37,12 @@ export class ThemekitObserver {
     this.run(this.options)
   }
 
+  setTokens(tokens: RawToken[]) {
+    this.options.tokens = deepcopy(tokens)
+    this.originalTokens = deepcopy(tokens)
+    this.run(this.options)
+  }
+
   private run(options: CompileOptions) {
     setImmediate(() => {
       this.emit(this.compile(options))
