@@ -1,18 +1,21 @@
 import { compile } from '../index'
 import { CompileResult, CompileOptions } from '../compiler'
-import { TokenValue } from '../types'
+import { RawToken, TokenValue } from '../types'
+import deepcopy from 'deepcopy'
 
 export type Watcher = (payload: CompileResult) => void
 type Compile = typeof compile
 
 export class ThemekitObserver {
+  private originalTokens: RawToken[]
   private options: CompileOptions
   private compile: Compile
   private watchers: Set<Watcher> = new Set()
 
   constructor(options: CompileOptions, _compile: Compile = compile) {
     this.compile = _compile
-    this.options = options
+    this.options = deepcopy(options)
+    this.originalTokens = deepcopy(options.tokens)
     this.run(options)
   }
 
@@ -26,6 +29,17 @@ export class ThemekitObserver {
 
   update(token: string, value: TokenValue) {
     this.options.tokens.push({ [token]: { value } })
+    this.run(this.options)
+  }
+
+  reset() {
+    this.options.tokens = deepcopy(this.originalTokens)
+    this.run(this.options)
+  }
+
+  setTokens(tokens: RawToken[]) {
+    this.options.tokens = deepcopy(tokens)
+    this.originalTokens = deepcopy(tokens)
     this.run(this.options)
   }
 

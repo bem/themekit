@@ -37,3 +37,24 @@ export const simple = {
   } as CompileOptions,
   context: context.value,
 }
+
+export const anotherSimple = {
+  options: {
+    tokens: [
+      { tokenAnother1: { value: 'value-another-1' } },
+      { tokenAnother2: { value: 'value-another-2' } },
+    ],
+    output: {
+      css: {
+        transforms: ['transform'],
+        files: [
+          {
+            destination: 'tokens.css',
+            format: 'format',
+          },
+        ],
+      },
+    },
+  } as CompileOptions,
+  context: context.value,
+}
